@@ -1,0 +1,832 @@
+unit purchaseRequestFrm;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, DBCtrls, Mask, ExtCtrls, NxCollection, NxEdit, Buttons,
+  Grids, DBGrids, CRGrid,DateUtils, AdvSmoothLabel,  MemDS, DBAccess,
+  MyAccess, frxClass, frxDBSet, Data.DB;
+
+type
+  TpurchaseRequestForm = class(TForm)
+    Panel1: TPanel;
+    Panel2: TPanel;
+    SpeedButton1: TSpeedButton;
+    addPR_btn: TSpeedButton;
+    editPR_btn: TSpeedButton;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    searchAccountName_TF: TEdit;
+    ComboBox1: TComboBox;
+    NxDatePicker1: TNxDatePicker;
+    NxDatePicker2: TNxDatePicker;
+    NxLinkLabel2: TNxLinkLabel;
+    Panel3: TPanel;
+    NxLinkLabel1: TNxLinkLabel;
+    NxLinkLabel4: TNxLinkLabel;
+    NxLinkLabel3: TNxLinkLabel;
+    NxLinkLabel5: TNxLinkLabel;
+    NxHeaderPanel2: TNxHeaderPanel;
+    Bevel1: TBevel;
+    Label9: TLabel;
+    Label10: TLabel;
+    SpeedButton7: TSpeedButton;
+    SpeedButton8: TSpeedButton;
+    Label11: TLabel;
+    Label12: TLabel;
+    Label13: TLabel;
+    SpeedButton9: TSpeedButton;
+    Label15: TLabel;
+    Bevel2: TBevel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    prDate_dp: TNxDatePicker;
+    DBMemo1: TDBMemo;
+    DBEdit4: TDBEdit;
+    DBEdit1: TDBEdit;
+    DBEdit2: TDBEdit;
+    DBEdit3: TDBEdit;
+    DBEdit5: TDBEdit;
+    NxLinkLabel6: TNxLinkLabel;
+    DBCheckBox1: TDBCheckBox;
+    DBEdit6: TDBEdit;
+    DBEdit7: TDBEdit;
+    Label8: TLabel;
+    fundType_combo: TComboBox;
+    Label14: TLabel;
+    SpeedButton2: TSpeedButton;
+    CRDBGrid2: TCRDBGrid;
+    NxHeaderPanel3: TNxHeaderPanel;
+    Label16: TLabel;
+    CRDBGrid1: TCRDBGrid;
+    Label17: TLabel;
+    DBEdit8: TDBEdit;
+    DBEdit9: TDBEdit;
+    DBEdit10: TDBEdit;
+    DBMemo2: TDBMemo;
+    DBEdit11: TDBEdit;
+    DBEdit12: TDBEdit;
+    SpeedButton3: TSpeedButton;
+    Label18: TLabel;
+    Label19: TLabel;
+    Label20: TLabel;
+    Label21: TLabel;
+    Label22: TLabel;
+    SpeedButton4: TSpeedButton;
+    AdvSmoothLabel1: TAdvSmoothLabel;
+    AdvSmoothLabel2: TAdvSmoothLabel;
+    AdvSmoothLabel3: TAdvSmoothLabel;
+    add_label: TNxLinkLabel;
+    Edit_label: TNxLinkLabel;
+    delete_label: TNxLinkLabel;
+    DBEdit13: TDBEdit;
+    Label1: TLabel;
+    NxHeaderPanel1: TNxHeaderPanel;
+    Label23: TLabel;
+    Label24: TLabel;
+    Label25: TLabel;
+    Label26: TLabel;
+    Label27: TLabel;
+    DBEdit14: TDBEdit;
+    NxLinkLabel7: TNxLinkLabel;
+    NxLinkLabel8: TNxLinkLabel;
+    DBEdit15: TDBEdit;
+    DBEdit16: TDBEdit;
+    DBEdit17: TDBEdit;
+    tmpQ: TMyQuery;
+    SpeedButton5: TSpeedButton;
+    prReport: TfrxReport;
+    prdetailQ: TMyQuery;
+    prdetail: TfrxDBDataset;
+    pr: TfrxDBDataset;
+    prdetailQidrequisitiondetail: TLongWordField;
+    prdetailQidrequisition: TFloatField;
+    prdetailQqty: TFloatField;
+    prdetailQdescription: TStringField;
+    prdetailQestimatedCost: TFloatField;
+    prdetailQestimatedAmount: TFloatField;
+    prdetailQunit: TStringField;
+    prdetailQdocnumber: TStringField;
+    prdetailQbidopen: TDateTimeField;
+    prdetailQbidyear: TDateTimeField;
+    prdetailQcost: TFloatField;
+    prdetailQamount: TFloatField;
+    prdetailQponumber: TStringField;
+    prdetailQidpo: TIntegerField;
+    prdetailQidbidding: TIntegerField;
+    AdvSmoothLabel5: TAdvSmoothLabel;
+    AdvSmoothLabel6: TAdvSmoothLabel;
+    deletePR_btn: TSpeedButton;
+    sign: TfrxDBDataset;
+    deptQ: TMyQuery;
+    dept: TfrxDBDataset;
+    CheckBox1: TCheckBox;
+    procedure NxLinkLabel5Click(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure addPR_btnClick(Sender: TObject);
+    procedure disableComponent();
+    procedure enabledComponent();
+    procedure SpeedButton7Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure DBCheckBox1Click(Sender: TObject);
+    procedure NxLinkLabel6Click(Sender: TObject);
+    procedure fundType_comboChange(Sender: TObject);
+    procedure SpeedButton8Click(Sender: TObject);
+    procedure SpeedButton2Click(Sender: TObject);
+    procedure SpeedButton9Click(Sender: TObject);
+    procedure editPR_btnClick(Sender: TObject);
+    procedure CRDBGrid2DrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure NxLinkLabel1Click(Sender: TObject);
+    procedure SpeedButton4Click(Sender: TObject);
+    procedure add_labelClick(Sender: TObject);
+    procedure NxLinkLabel8Click(Sender: TObject);
+    procedure NxLinkLabel7Click(Sender: TObject);
+    procedure Edit_labelClick(Sender: TObject);
+    procedure delete_labelClick(Sender: TObject);
+    procedure ComboBox1Change(Sender: TObject);
+    procedure SpeedButton3Click(Sender: TObject);
+    procedure SpeedButton5Click(Sender: TObject);
+    procedure NxLinkLabel4Click(Sender: TObject);
+    procedure SpeedButton1Click(Sender: TObject);
+    procedure searchAccountName_TFKeyPress(Sender: TObject; var Key: Char);
+    procedure deletePR_btnClick(Sender: TObject);
+    procedure CheckBox1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  purchaseRequestForm: TpurchaseRequestForm;
+
+implementation
+
+uses data, payeeFrm, employeeFrm, MODTOOLS, departmentFrm, itemIndexFrm,
+  mainFrm, appItemsearch, prSearchrequesterFrm;
+
+{$R *.dfm}
+
+procedure TpurchaseRequestForm.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  Action := caFree;
+  purchaseRequestForm := Nil;
+end;
+
+procedure TpurchaseRequestForm.FormShow(Sender: TObject);
+begin
+   NxDatePicker1.Date := StartOfTheMonth(now);
+   NxDatePicker2.Date := EndOfTheMonth(now);
+
+   dataproc.cutoffQ.Close;
+   dataproc.cutoffQ.Open;
+
+   dataproc.signQ.Close;
+   dataproc.signQ.Open;
+
+   if (mainForm.userType_L.Caption = 'Budget') or
+      (mainForm.userType_L.Caption = 'Purchaser') or
+      (mainForm.userType_L.Caption = 'BAC') or
+      (mainForm.userType_L.Caption = 'IAR')then
+   begin
+     addPR_btn.Enabled    := false;
+     editPR_btn.Enabled   := false;
+     deletePR_btn.Enabled := false;
+   end;
+
+
+
+
+
+   ComboBox1Change(Sender);
+end;
+
+procedure TpurchaseRequestForm.fundType_comboChange(Sender: TObject);
+begin
+  with dataproc do
+  begin
+    cutoffQ.Close;
+    cutoffQ.Open;
+
+    prcontrolQ.Close;
+    prcontrolQ.ParamByName('fundType').Text :=   fundType_combo.Text;
+    prcontrolQ.ParamByName('cutoff').Text   :=   FormatDateTime('YYYY-MM-DD', cutoffQCutoff.AsDateTime);
+    prcontrolQ.Open;
+
+    if not prcontrolQ.IsEmpty then
+    begin
+
+      prcount := prcontrolQnumber.AsInteger;
+      Inc(prcount);
+
+      DBEdit7.Text := FormatDateTime('YYYY',prDate_dp.Date)+'-'+fundType_combo.Text+'-'+FormatDateTime('MM',prDate_dp.Date)+'-'+JustStr(intToStr(prcount),'0',3,1);
+     // showmessage(FormatDateTime('YYYY',prDate_dp.Date)+'-'+fundType_combo.Text+FormatDateTime('MM',prDate_dp.Date)+'-'+JustStr(intToStr(prcount),'0',3,1));
+    end
+    else
+    begin
+      prcount := 1;
+
+      DBEdit7.Text := FormatDateTime('YYYY',prDate_dp.Date)+'-'+fundType_combo.Text+'-'+FormatDateTime('MM',prDate_dp.Date)+'-'+JustStr(intToStr(prcount),'0',3,1);
+    end;
+  end;
+end;
+
+procedure TpurchaseRequestForm.NxLinkLabel1Click(Sender: TObject);
+begin
+  NxHeaderPanel3.Top  := 168;
+  NxHeaderPanel3.Left := 184;
+  NxHeaderPanel3.BringToFront;
+
+  NxHeaderPanel3.Visible := true;
+  disableComponent;
+
+  with dataproc do
+  begin
+     requisitionDetailQ.Filtered  := false;
+     requisitionDetailQ.FilterSQL := 'idrequisition like '+quotedstr(requisitionQidrequisition.Text);
+     requisitionDetailQ.Filtered  := true;
+  end;
+
+  if  (dataproc.requisitionQstatus.Text <> 'PENDING') or
+      (dataproc.requisitionQisSubmitToBudget.Value = true) then
+  begin
+    add_label.Enabled    := false;
+    Edit_label.Enabled   := false;
+    delete_label.Enabled := false;
+  end
+  else
+  begin
+    add_label.Enabled    := true;
+    Edit_label.Enabled   := true;
+    delete_label.Enabled := true;
+  end;
+
+  if  (dataproc.requisitionQstatus.Text = 'PENDING') or
+      (dataproc.requisitionQisSubmitToBudget.Value = false) then
+      SpeedButton3.Enabled := true;
+
+  if  dataproc.requisitionQisSubmitToBudget.Value = true then
+      SpeedButton3.Enabled := false;
+
+
+  if copy(dataproc.requisitionQstatus.Text,1,9) = 'CANCELLED' then
+  begin
+    add_label.Enabled    := true;
+    Edit_label.Enabled   := true;
+    delete_label.Enabled := true;
+  end;
+
+  if  (mainForm.userType_L.Caption = 'Budget') or
+      (mainForm.userType_L.Caption = 'Purchaser') or
+      (mainForm.userType_L.Caption = 'BAC') or
+      (mainForm.userType_L.Caption = 'IAR')then
+   begin
+     add_label.Enabled    := false;
+     Edit_label.Enabled   := false;
+     delete_label.Enabled := false;
+     SpeedButton3.Enabled := false;
+   end;
+
+   if dataproc.requisitionQuserid.Text <> mainForm.userid_L.Caption then
+   begin
+     add_label.Enabled    := false;
+     Edit_label.Enabled   := false;
+     delete_label.Enabled := false;
+     SpeedButton3.Enabled := false;
+   end;
+
+end;
+
+procedure TpurchaseRequestForm.NxLinkLabel4Click(Sender: TObject);
+begin
+  prdetailQ.Close;
+  prdetailQ.FilterSQL := ' idrequisition = '+quotedstr(dataproc.requisitionQidrequisition.Text);
+  prdetailQ.Open;
+
+  deptQ.Close;
+  deptQ.ParamByName('code').Text := dataproc.requisitionQRecmmdedDeprtmnt.Text;
+  deptQ.Open;
+
+  prReport.ShowReport;
+
+end;
+
+procedure TpurchaseRequestForm.NxLinkLabel5Click(Sender: TObject);
+begin
+  close;
+end;
+
+procedure TpurchaseRequestForm.NxLinkLabel6Click(Sender: TObject);
+begin
+  if not Assigned(payeeForm) then
+  payeeForm := TpayeeForm.Create(Application);
+
+  payeeForm.payeeFilter.Text     := 'pr payee';
+  payeeForm.add_label.Visible    := false;
+  payeeForm.Edit1.Visible        := false;
+  payeeForm.delete_label.Visible := false;
+  payeeForm.ShowModal;
+
+end;
+
+procedure TpurchaseRequestForm.NxLinkLabel7Click(Sender: TObject);
+begin
+  with dataproc do
+  begin
+
+    requisitionDetailQidrequisition.AsInteger := requisitionQidrequisition.AsInteger;
+    requisitionDetailQestimatedAmount.AsFloat := StrToFloat(StringReplace(DBEdit15.Text, ',', '',[rfReplaceAll, rfIgnoreCase])) *
+                                                 StrToFloat(StringReplace(DBEdit16.Text, ',', '',[rfReplaceAll, rfIgnoreCase]));
+    requisitionDetailQ.Post;
+
+    tmpQ.Close;
+    tmpQ.SQL.Clear;
+    tmpQ.SQL.Add('Select sum(ifnull(estimatedamount,0)) total from requisitiondetail where idrequisition = :id');
+    tmpQ.ParamByName('id').Text := requisitionQidrequisition.Text;
+    tmpQ.Open;
+
+    if not tmpq.IsEmpty then
+    begin
+      requisitionQ.Edit;
+      requisitionQamount.AsFloat := tmpQ.FieldByName('total').AsFloat;
+      requisitionQ.Post;
+    end;
+  end;
+
+  messagedlg('Item successfully save..',mtInformation,[mbOK],0);
+  NxHeaderPanel1.Visible := false;
+  CRDBGrid1.Enabled      := true;
+end;
+
+procedure TpurchaseRequestForm.NxLinkLabel8Click(Sender: TObject);
+begin
+   NxHeaderPanel1.Visible := false;
+   CRDBGrid1.Enabled      := true;
+
+   dataproc.requisitionDetailQ.Cancel;
+end;
+
+procedure TpurchaseRequestForm.searchAccountName_TFKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+  if key=#13 then
+  SpeedButton1Click(Sender);
+end;
+
+procedure TpurchaseRequestForm.addPR_btnClick(Sender: TObject);
+begin
+  tmpQ.Close;
+  tmpQ.SQL.Clear;
+  tmpQ.SQL.Add('Select * from cutoffmaster where :entrydate between datestart and dateEnd and cutoff=:cutoff');
+  tmpQ.ParamByName('entrydate').Text := FormatDateTime('YYYY-MM-DD',now);
+  tmpQ.ParamByName('cutoff').Text    := FormatDateTime('YYYY-MM-DD',dataproc.cutoffQCutoff.AsDateTime);
+  tmpQ.Open;
+
+  if tmpQ.IsEmpty then
+  begin
+    messagedlg('Cutoff covered date from '+
+               FormatDateTime('m/d/yyyy',dataproc.cutoffQdateStart.AsDateTime)+
+               ' to '+FormatDateTime('m/d/yyyy',dataproc.cutoffQdateEnd.AsDateTime),mtError,[mbOK],0);
+    exit;
+  end;
+
+  NxHeaderPanel2.Top  := 174;
+  NxHeaderPanel2.Left := 142;
+  NxHeaderPanel2.BringToFront;
+  NxHeaderPanel2.Visible := true;
+
+  Label9.Caption := 'Add Purchase Request';
+  disableComponent;
+
+  DBEdit6.Enabled        := false;
+  NxLinkLabel6.Enabled   := false;
+  fundType_combo.Enabled := true;
+  SpeedButton2.Enabled   := false;
+
+  dataproc.requisitionQ.Append;
+  dataproc.requisitionQrvtime.AsDateTime := now;
+  prDate_dp.Date :=strToDate(FormatDateTime('m/d/yyyy',now));
+
+end;
+procedure TpurchaseRequestForm.SpeedButton1Click(Sender: TObject);
+begin
+  with dataproc do
+  begin
+     if CheckBox1.Checked = false then
+     begin
+      requisitionQ.Close;
+      requisitionQ.FilterSQL := 'status like '+quotedstr(ComboBox1.Text) +
+                                ' and rvnumber like '+quotedstr('%'+searchAccountName_TF.Text+'%')+
+                                ' and rvdate between '+quotedstr(FormatDateTime('YYYY-MM-DD',NxDatePicker1.Date))+
+                                ' and '+ quotedstr(FormatDateTime('YYYY-MM-DD',NxDatePicker2.Date));
+      requisitionQ.Open;
+     end
+     else if CheckBox1.Checked = true then
+     begin
+      requisitionQ.Close;
+      requisitionQ.FilterSQL := 'status like '+quotedstr(ComboBox1.Text) +
+                                ' and rvnumber like '+quotedstr('%'+searchAccountName_TF.Text+'%')+
+                                ' and rvdate between '+quotedstr(FormatDateTime('YYYY-MM-DD',NxDatePicker1.Date))+
+                                ' and '+ quotedstr(FormatDateTime('YYYY-MM-DD',NxDatePicker2.Date))+
+                                ' and userid like '+quotedstr(mainForm.userid_L.Caption);
+      requisitionQ.Open;
+     end;
+
+  end;
+
+end;
+
+procedure TpurchaseRequestForm.SpeedButton2Click(Sender: TObject);
+begin
+  if not assigned(departmentForm) then
+  departmentForm := TdepartmentForm.Create(Application);
+
+  with departmentForm do
+  begin
+    add_label.Visible    := false;
+    Edit_label.Visible   := false;
+    delete_label.Visible := false;
+    formStrFilter := 'prForm';
+    Show;
+  end;
+
+end;
+
+procedure TpurchaseRequestForm.SpeedButton3Click(Sender: TObject);
+begin
+  if (MessageDlg('Please complete the details entry.'+#13+
+      'Are you sure, you want to submit this PR to the Budget Office?', mtConfirmation, [mbYes, mbNo], 0) = mrNo) then  exit;
+
+  dataproc.requisitionQ.Edit;
+  dataproc.requisitionQisSubmitToBudget.AsBoolean    := true;
+  dataproc.requisitionQdateSubmitToBudget.AsDateTime := now;
+  dataproc.requisitionQ.Post;
+
+  messagedlg('Purchase Request successfully submitted.',mtInformation,[mbOK],0);
+  NxHeaderPanel3.Visible := false;
+  dataproc.requisitionQ.Refresh;
+  enabledComponent;
+
+end;
+
+procedure TpurchaseRequestForm.SpeedButton4Click(Sender: TObject);
+begin
+  NxHeaderPanel3.Visible := false;
+  enabledComponent;
+end;
+
+procedure TpurchaseRequestForm.SpeedButton5Click(Sender: TObject);
+begin
+  if not assigned(appItemsearchForm) then
+  appItemsearchForm := TappItemsearchForm.Create(Application);
+
+  appItemsearchForm.ShowModal;
+end;
+
+procedure TpurchaseRequestForm.SpeedButton7Click(Sender: TObject);
+begin
+  NxHeaderPanel2.Visible := false;
+  enabledComponent;
+
+  dataproc.requisitionQ.Cancel;
+
+end;
+
+procedure TpurchaseRequestForm.SpeedButton8Click(Sender: TObject);
+begin
+  if (Length(DBEdit7.Text) < 14) OR (Length(DBEdit4.Text)<=4) OR (Length(DBEdit2.Text)<=1) then
+  begin
+     messagedlg('Please check the details entry..',mtError,[mbOK],0);
+     exit;
+  end;
+
+  with dataproc do
+  begin
+    requisitionQrvDate.AsDateTime := prDate_dp.Date;
+    requisitionQfundType.Text     := fundType_combo.Text;
+    requisitionQstatus.Text       := 'PENDING';
+    requisitionQuserid.Text       := mainForm.userid_L.Caption;
+    requisitionQ.Post;
+
+    if Label9.Caption = 'Add Purchase Request' then
+    begin
+        prcontrolQ.Append;
+        prcontrolQfundType.Text    := fundType_combo.Text;
+        prcontrolQmmyy.Text        := FormatDateTime('MMYY',prDate_dp.Date);
+        prcontrolQnumber.AsInteger := prcount;
+        prcontrolQcutoff.text      := FormatDateTime('YYYY-MM-DD', cutoffQCutoff.AsDateTime);
+        prcontrolQ.Post;
+    end;
+
+    requisitionQ.Refresh;
+  end;
+
+  messagedlg('Purchase request successfully saved..',mtInformation,[mbOK],0);
+  NxHeaderPanel2.Visible := false;
+  enabledComponent;
+end;
+
+procedure TpurchaseRequestForm.SpeedButton9Click(Sender: TObject);
+begin
+  if DBCheckBox1.Checked = true then
+  begin
+
+    if not assigned(EmployeeForm) then
+    EmployeeForm := TEmployeeForm.Create(Application);
+
+    with EmployeeForm do
+    begin
+      add_label.Visible    := false;
+      Edit_label.Visible   := false;
+      delete_label.Visible := false;
+      SpeedButton6.Visible := true;
+
+      ShowModal;
+    end;
+
+  end
+  else
+  begin
+    if not assigned(prSearchrequesterForm) then
+    prSearchrequesterForm := TprSearchrequesterForm.Create(Application);
+
+    prSearchrequesterForm.ShowModal;
+  end;
+
+end;
+
+procedure TpurchaseRequestForm.add_labelClick(Sender: TObject);
+begin
+  CRDBGrid1.Enabled := false;
+  Label23.Caption   := 'Add Item';
+
+  NxHeaderPanel1.Top  := 130;
+  NxHeaderPanel1.Left := 35;
+  NxHeaderPanel1.BringToFront;
+  NxHeaderPanel1.Visible := true;
+  dataproc.requisitionDetailQ.Append;
+end;
+
+procedure TpurchaseRequestForm.CheckBox1Click(Sender: TObject);
+begin
+  SpeedButton1Click(Sender);
+end;
+
+procedure TpurchaseRequestForm.ComboBox1Change(Sender: TObject);
+begin
+  with dataproc do
+  begin
+    if CheckBox1.Checked = false then
+    begin
+      requisitionQ.Close;
+      requisitionQ.FilterSQL := 'status like '+quotedstr(ComboBox1.Text)+
+                                ' and rvdate between '+quotedstr(FormatDateTime('YYYY-MM-DD',NxDatePicker1.Date))+
+                                ' and '+ quotedstr(FormatDateTime('YYYY-MM-DD',NxDatePicker2.Date));
+      requisitionQ.Open;
+    end
+    else if CheckBox1.Checked = true then
+    begin
+      requisitionQ.Close;
+      requisitionQ.FilterSQL := 'status like '+quotedstr(ComboBox1.Text)+
+                                ' and rvdate between '+quotedstr(FormatDateTime('YYYY-MM-DD',NxDatePicker1.Date))+
+                                ' and '+ quotedstr(FormatDateTime('YYYY-MM-DD',NxDatePicker2.Date))+
+                                ' and userid like '+quotedstr(mainForm.userid_L.Caption);
+      requisitionQ.Open;
+    end;
+
+    requisitionDetailQ.Close;
+    requisitionDetailQ.Open;
+  end;
+end;
+
+procedure TpurchaseRequestForm.CRDBGrid2DrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+begin
+  with dataproc do begin
+        if requisitionQ.FieldByName('submitted').Text= 'NO' then
+      begin
+        CRDBGrid2.Canvas.Font.Color:=clBlack;
+        CRDBGrid2.Canvas.Brush.Color:=$003535FF;//$007A77F7;
+      end;
+      if DataCol = 9 then
+       CRDBGrid2.DefaultDrawColumnCell
+         (Rect, DataCol, Column, State);
+  end;
+end;
+
+procedure TpurchaseRequestForm.DBCheckBox1Click(Sender: TObject);
+begin
+  if DBCheckBox1.Checked then
+    begin
+      //DBEdit6.Enabled := true;
+       SpeedButton2.Enabled   := true;
+      NxLinkLabel6.Enabled    := true;
+    end
+  else
+    begin
+      //DBEdit6.Enabled := false;
+      NxLinkLabel6.Enabled  := false;
+      SpeedButton2.Enabled  := false;
+
+    end;
+
+  try
+    DBEdit2.Text                    := '';
+    DBEdit4.Text                    := '';
+    DBEdit2.Text                    := '';
+    DBEdit1.Text                    := '';
+    dataproc.requisitionQidapp.Text := '';
+  except
+  end;
+
+  {tmpQ.Close;
+  tmpQ.SQL.Clear;
+  tmpQ.SQL.Add('Select * from app where idapp like :idapp');
+  tmpQ.ParamByName('idapp').Text := dataproc.requisitionQidapp.Text;
+  tmpQ.Open;
+
+  if not tmpQ.IsEmpty then
+  DBEdit2.Text := tmpQ.FieldByName('deptCode').Text;   }
+end;
+
+procedure TpurchaseRequestForm.deletePR_btnClick(Sender: TObject);
+begin
+  tmpQ.Close;
+  tmpQ.SQL.Clear;
+  tmpQ.SQL.Add('Select * from requisition where idrequisition = :idreq and userid = :userid');
+  tmpQ.ParamByName('idreq').AsInteger := dataproc.requisitionQidrequisition.AsInteger;
+  tmpQ.ParamByName('userid').Text     := mainForm.userid_L.Caption;
+  tmpQ.Open;
+  if tmpQ.IsEmpty then
+  begin
+    messagedlg('User''s entry mismatch..'+#13+'Unable to update..',mtWarning,[mbOK],0);
+    exit;
+  end;
+
+ if(dataproc.requisitionQstatus.Text <> 'PENDING') then
+ begin
+    messagedlg('Unable to delete '+dataproc.requisitionQstatus.Text+' request.',mtWarning,[mbOK],0);
+    exit;
+ end;
+
+
+ if (MessageDlg(dataproc.requisitionQrvnumber.Text+#13+
+      'Continue to delete selected record?', mtConfirmation, [mbYes, mbNo], 0) = mrNo) then  exit;
+
+  dataproc.requisitionQ.Delete;
+end;
+
+procedure TpurchaseRequestForm.delete_labelClick(Sender: TObject);
+begin
+  if (MessageDlg(dataproc.requisitionDetailQdescription.Text+#13+
+      'Continue to delete selected item?', mtConfirmation, [mbYes, mbNo], 0) = mrNo) then  exit;
+
+  dataproc.requisitionDetailQ.Delete;
+
+  with dataproc do
+  begin
+    tmpQ.Close;
+    tmpQ.SQL.Clear;
+    tmpQ.SQL.Add('Select sum(ifnull(estimatedamount,0)) total from requisitiondetail where idrequisition = :id');
+    tmpQ.ParamByName('id').Text := requisitionQidrequisition.Text;
+    tmpQ.Open;
+
+    if not tmpq.IsEmpty then
+    begin
+      requisitionQ.Edit;
+      requisitionQamount.AsFloat := tmpQ.FieldByName('total').AsFloat;
+      requisitionQ.Post;
+    end;
+  end;
+end;
+
+procedure TpurchaseRequestForm.disableComponent();
+begin
+   CRDBGrid2.Enabled            := false;
+   searchAccountName_TF.Enabled := false;
+   ComboBox1.Enabled            := false;
+   SpeedButton1.Enabled         := false;
+   NxDatePicker1.Enabled        := false;
+   NxDatePicker2.Enabled        := false;
+   NxLinkLabel2.Enabled         := false;
+   addPR_btn.Enabled            := false;
+   editPR_btn.Enabled           := false;
+   deletePR_btn.Enabled         := false;
+   NxLinkLabel1.Enabled         := false;
+   NxLinkLabel3.Enabled         := false;
+   NxLinkLabel4.Enabled         := false;
+   NxLinkLabel5.Enabled         := false;
+
+end;
+procedure TpurchaseRequestForm.editPR_btnClick(Sender: TObject);
+var strUser : String;
+begin
+  
+  tmpQ.Close;
+  tmpQ.SQL.Clear;
+  tmpQ.SQL.Add('Select * from requisition where idrequisition = :idreq and userid = :userid');
+  tmpQ.ParamByName('idreq').AsInteger := dataproc.requisitionQidrequisition.AsInteger;
+  tmpQ.ParamByName('userid').Text     := mainForm.userid_L.Caption;
+  tmpQ.Open;
+  if tmpQ.IsEmpty then
+  begin
+    messagedlg('User''s entry mismatch..'+#13+'Unable to update..',mtWarning,[mbOK],0);
+    exit;
+  end;
+
+  if dataproc.requisitionQstatus.Text <> 'PENDING' then
+  begin
+    messagedlg('Unable to update the "'+dataproc.requisitionQstatus.Text +'" purchase request order.',mtWarning,[mbOK],0);
+    exit;
+  end;
+
+  if dataproc.requisitionQisSubmitToBudget.Value = true then
+  begin
+    messagedlg('Unable to update the submitted purchase request order.'+#13+
+               'Please inform the Budget Office for the changes of PR.',mtWarning,[mbOK],0);
+    exit;
+  end;
+
+
+  NxHeaderPanel2.Top  := 154;
+  NxHeaderPanel2.Left := 142;
+  NxHeaderPanel2.BringToFront;
+  NxHeaderPanel2.Visible := true;
+
+  Label9.Caption := 'Edit Purchase Request';
+  disableComponent;
+
+  if DBCheckBox1.Checked = true then
+   SpeedButton2.Enabled   := true
+  else
+   SpeedButton2.Enabled  := true;
+
+  DBEdit6.Enabled        := false;
+  NxLinkLabel6.Enabled   := false;
+  fundType_combo.Enabled := false;
+  dataproc.requisitionQ.Edit;
+
+
+end;
+
+procedure TpurchaseRequestForm.Edit_labelClick(Sender: TObject);
+begin
+  CRDBGrid1.Enabled := false;
+  Label23.Caption   := 'Edit Item';
+
+  NxHeaderPanel1.Top  := 130;
+  NxHeaderPanel1.Left := 35;
+  NxHeaderPanel1.BringToFront;
+  NxHeaderPanel1.Visible := true;
+  dataproc.requisitionDetailQ.Edit;
+
+end;
+
+procedure TpurchaseRequestForm.enabledComponent();
+begin
+   CRDBGrid2.Enabled            := true;
+   searchAccountName_TF.Enabled := true;
+   ComboBox1.Enabled            := true;
+   SpeedButton1.Enabled         := true;
+   NxDatePicker1.Enabled        := true;
+   NxDatePicker2.Enabled        := true;
+   NxLinkLabel2.Enabled         := true;
+   addPR_btn.Enabled            := true;
+   editPR_btn.Enabled           := true;
+   deletePR_btn.Enabled         := true;
+   NxLinkLabel1.Enabled         := true;
+   NxLinkLabel3.Enabled         := true;
+   NxLinkLabel4.Enabled         := true;
+   NxLinkLabel5.Enabled         := true;
+
+   if (mainForm.userType_L.Caption = 'Budget') or
+      (mainForm.userType_L.Caption = 'Purchaser') or
+      (mainForm.userType_L.Caption = 'BAC') or
+      (mainForm.userType_L.Caption = 'IAR')then
+   begin
+     addPR_btn.Enabled    := false;
+     editPR_btn.Enabled   := false;
+     deletePR_btn.Enabled := false;
+     SpeedButton3.Enabled := false;
+   end;
+
+  tmpQ.Close;
+  tmpQ.SQL.Clear;
+  tmpQ.SQL.Add('Select * from requisition where idrequisition = :idreq and userid = :userid');
+  tmpQ.ParamByName('idreq').AsInteger := dataproc.requisitionQidrequisition.AsInteger;
+  tmpQ.ParamByName('userid').Text     := mainForm.userid_L.Caption;
+  tmpQ.Open;
+  if tmpQ.IsEmpty then
+  begin
+    add_label.Enabled    := false;
+    Edit_label.Enabled   := false;
+    delete_label.Enabled := false;
+    SpeedButton3.Enabled := false;
+  end;
+end;
+end.

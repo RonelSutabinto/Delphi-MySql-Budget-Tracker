@@ -1,0 +1,346 @@
+unit purchaserFrm;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, AdvSmoothLabel, ExtCtrls, NxCollection, NxEdit, StdCtrls, Buttons,
+  Grids, DBGrids, CRGrid, Mask, DBCtrls,DateUtils, DB, MemDS, DBAccess, MyAccess,
+  frxClass, frxDBSet;
+
+type
+  TpurchaserForm = class(TForm)
+    Panel1: TPanel;
+    AdvSmoothLabel1: TAdvSmoothLabel;
+    Panel2: TPanel;
+    SpeedButton1: TSpeedButton;
+    Label1: TLabel;
+    Label2: TLabel;
+    searchnumber_TF: TEdit;
+    NxDatePicker1: TNxDatePicker;
+    NxDatePicker2: TNxDatePicker;
+    NxLinkLabel1: TNxLinkLabel;
+    add_btn: TSpeedButton;
+    edit_btn: TSpeedButton;
+    Panel3: TPanel;
+    NxLinkLabel2: TNxLinkLabel;
+    NxLinkLabel5: TNxLinkLabel;
+    CRDBGrid1: TCRDBGrid;
+    NxHeaderPanel1: TNxHeaderPanel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    DBEdit1: TDBEdit;
+    DBEdit2: TDBEdit;
+    DBEdit3: TDBEdit;
+    DBEdit4: TDBEdit;
+    Label8: TLabel;
+    DBEdit5: TDBEdit;
+    SpeedButton2: TSpeedButton;
+    delete_btn: TSpeedButton;
+    DBEdit6: TDBEdit;
+    Label9: TLabel;
+    DBEdit7: TDBEdit;
+    Label10: TLabel;
+    Label11: TLabel;
+    Label12: TLabel;
+    DBEdit11: TDBEdit;
+    Label14: TLabel;
+    SpeedButton3: TSpeedButton;
+    SpeedButton4: TSpeedButton;
+    Bevel2: TBevel;
+    DBEdit8: TDBEdit;
+    Label15: TLabel;
+    DBEdit9: TDBEdit;
+    DBEdit12: TDBEdit;
+    NxLinkLabel3: TNxLinkLabel;
+    poControlQ: TMyQuery;
+    poControlQidpocontrol: TIntegerField;
+    poControlQmmyyyy: TStringField;
+    poControlQnumber: TIntegerField;
+    poControlQcutoff: TStringField;
+    prReport: TfrxReport;
+    podetailQ: TMyQuery;
+    poRpt: TfrxDBDataset;
+    podetailRpt: TfrxDBDataset;
+    podetailQidPODetail: TLongWordField;
+    podetailQidPO: TIntegerField;
+    podetailQidRequisitionDetail: TIntegerField;
+    podetailQidrequisition: TIntegerField;
+    podetailQidbidding: TIntegerField;
+    podetailQdescription: TStringField;
+    podetailQqty: TFloatField;
+    podetailQcost: TFloatField;
+    podetailQunit: TStringField;
+    podetailQamount: TFloatField;
+    podetailQidchartOfaccount: TIntegerField;
+    podetailQaccount: TStringField;
+    podetailQaccountMaster: TStringField;
+    prnoQ: TMyQuery;
+    prNumber: TfrxDBDataset;
+    prnoQprNumber: TMemoField;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure NxLinkLabel5Click(Sender: TObject);
+    procedure enableComponent();
+    procedure disableComponent();
+    procedure add_btnClick(Sender: TObject);
+    procedure NxLinkLabel4Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure edit_btnClick(Sender: TObject);
+    procedure SpeedButton4Click(Sender: TObject);
+    procedure SpeedButton3Click(Sender: TObject);
+    procedure SpeedButton2Click(Sender: TObject);
+    procedure delete_btnClick(Sender: TObject);
+    procedure CRDBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure NxLinkLabel2Click(Sender: TObject);
+    procedure SpeedButton1Click(Sender: TObject);
+    procedure NxLinkLabel3Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  purchaserForm: TpurchaserForm;
+  poCnt : Integer;
+implementation
+
+uses data, prSubmitpoFrm, MODTOOLS, podetailFrm;
+
+{$R *.dfm}
+
+procedure TpurchaserForm.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  action := caFree;
+  purchaserForm := Nil;
+end;
+
+procedure TpurchaserForm.FormShow(Sender: TObject);
+begin
+  NxDatePicker1.Date := StartOfTheMonth(now);
+  NxDatePicker2.Date := EndOfTheMonth(now);
+
+  with dataproc do
+  begin
+     poQ.Close;
+     poQ.FilterSQL := ' podate between '+quotedstr(FormatDateTime('YYYY-MM-DD',NxDatePicker1.Date))+' and '+
+                      quotedstr(formatDateTime('YYYY-MM-DD',NxDatePicker2.Date));
+     poQ.Open;
+  end;
+
+end;
+
+procedure TpurchaserForm.NxLinkLabel2Click(Sender: TObject);
+begin
+  if not assigned(podetailForm) then
+  podetailForm := TpodetailForm.Create(Application);
+
+  with podetailForm do
+  begin
+    podetailQ.Close;
+    podetailQ.FilterSQL := ' idpo like '+quotedstr(dataproc.poQidPO.Text);
+    podetailQ.Open;
+
+    if dataproc.poQpoSubmit.AsBoolean = true then
+    begin
+       SpeedButton5.Enabled := false;
+       NxLinkLabel1.Enabled := false;
+       NxLinkLabel2.Enabled := false;
+    end
+    else
+    begin
+       SpeedButton5.Enabled := true;
+       NxLinkLabel1.Enabled := true;
+       NxLinkLabel2.Enabled := true;
+    end;
+
+    ShowModal;
+  end;
+
+end;
+
+procedure TpurchaserForm.NxLinkLabel3Click(Sender: TObject);
+begin
+  podetailQ.Close;
+  podetailQ.FilterSQL := 'idpo like '+quotedstr(dataproc.poQidPO.Text);
+  podetailQ.Open;
+
+  prnoQ.Close;
+  prnoQ.ParamByName('idpo').AsInteger :=  dataproc.poQidPO.AsInteger;
+  prnoQ.Open;
+
+  prReport.ShowReport;
+end;
+
+procedure TpurchaserForm.NxLinkLabel4Click(Sender: TObject);
+begin
+   NxHeaderPanel1.Visible := false;
+   dataproc.poQ.Cancel;
+   enableComponent;
+end;
+
+procedure TpurchaserForm.NxLinkLabel5Click(Sender: TObject);
+begin
+  Close;
+end;
+
+procedure TpurchaserForm.SpeedButton1Click(Sender: TObject);
+begin
+  with dataproc do
+  begin
+     poQ.Close;
+     poQ.FilterSQL := ' podate between '+quotedstr(FormatDateTime('YYYY-MM-DD',NxDatePicker1.Date))+' and '+
+                      quotedstr(formatDateTime('YYYY-MM-DD',NxDatePicker2.Date)) + ' and ' +
+                      ' poNumber like '+quotedstr('%'+searchnumber_TF.Text+'%');
+     poQ.Open;
+  end;
+end;
+
+procedure TpurchaserForm.SpeedButton2Click(Sender: TObject);
+begin
+  if not assigned(prSubmittedpoForm) then
+  prSubmittedpoForm := TprSubmittedpoForm.Create(Application);
+
+  prSubmittedpoForm.ShowModal;
+end;
+
+procedure TpurchaserForm.SpeedButton3Click(Sender: TObject);
+begin
+  dataproc.cutoffQ.Close;
+  dataproc.cutoffQ.Open;
+
+  poControlQ.Close;
+  poControlQ.Open;
+
+
+  dataproc.poQ.Post;
+
+   if Label3.Caption = 'Add PO' then
+    begin
+        poControlQ.Append;
+        poControlQmmyyyy.Text      := FormatDateTime('mmyyyy',now);
+        poControlQnumber.AsInteger := poCnt;
+        poControlQcutoff.text      := FormatDateTime('YYYY-MM-DD', dataproc.cutoffQCutoff.AsDateTime);
+        poControlQ.Post;
+    end;
+
+  dataproc.poQ.RefreshRecord;
+  messageDlg('Purchase order successfully saved...',mtInformation,[mbOK],0);
+  enableComponent;
+  NxHeaderPanel1.Visible := false;
+end;
+
+procedure TpurchaserForm.SpeedButton4Click(Sender: TObject);
+begin
+  dataproc.poQ.Cancel;
+  enableComponent;
+  NxHeaderPanel1.Visible := false;
+end;
+
+procedure TpurchaserForm.edit_btnClick(Sender: TObject);
+begin
+  NxHeaderPanel1.Top  := 152;
+  NxHeaderPanel1.Left := 63;
+  NxHeaderPanel1.BringToFront;
+  NxHeaderPanel1.Visible := true;
+  dataproc.poQ.Edit;
+  disableComponent;
+  Label3.Caption := 'Edit PO'
+end;
+
+procedure TpurchaserForm.enableComponent();
+begin
+   delete_btn.Enabled      := true;
+   edit_btn.Enabled        := true;
+   add_btn.Enabled         := true;
+   CRDBGrid1.Enabled       := true;
+   NxDatePicker1.Enabled   := true;
+   NxDatePicker2.Enabled   := true;
+   NxLinkLabel1.Enabled    := true;
+   SpeedButton1.Enabled    := true;
+   searchnumber_TF.Enabled := true;
+   NxLinkLabel2.Enabled    := true;
+   NxLinkLabel5.Enabled    := true;
+end;
+
+procedure TpurchaserForm.add_btnClick(Sender: TObject);
+
+begin
+  NxHeaderPanel1.Top  := 152;
+  NxHeaderPanel1.Left := 63;
+  NxHeaderPanel1.BringToFront;
+  NxHeaderPanel1.Visible := true;
+  disableComponent;
+  dataproc.poQ.Append;
+  Label3.Caption := 'Add PO';
+
+
+  With dataproc do
+  begin
+    poQpoDate.AsDateTime := now;
+    cutoffQ.Close;
+    cutoffQ.Open;
+
+    pocontrolQ.Close;
+    pocontrolQ.ParamByName('cutoff').Text   :=   FormatDateTime('YYYY-MM-DD', cutoffQCutoff.AsDateTime);
+    pocontrolQ.Open;
+
+    if not pocontrolQ.IsEmpty then
+    begin
+      poCnt := pocontrolQnumber.AsInteger;
+      Inc(poCnt);
+      DBEdit4.Text := 'PO-'+FormatDateTime('MM',now)+FormatDateTime('YYYY',now)+'-'+JustStr(intToStr(poCnt),'0',3,1);
+
+    end
+    else
+    begin
+      poCnt := 1;
+      DBEdit4.Text := 'PO-'+FormatDateTime('MM',now)+FormatDateTime('YYYY',now)+'-'+JustStr(intToStr(poCnt),'0',3,1);
+    end;
+
+  end;
+end;
+
+procedure TpurchaserForm.CRDBGrid1DrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+begin
+  with dataproc do begin
+        if poQpoSubmit.Text = 'No' then
+      begin
+        CRDBGrid1.Canvas.Font.Color:=clBlack;
+        CRDBGrid1.Canvas.Brush.Color:=$003535FF;//$007A77F7;
+      end;
+      if DataCol = 9 then
+       CRDBGrid1.DefaultDrawColumnCell
+         (Rect, DataCol, Column, State);
+  end;
+
+end;
+
+procedure TpurchaserForm.delete_btnClick(Sender: TObject);
+begin
+ if (MessageDlg(dataproc.poQpoNumber.Text+#13+
+      'Continue to delete selected record?', mtConfirmation, [mbYes, mbNo], 0) = mrNo) then  exit;
+
+  dataproc.poQ.Delete;
+end;
+
+procedure TpurchaserForm.disableComponent();
+begin
+   delete_btn.Enabled      := false;
+   edit_btn.Enabled        := false;
+   add_btn.Enabled         := false;
+   CRDBGrid1.Enabled       := false;
+   NxDatePicker1.Enabled   := false;
+   NxDatePicker2.Enabled   := false;
+   NxLinkLabel1.Enabled    := false;
+   SpeedButton1.Enabled    := false;
+   searchnumber_TF.Enabled := false;
+   NxLinkLabel2.Enabled    := false;
+   NxLinkLabel5.Enabled    := false;
+end;
+end.

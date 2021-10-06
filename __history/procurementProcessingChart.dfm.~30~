@@ -1,0 +1,903 @@
+object procurementPChartForm: TprocurementPChartForm
+  Left = 0
+  Top = 0
+  Caption = 'Procurement Processing Chart'
+  ClientHeight = 645
+  ClientWidth = 886
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  FormStyle = fsMDIChild
+  OldCreateOrder = False
+  Visible = True
+  WindowState = wsMaximized
+  OnClose = FormClose
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 886
+    Height = 40
+    Align = alTop
+    BevelOuter = bvNone
+    Color = 8421440
+    Ctl3D = True
+    ParentBackground = False
+    ParentCtl3D = False
+    TabOrder = 0
+    object AdvSmoothLabel1: TAdvSmoothLabel
+      Left = 0
+      Top = 0
+      Width = 394
+      Height = 40
+      Fill.ColorMirror = clNone
+      Fill.ColorMirrorTo = clNone
+      Fill.GradientType = gtVertical
+      Fill.GradientMirrorType = gtSolid
+      Fill.BorderColor = clNone
+      Fill.Rounding = 0
+      Fill.ShadowOffset = 0
+      Fill.Glow = gmNone
+      Caption.Text = 'Procurement Processing Chart'
+      Caption.Font.Charset = DEFAULT_CHARSET
+      Caption.Font.Color = clWindowText
+      Caption.Font.Height = -19
+      Caption.Font.Name = 'Tahoma'
+      Caption.Font.Style = [fsBold]
+      Caption.ColorStart = clSkyBlue
+      Caption.ColorEnd = clWhite
+      CaptionShadow.Text = 'Procurement Processing Chart'
+      CaptionShadow.Font.Charset = DEFAULT_CHARSET
+      CaptionShadow.Font.Color = clWindowText
+      CaptionShadow.Font.Height = -27
+      CaptionShadow.Font.Name = 'Tahoma'
+      CaptionShadow.Font.Style = []
+      Version = '1.6.0.2'
+      Align = alLeft
+      ExplicitTop = 5
+      ExplicitHeight = 29
+    end
+  end
+  object Panel2: TPanel
+    Left = 0
+    Top = 40
+    Width = 886
+    Height = 75
+    Align = alTop
+    TabOrder = 1
+    object SpeedButton1: TSpeedButton
+      Left = 181
+      Top = 41
+      Width = 28
+      Height = 23
+      Glyph.Data = {
+        36030000424D3603000000000000360000002800000010000000100000000100
+        1800000000000003000074120000741200000000000000000000FFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD0DF
+        D90F5B3F126244AAC5BBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFCDDED717634629855F449C773D7F65FFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFCEDED8216D4F368F
+        6B52A58398C5B2256F52FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFF2B7859459A7963B0929EC9B8357E61C6DAD2FFFFFFFFFFFF
+        FFFFFFCECECE868686606060606060868686CECECE98989856A68874BAA0A3CD
+        BD3D8768CADED6FFFFFFFFFFFFEDEDED9C9C9C7F7F7FC9C9C9ECECECECECECC9
+        C9C97F7F7F6C6C6C7D7D7DAAD2C245906FD0E3DBFFFFFFFFFFFFFFFFFF9F9F9F
+        AEAEAEFAFAFAF8F8F8F4F4F4F4F4F4F8F8F8FAFAFAA9A9A96D6D6D989898FFFF
+        FFFFFFFFFFFFFFFFFFFFC8C8C8939393F8F8F8EEEEEEEDEDEDEDEDEDEDEDEDED
+        EDEDEFEFEFF6F6F6888888C8C8C8FFFFFFFFFFFFFFFFFFFFFFFF8E8E8ED6D6D6
+        EEEEEEE6E6E6E6E6E6E6E6E6E6E6E6E6E6E6E6E6E6F0F0F0D6D6D68E8E8EFFFF
+        FFFFFFFFFFFFFFFFFFFF767676F1F1F1E0E0E0DEDEDEDEDEDEDEDEDEDEDEDEDE
+        DEDEDEDEDEE1E1E1EFEFEF7A7A7AFFFFFFFFFFFFFFFFFFFFFFFF7E7E7EF1F1F1
+        DCDCDCD7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7DDDDDDEDEDED838383FFFF
+        FFFFFFFFFFFFFFFFFFFFA0A0A0DBDBDBE4E4E4D0D0D0CFCFCFCFCFCFCFCFCFCF
+        CFCFD1D1D1E8E8E8DCDCDCA0A0A0FFFFFFFFFFFFFFFFFFFFFFFFD6D6D6B1B1B1
+        F3F3F3D6D6D6CCCCCCCACACACACACACCCCCCD8D8D8F3F3F3A6A6A6D6D6D6FFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFBEBEBECCCCCCF4F4F4E6E6E6D9D9D9D9D9D9E6
+        E6E6F4F4F4C7C7C7BEBEBEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFEFEF
+        C2C2C2B8B8B8DFDFDFF1F1F1F1F1F1DFDFDFB8B8B8C2C2C2F4F4F4FFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFDFDFDFB8B8B8A4A4A4A4A4A4B8
+        B8B8DFDFDFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+      OnClick = SpeedButton1Click
+    end
+    object Label1: TLabel
+      Left = 226
+      Top = 45
+      Width = 27
+      Height = 14
+      Caption = 'From'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label2: TLabel
+      Left = 348
+      Top = 43
+      Width = 14
+      Height = 14
+      Caption = 'To'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object searchnumber_TF: TEdit
+      Left = 20
+      Top = 42
+      Width = 160
+      Height = 22
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 0
+      TextHint = 'Search PR No.'
+    end
+    object NxDatePicker1: TNxDatePicker
+      Left = 256
+      Top = 41
+      Width = 89
+      Height = 21
+      TabOrder = 1
+      Text = '1/22/2017'
+      HideFocus = False
+      Date = 42757.000000000000000000
+      NoneCaption = 'None'
+      TodayCaption = 'Today'
+    end
+    object NxDatePicker2: TNxDatePicker
+      Left = 364
+      Top = 41
+      Width = 89
+      Height = 21
+      TabOrder = 2
+      Text = '1/22/2017'
+      HideFocus = False
+      Date = 42757.000000000000000000
+      NoneCaption = 'None'
+      TodayCaption = 'Today'
+    end
+    object NxLinkLabel1: TNxLinkLabel
+      Left = 278
+      Top = 19
+      Width = 116
+      Height = 15
+      Caption = 'View Period Covered'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlack
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      HoverColor = clRed
+      ParentFont = False
+      TextDistance = 2
+      VertSpacing = 2
+    end
+    object NxLinkLabel2: TNxLinkLabel
+      Left = 694
+      Top = 44
+      Width = 139
+      Height = 15
+      Caption = 'Purchase Request Detail'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 8404992
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      HoverColor = clRed
+      ParentFont = False
+      TextDistance = 2
+      VertSpacing = 2
+      OnClick = NxLinkLabel2Click
+    end
+  end
+  object Chart1: TChart
+    Left = 0
+    Top = 358
+    Width = 841
+    Height = 250
+    Title.Font.Color = 100597760
+    Title.Font.Height = -15
+    Title.Font.Style = [fsBold]
+    Title.Text.Strings = (
+      'Processing Chart')
+    TabOrder = 2
+    DefaultCanvas = 'TGDIPlusCanvas'
+    PrintMargins = (
+      15
+      35
+      15
+      35)
+    ColorPaletteIndex = 15
+    object Series1: TBarSeries
+      BarBrush.Gradient.EndColor = 4227327
+      BarBrush.Gradient.Visible = True
+      BarPen.Color = 10708548
+      Marks.Frame.Visible = False
+      SeriesColor = 12615680
+      BarStyle = bsRectGradient
+      Gradient.EndColor = 4227327
+      Gradient.Visible = True
+      MultiBar = mbSideAll
+      XValues.Name = 'X'
+      XValues.Order = loAscending
+      YValues.Name = 'Bar'
+      YValues.Order = loNone
+      Data = {
+        0605000000000000000000000000000020FF0D00000050757263686173652052
+        65712E0000000000000000FFFF0000FF0E0000004D424F20416C6C6F63617469
+        6F6E000000000000000000808000FF0D00000042696420416E64204177617264
+        00000000000000008000FF00FF0E0000005075726368617365204F7264657200
+        00000000002E40FF804000FF11000000496E732E202620416363657074616E63
+        65}
+    end
+  end
+  object CRDBGrid2: TCRDBGrid
+    Left = 0
+    Top = 121
+    Width = 841
+    Height = 235
+    Color = clBtnFace
+    DataSource = prS
+    FixedColor = 12550656
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+    ParentFont = False
+    TabOrder = 3
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clBlack
+    TitleFont.Height = -13
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+    OnCellClick = CRDBGrid2CellClick
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'rvNumber'
+        Title.Caption = 'PR Number'
+        Width = 103
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'RequestDate'
+        Width = 84
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'DateSubmitToMBO'
+        Width = 119
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'DateSubmitToBAC'
+        Width = 125
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'DateSubmitToPO'
+        Width = 128
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'DeliveryDate'
+        Width = 99
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'DateInspection'
+        Width = 101
+        Visible = True
+      end>
+  end
+  object NxLinkLabel4: TNxLinkLabel
+    Left = 34
+    Top = 622
+    Width = 31
+    Height = 15
+    Caption = 'Close'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = 8404992
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    HoverColor = clRed
+    ParentFont = False
+    TextDistance = 2
+    VertSpacing = 2
+    OnClick = NxLinkLabel4Click
+  end
+  object NxHeaderPanel3: TNxHeaderPanel
+    Left = 796
+    Top = 523
+    Width = 745
+    Height = 447
+    BorderWidth = 2
+    Caption = ''
+    Color = clWhite
+    HeaderColor = 12550656
+    HeaderFont.Charset = DEFAULT_CHARSET
+    HeaderFont.Color = clWindow
+    HeaderFont.Height = -12
+    HeaderFont.Name = 'Tahoma'
+    HeaderFont.Style = []
+    HeaderStyle = psFlat
+    ParentHeaderFont = False
+    TabOrder = 5
+    Visible = False
+    FullWidth = 745
+    object Label16: TLabel
+      Left = 13
+      Top = 6
+      Width = 62
+      Height = 14
+      Caption = 'PR Details'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindow
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label17: TLabel
+      Left = 70
+      Top = 56
+      Width = 24
+      Height = 14
+      Caption = 'Date'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label18: TLabel
+      Left = 34
+      Top = 81
+      Width = 60
+      Height = 14
+      Alignment = taRightJustify
+      Caption = 'PR Number'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label19: TLabel
+      Left = 42
+      Top = 110
+      Width = 52
+      Height = 14
+      Alignment = taRightJustify
+      Caption = 'Requester'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label20: TLabel
+      Left = 32
+      Top = 136
+      Width = 62
+      Height = 14
+      Alignment = taRightJustify
+      Caption = 'Department'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label21: TLabel
+      Left = 416
+      Top = 53
+      Width = 43
+      Height = 14
+      Alignment = taRightJustify
+      Caption = 'Purpose'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label22: TLabel
+      Left = 428
+      Top = 115
+      Width = 31
+      Height = 14
+      Alignment = taRightJustify
+      Caption = 'Payee'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object SpeedButton4: TSpeedButton
+      Left = 594
+      Top = 398
+      Width = 126
+      Height = 26
+      Caption = 'Close'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      Glyph.Data = {
+        32010000424D3201000000000000360000002800000009000000090000000100
+        180000000000FC00000074120000741200000000000000000000FFFFFF000086
+        000086FFFFFFFFFFFFFFFFFF000086000086FFFFFF0000008D2727CE2727CE00
+        008DFFFFFF00008D2726CE2727CE00008D000000973130D63031D53130D50000
+        963030D53030D53030D500009700FFFFFF0000A23F3FE03F3FE03E3EE03F3FE1
+        3F3EE00000A2FFFFFF00FFFFFFFFFFFF0000AF4E4EED4E4FEC4E4EEC0000AFFF
+        FFFFFFFFFF00FFFFFF0000BB5C5DF85C5CF75C5DF85D5DF85D5DF70000BBFFFF
+        FF000000C56666FF6666FF6666FF0000C56666FF6666FF6666FF0000C4000000
+        CBE8E8E8E8E8E80000CBFFFFFF0000CBE8E8E8E8E8E80000CB00FFFFFF0000CB
+        0000CBFFFFFFFFFFFFFFFFFF0000CB0000CBFFFFFF00}
+      ParentFont = False
+      OnClick = SpeedButton4Click
+    end
+    object Label3: TLabel
+      Left = 416
+      Top = 142
+      Width = 43
+      Height = 14
+      Alignment = taRightJustify
+      Caption = 'Amount'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object CRDBGrid1: TCRDBGrid
+      Left = 31
+      Top = 201
+      Width = 684
+      Height = 179
+      OptionsEx = [dgeEnableSort, dgeLocalFilter, dgeLocalSorting]
+      DataSource = requisitionDetailDS
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+      TabOrder = 0
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -11
+      TitleFont.Name = 'Tahoma'
+      TitleFont.Style = []
+      Columns = <
+        item
+          Expanded = False
+          FieldName = 'description'
+          Title.Caption = 'Description'
+          Width = 234
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'unit'
+          Title.Caption = 'Unit'
+          Width = 67
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'qty'
+          Title.Caption = 'Quantity'
+          Width = 83
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'estimatedCost'
+          Title.Caption = 'Estimated Cost'
+          Width = 92
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'estimatedAmount'
+          Title.Caption = 'Amount'
+          Width = 90
+          Visible = True
+        end>
+    end
+    object DBEdit8: TDBEdit
+      Left = 101
+      Top = 49
+      Width = 219
+      Height = 22
+      DataField = 'rvDate'
+      DataSource = prS
+      Enabled = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 1
+    end
+    object DBEdit9: TDBEdit
+      Left = 102
+      Top = 77
+      Width = 219
+      Height = 22
+      DataField = 'rvNumber'
+      DataSource = prS
+      Enabled = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 2
+    end
+    object DBEdit10: TDBEdit
+      Left = 102
+      Top = 105
+      Width = 219
+      Height = 22
+      DataField = 'requester'
+      DataSource = prS
+      Enabled = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 3
+    end
+    object DBMemo2: TDBMemo
+      Left = 465
+      Top = 50
+      Width = 239
+      Height = 53
+      DataField = 'rvdescription'
+      DataSource = prS
+      Enabled = False
+      TabOrder = 4
+    end
+    object DBEdit11: TDBEdit
+      Left = 465
+      Top = 109
+      Width = 188
+      Height = 22
+      DataField = 'rvName'
+      DataSource = prS
+      Enabled = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 5
+    end
+    object DBEdit12: TDBEdit
+      Left = 102
+      Top = 133
+      Width = 219
+      Height = 22
+      DataField = 'RecmmdedDeprtmnt'
+      DataSource = prS
+      Enabled = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 6
+    end
+    object DBEdit13: TDBEdit
+      Left = 465
+      Top = 136
+      Width = 188
+      Height = 22
+      DataField = 'amount'
+      DataSource = prS
+      Enabled = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 7
+    end
+  end
+  object prQ: TMyQuery
+    Connection = dataproc.MyConnection1
+    SQL.Strings = (
+      'Select r.*,       '
+      '       r.rvDate RequestDate,'
+      '       r.dateSubmitToBudget DateSubmitToMBO,'
+      '       r.dateSubmitToAward DateSubmitToBAC,'
+      '       r.dateSumitToPO DateSubmitToPO,'
+      '       i.datereceived as DeliveryDate,'
+      '       i.DateInsp as DateInspection,'
+      '       '
+      '       DATEDIFF(r.dateSubmitToBudget ,r.rvDate) reqDays,'
+      
+        '       DATEDIFF(r.dateSubmitToAward, r.dateSubmitToBudget) mboDa' +
+        'ys,'
+      '       DATEDIFF(r.dateSumitToPO,r.dateSubmitToAward) bacDays,'
+      '       DATEDIFF(r.dateSumitToPO,i.datereceived) poDays,'
+      '       DATEDIFF(i.DateInsp,i.datereceived) inspDays'
+      'from requisition r'
+      'left join podetail pd on pd.idrequisition = r.idrequisition'
+      'left join po p on p.idpo = pd.idpo'
+      'left join inspacceptance i on i.pono = p.ponumber ')
+    Left = 304
+    Top = 192
+    object prQidrequisition: TLongWordField
+      FieldName = 'idrequisition'
+    end
+    object prQrvDate: TDateField
+      FieldName = 'rvDate'
+    end
+    object prQrvtime: TTimeField
+      FieldName = 'rvtime'
+    end
+    object prQrvPCode: TStringField
+      FieldName = 'rvPCode'
+      Size = 40
+    end
+    object prQrvName: TStringField
+      FieldName = 'rvName'
+      Size = 50
+    end
+    object prQrvNumber: TStringField
+      FieldName = 'rvNumber'
+    end
+    object prQamount: TFloatField
+      FieldName = 'amount'
+    end
+    object prQstatus: TStringField
+      FieldName = 'status'
+      Size = 30
+    end
+    object prQrequester: TStringField
+      FieldName = 'requester'
+      Size = 45
+    end
+    object prQuserid: TStringField
+      FieldName = 'userid'
+      Size = 25
+    end
+    object prQrvdescription: TStringField
+      FieldName = 'rvdescription'
+      Size = 250
+    end
+    object prQcanvasser: TStringField
+      FieldName = 'canvasser'
+      Size = 45
+    end
+    object prQaddress: TStringField
+      FieldName = 'address'
+      Size = 100
+    end
+    object prQdenydescription: TStringField
+      FieldName = 'denydescription'
+      Size = 200
+    end
+    object prQallowAllocation: TBooleanField
+      FieldName = 'allowAllocation'
+    end
+    object prQdateapproved: TDateTimeField
+      FieldName = 'dateapproved'
+    end
+    object prQPOdate: TDateTimeField
+      FieldName = 'POdate'
+    end
+    object prQPos: TStringField
+      FieldName = 'Pos'
+      Size = 45
+    end
+    object prQRecmmdedDeprtmnt: TStringField
+      FieldName = 'RecmmdedDeprtmnt'
+      Size = 30
+    end
+    object prQReadyAlloct: TIntegerField
+      FieldName = 'ReadyAlloct'
+    end
+    object prQNotAllocated: TIntegerField
+      FieldName = 'NotAllocated'
+    end
+    object prQdateSumitToPO: TDateTimeField
+      FieldName = 'dateSumitToPO'
+    end
+    object prQisSubmitToPO: TBooleanField
+      FieldName = 'isSubmitToPO'
+    end
+    object prQdateSubmitToBudget: TDateTimeField
+      FieldName = 'dateSubmitToBudget'
+    end
+    object prQfundType: TStringField
+      FieldName = 'fundType'
+      FixedChar = True
+      Size = 5
+    end
+    object prQisSubmitToBudget: TBooleanField
+      FieldName = 'isSubmitToBudget'
+    end
+    object prQisSubmitToAward: TBooleanField
+      FieldName = 'isSubmitToAward'
+    end
+    object prQdateSubmitToAward: TDateTimeField
+      FieldName = 'dateSubmitToAward'
+    end
+    object prQidchartOfaccount: TIntegerField
+      FieldName = 'idchartOfaccount'
+    end
+    object prQaccount: TStringField
+      FieldName = 'account'
+      Size = 35
+    end
+    object prQaccountMaster: TStringField
+      FieldName = 'accountMaster'
+      Size = 25
+    end
+    object prQremarks: TStringField
+      FieldName = 'remarks'
+      Size = 200
+    end
+    object prQallocatePO: TBooleanField
+      FieldName = 'allocatePO'
+    end
+    object prQdateAllocatePO: TDateTimeField
+      FieldName = 'dateAllocatePO'
+    end
+    object prQbid_dateOpen: TDateField
+      FieldName = 'bid_dateOpen'
+    end
+    object prQbid_place: TStringField
+      FieldName = 'bid_place'
+      Size = 65
+    end
+    object prQbid_time: TTimeField
+      FieldName = 'bid_time'
+    end
+    object prQRequestDate: TDateField
+      FieldName = 'RequestDate'
+    end
+    object prQDateSubmitToMBO: TDateTimeField
+      FieldName = 'DateSubmitToMBO'
+    end
+    object prQDateSubmitToBAC: TDateTimeField
+      FieldName = 'DateSubmitToBAC'
+    end
+    object prQDateSubmitToPO: TDateTimeField
+      FieldName = 'DateSubmitToPO'
+    end
+    object prQDeliveryDate: TDateField
+      FieldName = 'DeliveryDate'
+    end
+    object prQreqDays: TLargeintField
+      FieldName = 'reqDays'
+    end
+    object prQmboDays: TLargeintField
+      FieldName = 'mboDays'
+    end
+    object prQbacDays: TLargeintField
+      FieldName = 'bacDays'
+    end
+    object prQpoDays: TLargeintField
+      FieldName = 'poDays'
+    end
+    object prQinspDays: TLargeintField
+      FieldName = 'inspDays'
+    end
+    object prQDateInspection: TDateField
+      FieldName = 'DateInspection'
+    end
+  end
+  object prS: TMyDataSource
+    DataSet = prQ
+    Left = 336
+    Top = 192
+  end
+  object requisitionDetailDS: TMyDataSource
+    DataSet = requisitionDetailQ
+    Left = 576
+    Top = 40
+  end
+  object requisitionDetailQ: TMyQuery
+    Connection = dataproc.MyConnection1
+    SQL.Strings = (
+      'Select * from requisitiondetail')
+    Left = 488
+    Top = 48
+    object requisitionDetailQidrequisitiondetail: TLongWordField
+      FieldName = 'idrequisitiondetail'
+    end
+    object requisitionDetailQidrequisition: TFloatField
+      FieldName = 'idrequisition'
+    end
+    object requisitionDetailQqty: TFloatField
+      FieldName = 'qty'
+    end
+    object requisitionDetailQdescription: TStringField
+      FieldName = 'description'
+      Size = 200
+    end
+    object requisitionDetailQestimatedCost: TFloatField
+      FieldName = 'estimatedCost'
+      DisplayFormat = '##,###,###,##0.0'
+    end
+    object requisitionDetailQestimatedAmount: TFloatField
+      FieldName = 'estimatedAmount'
+      DisplayFormat = '##,###,###,##0.0'
+    end
+    object requisitionDetailQunit: TStringField
+      FieldName = 'unit'
+      Size = 45
+    end
+    object requisitionDetailQdocnumber: TStringField
+      FieldName = 'docnumber'
+      Size = 45
+    end
+    object requisitionDetailQbidopen: TDateTimeField
+      FieldName = 'bidopen'
+    end
+    object requisitionDetailQbidyear: TDateTimeField
+      FieldName = 'bidyear'
+    end
+    object requisitionDetailQcost: TFloatField
+      FieldName = 'cost'
+      DisplayFormat = '##,###,###,##0.0'
+    end
+    object requisitionDetailQamount: TFloatField
+      FieldName = 'amount'
+      DisplayFormat = '##,###,###,##0.0'
+    end
+    object requisitionDetailQponumber: TStringField
+      FieldName = 'ponumber'
+      Size = 25
+    end
+    object requisitionDetailQidpo: TIntegerField
+      FieldName = 'idpo'
+    end
+    object requisitionDetailQidbidding: TIntegerField
+      FieldName = 'idbidding'
+    end
+  end
+  object MyQuery1: TMyQuery
+    Connection = dataproc.MyConnection1
+    Left = 440
+    Top = 193
+  end
+end

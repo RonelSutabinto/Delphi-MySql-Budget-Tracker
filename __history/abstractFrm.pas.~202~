@@ -1,0 +1,560 @@
+unit abstractFrm;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, AdvSmoothLabel, ExtCtrls, Buttons, StdCtrls, DBCtrls, Mask, Grids,
+  DBGrids, CRGrid, NxCollection, DB, MemDS, DBAccess, MyAccess, Menus, NxEdit,
+  frxClass, frxDBSet;
+
+type
+  TabstractForm = class(TForm)
+    Panel1: TPanel;
+    AdvSmoothLabel1: TAdvSmoothLabel;
+    Shape1: TShape;
+    Shape2: TShape;
+    Shape3: TShape;
+    SpeedButton1: TSpeedButton;
+    Label1: TLabel;
+    CRDBGrid1: TCRDBGrid;
+    CRDBGrid2: TCRDBGrid;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label2: TLabel;
+    SpeedButton2: TSpeedButton;
+    SpeedButton4: TSpeedButton;
+    NxHeaderPanel1: TNxHeaderPanel;
+    Label9: TLabel;
+    Label10: TLabel;
+    Label11: TLabel;
+    Label13: TLabel;
+    NxLinkLabel1: TNxLinkLabel;
+    NxLinkLabel2: TNxLinkLabel;
+    Label12: TLabel;
+    SpeedButton3: TSpeedButton;
+    biddingQ: TMyQuery;
+    biddingDS: TMyDataSource;
+    insertbiddingQ: TMyQuery;
+    prnumber_tf: TEdit;
+    Edit1: TEdit;
+    pcode_tf: TEdit;
+    payee_tf: TEdit;
+    tmpQ: TMyQuery;
+    biddingQidbidding: TIntegerField;
+    biddingQidrequisitiondetail: TIntegerField;
+    biddingQidrequisition: TIntegerField;
+    biddingQrvnumber: TStringField;
+    biddingQpcode: TStringField;
+    biddingQpayee: TStringField;
+    biddingQqty: TIntegerField;
+    biddingQcost: TFloatField;
+    biddingQamount: TFloatField;
+    biddingQdate: TDateTimeField;
+    biddingQuserID: TStringField;
+    NxHeaderPanel2: TNxHeaderPanel;
+    Label14: TLabel;
+    Label15: TLabel;
+    Label16: TLabel;
+    Label17: TLabel;
+    Label18: TLabel;
+    NxLinkLabel3: TNxLinkLabel;
+    NxLinkLabel4: TNxLinkLabel;
+    DBEdit9: TDBEdit;
+    DBEdit10: TDBEdit;
+    DBEdit11: TDBEdit;
+    Label19: TLabel;
+    Edit2: TEdit;
+    Edit3: TEdit;
+    SpeedButton5: TSpeedButton;
+    PopupMenu1: TPopupMenu;
+    RemoveSupplier1: TMenuItem;
+    SpeedButton6: TSpeedButton;
+    NxHeaderPanel3: TNxHeaderPanel;
+    Label20: TLabel;
+    CRDBGrid3: TCRDBGrid;
+    NxLinkLabel6: TNxLinkLabel;
+    NxLinkLabel5: TNxLinkLabel;
+    date_tf: TEdit;
+    prno_tf: TEdit;
+    requester_tf: TEdit;
+    department_tf: TEdit;
+    payeeCode_tf: TEdit;
+    pramount_tf: TEdit;
+    Label8: TLabel;
+    NxMemo1: TNxMemo;
+    SpeedButton7: TSpeedButton;
+    NxLinkLabel7: TNxLinkLabel;
+    winningQ: TMyQuery;
+    winningDS: TMyDataSource;
+    winningQno: TLargeintField;
+    winningQpcode: TStringField;
+    winningQamount: TFloatField;
+    winningQpayee: TStringField;
+    biddingQwinning: TStringField;
+    updatePRdetailQ: TMyQuery;
+    updatePRQ: TMyQuery;
+    prSubmittedQ: TMyQuery;
+    supplierQ: TMyQuery;
+    supDetailQ: TMyQuery;
+    abstractReport: TfrxReport;
+    supplierRpt: TfrxDBDataset;
+    supdetailRpt: TfrxDBDataset;
+    supDetailQdescription: TStringField;
+    supDetailQqty1: TIntegerField;
+    supDetailQcost1: TFloatField;
+    supDetailQamount1: TFloatField;
+    supDetailQqty2: TIntegerField;
+    supDetailQcost2: TFloatField;
+    supDetailQamount2: TFloatField;
+    supDetailQqty3: TIntegerField;
+    supDetailQcost3: TFloatField;
+    supDetailQamount3: TFloatField;
+    requisitionRpt: TfrxDBDataset;
+    biddingQBrandName: TStringField;
+    biddingQsuplrNo: TIntegerField;
+    Label21: TLabel;
+    DBEdit1: TDBEdit;
+    biddingQno: TIntegerField;
+    abstractRepQ: TMyQuery;
+    abstractRep2Q: TMyQuery;
+    abstractRep3Q: TMyQuery;
+    suplr1: TfrxDBDataset;
+    splr2: TfrxDBDataset;
+    splr3: TfrxDBDataset;
+    NxHeaderPanel4: TNxHeaderPanel;
+    Label22: TLabel;
+    NxLinkLabel8: TNxLinkLabel;
+    NxLinkLabel9: TNxLinkLabel;
+    RadioButton1: TRadioButton;
+    RadioButton2: TRadioButton;
+    procedure SpeedButton1Click(Sender: TObject);
+    procedure enableComponent();
+    procedure disableComponent();
+    procedure SpeedButton2Click(Sender: TObject);
+    procedure CRDBGrid1CellClick(Column: TColumn);
+    procedure NxLinkLabel2Click(Sender: TObject);
+    procedure SpeedButton3Click(Sender: TObject);
+    procedure NxLinkLabel1Click(Sender: TObject);
+    procedure SpeedButton4Click(Sender: TObject);
+    procedure NxLinkLabel4Click(Sender: TObject);
+    procedure NxLinkLabel3Click(Sender: TObject);
+    procedure RemoveSupplier1Click(Sender: TObject);
+    procedure SpeedButton6Click(Sender: TObject);
+    procedure NxLinkLabel6Click(Sender: TObject);
+    procedure NxLinkLabel7Click(Sender: TObject);
+    procedure CRDBGrid2DrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure SpeedButton7Click(Sender: TObject);
+    procedure SpeedButton5Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure NxLinkLabel8Click(Sender: TObject);
+    procedure NxLinkLabel9Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  abstractForm: TabstractForm;
+
+implementation
+
+uses data, bidAndawardsFrm, payeeFrm, mainFrm;
+
+{$R *.dfm}
+
+procedure TabstractForm.SpeedButton1Click(Sender: TObject);
+begin
+  close;
+end;
+procedure TabstractForm.SpeedButton2Click(Sender: TObject);
+begin
+  disableComponent;
+
+  tmpQ.Close;
+  tmpQ.SQL.Clear;
+  tmpQ.SQL.Add('select a.* from (select * from bidding where idrequisition = :idrequisition group by idrequisition,pcode) a');
+  tmpQ.ParamByName('idrequisition').Text := bidAndawardsForm.requisitionQidrequisition.Text;
+  tmpQ.Open;
+
+  Edit1.Text          := IntToStr(tmpQ.RecordCount+1);
+  prnumber_tf.Text    :=  bidAndawardsForm.requisitionQrvNumber.Text;
+
+  NxHeaderPanel1.Top  := 161;
+  NxHeaderPanel1.Left := 243;
+  NxHeaderPanel1.BringToFront;
+  NxHeaderPanel1.Visible := true;
+end;
+
+procedure TabstractForm.SpeedButton3Click(Sender: TObject);
+begin
+  if not assigned(payeeForm) then
+  payeeForm := TpayeeForm.Create(Application);
+
+  payeeForm.payeeFilter.Text     := 'Bidding Payee';
+  payeeForm.add_label.Visible    := false;
+  payeeForm.Edit_label.Visible   := false;
+  payeeForm.delete_label.Visible := false;
+  payeeForm.SpeedButton6.Visible := true;
+  payeeForm.ShowModal;
+end;
+
+procedure TabstractForm.SpeedButton4Click(Sender: TObject);
+begin
+  disableComponent;
+
+  Edit2.Text := dataproc.requisitionDetailQdescription.Text;
+  Edit3.Text := dataproc.requisitionDetailQunit.Text;
+  biddingQ.Edit;
+
+  NxHeaderPanel2.Top  := 191;
+  NxHeaderPanel2.Left := 238;
+  NxHeaderPanel2.BringToFront;
+  NxHeaderPanel2.Visible := true;
+end;
+
+procedure TabstractForm.SpeedButton5Click(Sender: TObject);
+ var
+   page2,page3 : TfrxReportPage;
+
+begin
+  disableComponent;
+  NxHeaderPanel4.Top := 214;
+  NxHeaderPanel4.Left := 271;
+  NxHeaderPanel4.BringToFront;
+  NxHeaderPanel4.Visible := true;
+end;
+
+procedure TabstractForm.SpeedButton6Click(Sender: TObject);
+begin
+  NxHeaderPanel3.Top  := 208;
+  NxHeaderPanel3.Left := 296;
+  NxHeaderPanel3.BringToFront;
+
+  winningQ.Close;
+  winningQ.ParamByName('idrequisition').AsInteger := bidAndawardsForm.requisitionQidrequisition.AsInteger;
+  winningQ.Open;
+
+  disableComponent;
+
+  NxHeaderPanel3.Visible := true;
+end;
+
+procedure TabstractForm.SpeedButton7Click(Sender: TObject);
+begin
+  tmpQ.Close;
+  tmpQ.SQL.Clear;
+  tmpQ.SQL.Add('Select * from bidding where isWinner = 1 and idrequisition = :idrequisition');
+  tmpQ.ParamByName('idrequisition').Text := bidAndawardsForm.requisitionQidrequisition.Text;
+  tmpQ.Open;
+
+  if tmpQ.IsEmpty then
+  begin
+    messagedlg('PR Number: '+bidAndawardsForm.requisitionQrvNumber.Text+#13+
+               'Please set winning supplier of PR..',mtWarning,[mbOK],0);
+    exit;
+  end;
+
+  prSubmittedQ.ParamByName('idrequisition').Text :=  bidAndawardsForm.requisitionQidrequisition.Text;
+  prSubmittedQ.Execute;
+
+  messagedlg('Purchase request was successfully submitted to Purchaser..',mtInformation,[mbOK],0);
+  bidAndawardsForm.requisitionQ.Refresh;
+
+
+   //if not assigned(bidAndawardsForm) then
+   //bidAndawardsForm := TbidAndawardsForm.Create(Application);
+
+   if (bidAndawardsForm.requisitionQisSubmitToPO.Text = 'Yes') then
+    begin
+      SpeedButton7.Enabled := false;
+      SpeedButton2.Enabled := false;
+      SpeedButton6.Enabled := false;
+      SpeedButton4.Enabled := false;
+    end
+    else
+    begin
+      SpeedButton7.Enabled := true;
+      SpeedButton2.Enabled := true;
+      SpeedButton6.Enabled := true;
+      SpeedButton4.Enabled := true;
+    end;
+
+    close;
+end;
+
+procedure TabstractForm.enableComponent();
+begin
+   SpeedButton2.Enabled := true;
+   SpeedButton4.Enabled := true;
+   CRDBGrid1.Enabled    := true;
+   CRDBGrid2.Enabled    := true;
+   SpeedButton1.Enabled := true;
+   SpeedButton6.Enabled := true;
+   SpeedButton5.Enabled := true;
+   //SpeedButton7.Enabled := true;
+
+   if (mainForm.userType_L.Caption = 'Budget') or
+      (mainForm.userType_L.Caption = 'Purchaser') or
+      (mainForm.userType_L.Caption = 'IAR')then
+   begin
+     SpeedButton2.Enabled := false;
+     SpeedButton4.Enabled := false;
+     SpeedButton6.Enabled := false;
+     SpeedButton7.Enabled := false;
+   end;
+end;
+
+procedure TabstractForm.FormShow(Sender: TObject);
+begin
+  if  (mainForm.userType_L.Caption = 'Budget') or
+      (mainForm.userType_L.Caption = 'Purchaser') or
+      (mainForm.userType_L.Caption = 'IAR')then
+   begin
+     SpeedButton2.Enabled := false;
+     SpeedButton4.Enabled := false;
+     SpeedButton6.Enabled := false;
+     SpeedButton7.Enabled := false;
+   end;
+end;
+
+procedure TabstractForm.NxLinkLabel1Click(Sender: TObject);
+var
+  supNo :Integer;
+begin
+ if Length(pcode_tf.Text) < 3 then
+ begin
+    messagedlg('Payee code not less than 3 characters..',mtWarning,[mbOk],0);
+    exit;
+ end;
+
+ tmpQ.Close;
+ tmpQ.SQL.Clear;
+ tmpQ.SQL.Add('Select a.* from (Select * from bidding where idrequisition=:idrequisition group by pcode) a');
+ tmpQ.ParamByName('idrequisition').Text := bidAndawardsForm.requisitionQidrequisition.Text;
+ tmpQ.Open;
+
+ if not tmpQ.IsEmpty then
+ supNo := tmpQ.RecordCount + 1
+ else
+ supNo := 1;
+
+ tmpQ.Close;
+ tmpQ.SQL.Clear;
+ tmpQ.SQL.Add('Select * from requisitiondetail where idrequisition = :idrequisition');
+ tmpQ.ParamByName('idrequisition').AsInteger :=  bidAndawardsForm.requisitionQidrequisition.AsInteger;
+ tmpQ.Open;
+ tmpQ.First;
+
+ while not tmpQ.Eof do
+ begin
+   insertbiddingQ.ParamByName('idrequisitiondetail').AsInteger := tmpQ.FieldByName('idrequisitiondetail').AsInteger;
+   insertbiddingQ.ParamByName('idrequisition').AsInteger       := tmpQ.FieldByName('idrequisition').AsInteger;
+   insertbiddingQ.ParamByName('rvnumber').Text                 := bidAndawardsForm.requisitionQrvNumber.Text;
+   insertbiddingQ.ParamByName('pcode').Text                    := pcode_tf.Text;
+   insertbiddingQ.ParamByName('payee').Text                    := payee_tf.Text;
+   insertbiddingQ.ParamByName('qty').AsInteger                 := tmpQ.FieldByName('qty').AsInteger;
+   insertbiddingQ.ParamByName('suplrNo').AsInteger             := supNo;
+   insertbiddingQ.ParamByName('userid').Text                   := mainForm.userid_L.Caption;
+
+   try
+    insertbiddingQ.Execute;
+   except
+   end;
+
+   tmpQ.Next;
+ end;
+
+ messagedlg('Supplier''s entry successfully saved..',mtInformation,[mbOK],0);
+ NxHeaderPanel1.Visible := false;
+ enableComponent;
+
+end;
+
+procedure TabstractForm.NxLinkLabel2Click(Sender: TObject);
+begin
+  NxHeaderPanel1.Visible := false;
+  enableComponent;
+end;
+
+procedure TabstractForm.NxLinkLabel3Click(Sender: TObject);
+begin
+  if Length(DBEdit1.Text)<3 then
+  begin
+    messagedlg('Unable to continue this process..'+#13+'Invalid Brand Name...',mtError,[mbOK],0);
+    biddingQ.Cancel;
+
+    exit;
+  end;
+
+  biddingQamount.AsFloat := StrToFloat(StringReplace(DBEdit9.Text, ',', '',[rfReplaceAll, rfIgnoreCase])) *
+                            StrToFloat(StringReplace(DBEdit11.Text, ',', '',[rfReplaceAll, rfIgnoreCase]));
+  biddingQ.post;
+
+  messagedlg('Unit cost successfully saved..',mtInformation,[mbOK],0);
+
+  NxHeaderPanel2.Visible := false;
+  enableComponent;
+end;
+
+procedure TabstractForm.NxLinkLabel4Click(Sender: TObject);
+begin
+  NxHeaderPanel2.Visible := false;
+  biddingQ.Cancel;
+  enableComponent;
+end;
+
+procedure TabstractForm.NxLinkLabel6Click(Sender: TObject);
+begin
+  enableComponent;
+  NxHeaderPanel3.Visible := false;
+end;
+
+procedure TabstractForm.NxLinkLabel7Click(Sender: TObject);
+begin
+  tmpQ.Close;
+  tmpQ.SQL.Clear;
+  tmpQ.SQL.Add('update bidding set iswinner = 0 where idrequisition = :idrequisition');
+  tmpQ.ParamByName('idrequisition').Text := bidAndawardsForm.requisitionQidrequisition.Text;
+  tmpQ.Execute;
+
+  tmpQ.Close;
+  tmpQ.SQL.Clear;
+  tmpQ.SQL.Add('update bidding set iswinner = 1 where idrequisition = :idrequisition and pcode = :pcode');
+  tmpQ.ParamByName('idrequisition').Text := bidAndawardsForm.requisitionQidrequisition.Text;
+  tmpQ.ParamByName('pcode').Text         := winningQpcode.Text;
+  tmpQ.Execute;
+
+  updatePRdetailQ.ParamByName('idrequisition').Text := bidAndawardsForm.requisitionQidrequisition.Text;
+  updatePRdetailQ.Execute;
+
+  updatePRQ.ParamByName('idrequisition').Text := bidAndawardsForm.requisitionQidrequisition.Text;
+  updatePRQ.ParamByName('amount').AsFloat     := winningQamount.AsFloat;
+  updatePRQ.Execute;
+
+  {with bidAndawardsForm do
+  begin
+    requisitionQ.Edit;
+    requisitionQrvPCode.Text    := winningQpcode.Text;
+    requisitionQrvName.Text     := winningQpayee.Text;
+    requisitionQamount.AsFloat  := winningQamount.AsFloat;
+    requisitionQ.Post;
+
+    payeeCode_tf.Text := requisitionQrvPCode.Text;
+    pramount_tf.Text  := requisitionQamount.Text;
+  end;  }
+  messagedlg(winningQpcode.Text+#3+'Winning supplier successfully set..',mtInformation,[mbOK],0);
+  enableComponent;
+  NxHeaderPanel3.Visible := false;
+
+  bidAndawardsForm.requisitionQ.RefreshRecord;
+  biddingQ.Close;
+  biddingQ.Open;
+
+  payeeCode_tf.Text := bidAndawardsForm.requisitionQrvPCode.Text;
+  pramount_tf.Text  := bidAndawardsForm.requisitionQamount.Text;
+end;
+
+procedure TabstractForm.NxLinkLabel8Click(Sender: TObject);
+var
+   Memo1 : TfrxMemoView;
+   page2,page3 : TfrxReportPage;
+begin
+  {supplierQ.Close;
+  supplierQ.ParamByName('idrequisition').Text := bidAndawardsForm.requisitionQidrequisition.Text;
+  supplierQ.Open;
+
+  supDetailQ.Close;
+  supDetailQ.ParamByName('idrequisition').Text := bidAndawardsForm.requisitionQidrequisition.Text;
+  supDetailQ.Open;}
+
+  Memo1 :=  abstractReport.FindComponent('Memo1') as TfrxMemoView;
+
+  if RadioButton1.Checked = true then
+  Memo1.Text := 'ABSTRACT OF PRICE QUOTATION AS CALCULATED FOR THE SUPPLY AND DELIVERY';
+
+  if RadioButton2.Checked = true then
+  Memo1.Text := 'ABSTRACT OF PRICE QUOTATION AS READ FOR THE SUPPLY AND DELIVERY';
+
+  page2 := abstractReport.FindComponent('Page2') as TfrxReportPage;
+  page3 := abstractReport.FindComponent('Page3') as TfrxReportPage;
+
+  abstractRepQ.Close;
+  abstractRepQ.ParamByName('idrequisition').Text := bidAndawardsForm.requisitionQidrequisition.Text;
+  abstractRepQ.Open;
+
+  abstractRep2Q.Close;
+  abstractRep2Q.ParamByName('idrequisition').Text := bidAndawardsForm.requisitionQidrequisition.Text;
+  abstractRep2Q.Open;
+
+  if not abstractRep2Q.IsEmpty then
+  page2.Visible := true
+  else
+  page2.Visible := false;
+
+  abstractRep3Q.Close;
+  abstractRep3Q.ParamByName('idrequisition').Text := bidAndawardsForm.requisitionQidrequisition.Text;
+  abstractRep3Q.Open;
+
+  if not abstractRep3Q.IsEmpty then
+  page3.Visible := true
+  else
+  page3.Visible := false;
+
+  abstractReport.ShowReport;
+
+end;
+
+procedure TabstractForm.NxLinkLabel9Click(Sender: TObject);
+begin
+  enableComponent;
+  NxHeaderPanel4.Visible := false;
+end;
+
+procedure TabstractForm.RemoveSupplier1Click(Sender: TObject);
+begin
+  if (MessageDlg(biddingQpcode.Text+#13+
+  'Continue to delete selected supplier?', mtConfirmation, [mbYes, mbNo], 0) = mrNo) then  exit;
+
+  biddingQ.Delete;
+end;
+
+procedure TabstractForm.CRDBGrid1CellClick(Column: TColumn);
+begin
+  biddingQ.Close;
+  biddingQ.ParamByName('idrequisitiondetail').AsInteger := dataproc.requisitionDetailQidrequisitiondetail.AsInteger;
+  biddingQ.Open;
+end;
+
+procedure TabstractForm.CRDBGrid2DrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+begin
+
+      if biddingQwinning.Text= 'No' then
+      begin
+        CRDBGrid2.Canvas.Font.Color:=clBlack;
+        CRDBGrid2.Canvas.Brush.Color:=$003535FF;//$007A77F7;
+      end;
+      if DataCol = 6 then
+       CRDBGrid2.DefaultDrawColumnCell
+         (Rect, DataCol, Column, State);
+
+end;
+
+procedure TabstractForm.disableComponent();
+begin
+   SpeedButton2.Enabled := false;
+   SpeedButton4.Enabled := false;
+   CRDBGrid1.Enabled    := false;
+   CRDBGrid2.Enabled    := false;
+   SpeedButton1.Enabled := false;
+   SpeedButton6.Enabled := false;
+   SpeedButton5.Enabled := false;
+   //SpeedButton7.Enabled := false;
+end;
+end.

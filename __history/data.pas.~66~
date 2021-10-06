@@ -1,0 +1,328 @@
+unit data;
+
+interface
+
+uses
+  SysUtils, Classes, DBAccess, MyAccess, DB, MemDS;
+
+type
+  Tdataproc = class(TDataModule)
+    MyConnection1: TMyConnection;
+    cutoffQ: TMyQuery;
+    cutoffQCutoff: TDateField;
+    chartofaccountQ: TMyQuery;
+    chartofaccountDS: TDataSource;
+    masterJournalQ: TMyQuery;
+    masterJournalDS: TDataSource;
+    requisitionQ: TMyQuery;
+    requisitionDS: TMyDataSource;
+    payeeQ: TMyQuery;
+    payeeDS: TMyDataSource;
+    categoryQ: TMyQuery;
+    categoryDS: TMyDataSource;
+    typeQ: TMyQuery;
+    typeQidaccounttype: TIntegerField;
+    typeQcodeType: TStringField;
+    typeQaccntType: TStringField;
+    typeDS: TMyDataSource;
+    departmentQ: TMyQuery;
+    departmentQiddepartment: TIntegerField;
+    departmentQdepartment: TStringField;
+    departmentQcontact1: TStringField;
+    departmentQcontact2: TStringField;
+    departmentDS: TMyDataSource;
+    masterJournalQidChartOfAccount: TIntegerField;
+    masterJournalQaccount: TStringField;
+    masterJournalQname: TStringField;
+    masterJournalQaccountMaster: TStringField;
+    masterJournalQnameMaster: TStringField;
+    masterJournalQgeneralAccount: TBooleanField;
+    masterJournalQaccountType: TStringField;
+    masterJournalQcodeType: TStringField;
+    masterJournalQdepartment: TStringField;
+    masterJournalQcodeDepartment: TStringField;
+    masterJournalQiddepartment: TIntegerField;
+    masterJournalQallocateAmount: TFloatField;
+    masterJournalQcutoffDate: TDateField;
+    masterJournalQdate: TDateField;
+    masterJournalQuserID: TStringField;
+    masterJournalQSpent: TFloatField;
+    masterJournalQBalance: TFloatField;
+    chartCutoffQ: TMyQuery;
+    chartCutoffDS: TMyDataSource;
+    chartCutoffQaccount: TStringField;
+    chartCutoffQname: TStringField;
+    chartCutoffQallocateAmount: TFloatField;
+    chartCutoffQallocatesubAccount: TFloatField;
+    chartCutoffQBalance: TFloatField;
+    chartofaccountQaccount: TStringField;
+    chartofaccountQname: TStringField;
+    chartofaccountQaccountMaster: TStringField;
+    chartofaccountQnameMaster: TStringField;
+    chartofaccountQgeneralAccount: TBooleanField;
+    chartofaccountQaccountType: TStringField;
+    chartofaccountQcodeType: TStringField;
+    chartofaccountQdepartment: TStringField;
+    chartofaccountQcodeDepartment: TStringField;
+    chartofaccountQiddepartment: TIntegerField;
+    chartofaccountQallocateAmount: TFloatField;
+    chartofaccountQcutoffDate: TDateField;
+    chartofaccountQdate: TDateField;
+    chartofaccountQuserID: TStringField;
+    chartofaccountQnameAccount: TStringField;
+    chartofaccountQSpent: TFloatField;
+    chartofaccountQBalance: TFloatField;
+    chartofaccountQidChartOfAccount: TIntegerField;
+    chartCutoffQcodeDepartment: TStringField;
+    chartCutoffQdepartment: TStringField;
+    chartCutoffQiddepartment: TStringField;
+    materBalanceQ: TMyQuery;
+    tmpQ: TMyQuery;
+    departmentQdepartmentCode: TStringField;
+    payeeQidpayee: TLongWordField;
+    payeeQPCode: TStringField;
+    payeeQName: TStringField;
+    payeeQAddress: TStringField;
+    payeeQContactNo: TStringField;
+    payeeQContactPerson: TStringField;
+    employeeQ: TMyQuery;
+    employeeDS: TMyDataSource;
+    employeeQidemployee: TIntegerField;
+    employeeQName: TStringField;
+    employeeQPosition: TStringField;
+    employeeQAddress: TStringField;
+    employeeQcontactNo: TStringField;
+    prcontrolQ: TMyQuery;
+    prcontrolQidprControl: TIntegerField;
+    prcontrolQfundType: TStringField;
+    prcontrolQmmyy: TStringField;
+    prcontrolQnumber: TIntegerField;
+    employeeQcodeDepartment: TStringField;
+    employeeQdepartment: TStringField;
+    prcontrolQcutoff: TStringField;
+    requisitionDetailQ: TMyQuery;
+    requisitionDetailQidrequisitiondetail: TLongWordField;
+    requisitionDetailQidrequisition: TFloatField;
+    requisitionDetailQqty: TFloatField;
+    requisitionDetailQdescription: TStringField;
+    requisitionDetailQestimatedCost: TFloatField;
+    requisitionDetailQestimatedAmount: TFloatField;
+    requisitionDetailQunit: TStringField;
+    requisitionDetailQdocnumber: TStringField;
+    requisitionDetailQbidopen: TDateTimeField;
+    requisitionDetailQbidyear: TDateTimeField;
+    requisitionDetailDS: TMyDataSource;
+    requisitionDetailQcost: TFloatField;
+    requisitionDetailQamount: TFloatField;
+    requisitionDetailQponumber: TStringField;
+    requisitionDetailQidpo: TIntegerField;
+    approvedReqQ: TMyQuery;
+    approvedReqDS: TMyDataSource;
+    allocatedQ: TMyQuery;
+    allocatedDS: TMyDataSource;
+    allocatedQdocNum: TStringField;
+    allocatedQdate: TDateTimeField;
+    allocatedQrequester: TStringField;
+    allocatedQdepartment: TStringField;
+    allocatedQpayee: TStringField;
+    allocatedQamount: TFloatField;
+    journalQ: TMyQuery;
+    journalQidjournal: TIntegerField;
+    journalQidChartOfAccount: TIntegerField;
+    journalQaccount: TStringField;
+    journalQaccountName: TStringField;
+    journalQaccountMaster: TStringField;
+    journalQDateTime: TDateTimeField;
+    journalQdocumentPR: TStringField;
+    journalQdocumentPO: TStringField;
+    journalQamount: TFloatField;
+    journalQuserID: TStringField;
+    journalQcutoffDate: TDateField;
+    journalQidPO: TIntegerField;
+    journalQidPR: TIntegerField;
+    journalQpcode: TStringField;
+    journalQpayee: TStringField;
+    requisitionDetailQidbidding: TIntegerField;
+    poQ: TMyQuery;
+    poDS: TMyDataSource;
+    approvedReqQidrequisition: TLongWordField;
+    approvedReqQrvDate: TDateField;
+    approvedReqQrvPCode: TStringField;
+    approvedReqQrvName: TStringField;
+    approvedReqQrvNumber: TStringField;
+    approvedReqQamount: TFloatField;
+    approvedReqQstatus: TStringField;
+    approvedReqQrequester: TStringField;
+    approvedReqQuserid: TStringField;
+    approvedReqQrvdescription: TStringField;
+    approvedReqQcanvasser: TStringField;
+    approvedReqQaddress: TStringField;
+    approvedReqQdenydescription: TStringField;
+    approvedReqQallowAllocation: TBooleanField;
+    approvedReqQdateapproved: TDateTimeField;
+    approvedReqQPOdate: TDateTimeField;
+    approvedReqQPos: TStringField;
+    approvedReqQRecmmdedDeprtmnt: TStringField;
+    approvedReqQReadyAlloct: TIntegerField;
+    approvedReqQNotAllocated: TIntegerField;
+    approvedReqQdateSumitToPO: TDateTimeField;
+    approvedReqQisSubmitToPO: TBooleanField;
+    approvedReqQdateSubmitToBudget: TDateTimeField;
+    approvedReqQfundType: TStringField;
+    approvedReqQisSubmitToBudget: TBooleanField;
+    approvedReqQisSubmitToAward: TBooleanField;
+    approvedReqQdateSubmitToAward: TDateTimeField;
+    approvedReqQidchartOfaccount: TIntegerField;
+    approvedReqQaccount: TStringField;
+    approvedReqQaccountMaster: TStringField;
+    approvedReqQremarks: TStringField;
+    approvedReqQallocatePO: TBooleanField;
+    approvedReqQdateAllocatePO: TDateTimeField;
+    approvedReqQsubmitted: TStringField;
+    requisitionQidrequisition: TLongWordField;
+    requisitionQrvDate: TDateField;
+    requisitionQrvPCode: TStringField;
+    requisitionQrvName: TStringField;
+    requisitionQrvNumber: TStringField;
+    requisitionQamount: TFloatField;
+    requisitionQstatus: TStringField;
+    requisitionQrequester: TStringField;
+    requisitionQuserid: TStringField;
+    requisitionQrvdescription: TStringField;
+    requisitionQcanvasser: TStringField;
+    requisitionQaddress: TStringField;
+    requisitionQdenydescription: TStringField;
+    requisitionQallowAllocation: TBooleanField;
+    requisitionQdateapproved: TDateTimeField;
+    requisitionQPOdate: TDateTimeField;
+    requisitionQPos: TStringField;
+    requisitionQRecmmdedDeprtmnt: TStringField;
+    requisitionQReadyAlloct: TIntegerField;
+    requisitionQNotAllocated: TIntegerField;
+    requisitionQdateSumitToPO: TDateTimeField;
+    requisitionQisSubmitToPO: TBooleanField;
+    requisitionQdateSubmitToBudget: TDateTimeField;
+    requisitionQfundType: TStringField;
+    requisitionQisSubmitToBudget: TBooleanField;
+    requisitionQisSubmitToAward: TBooleanField;
+    requisitionQdateSubmitToAward: TDateTimeField;
+    requisitionQidchartOfaccount: TIntegerField;
+    requisitionQaccount: TStringField;
+    requisitionQaccountMaster: TStringField;
+    requisitionQremarks: TStringField;
+    requisitionQallocatePO: TBooleanField;
+    requisitionQdateAllocatePO: TDateTimeField;
+    requisitionQsubmitted: TStringField;
+    poQidPO: TLongWordField;
+    poQpCode: TStringField;
+    poQpayee: TStringField;
+    poQaddress: TStringField;
+    poQpoDate: TDateField;
+    poQpoNumber: TStringField;
+    poQuserID: TStringField;
+    poQpoSubmit: TStringField;
+    poQdateSubmit: TDateTimeField;
+    poQprNumber: TStringField;
+    poQamount: TFloatField;
+    poQplaceOfDelivery: TStringField;
+    poQdateOfDelivery: TDateField;
+    poQdeliveryTerm: TStringField;
+    poQdateOfPayment: TDateField;
+    poQpaymentTerm: TStringField;
+    poQidrequisition: TIntegerField;
+    pocontrolQ: TMyQuery;
+    pocontrolQidpocontrol: TIntegerField;
+    pocontrolQmmyyyy: TStringField;
+    pocontrolQnumber: TIntegerField;
+    pocontrolQcutoff: TStringField;
+    cutoffmasterDS: TMyDataSource;
+    cutoffmasterQ: TMyQuery;
+    cutoffQdateStart: TDateField;
+    cutoffQdateEnd: TDateField;
+    requisitionQrvtime: TTimeField;
+    signQ: TMyQuery;
+    signQidsignatories: TIntegerField;
+    signQmayorName: TStringField;
+    signQpr_toName: TStringField;
+    signQpr_toPosition: TStringField;
+    signQpr_fromName: TStringField;
+    signQpr_fromPosition: TStringField;
+    signQpr_fromDepartment: TStringField;
+    requisitionQPOsubmit: TStringField;
+    approvedReqQBACsubmit: TStringField;
+    poViewQ: TMyQuery;
+    LongWordField1: TLongWordField;
+    StringField1: TStringField;
+    StringField2: TStringField;
+    StringField3: TStringField;
+    DateField1: TDateField;
+    StringField4: TStringField;
+    StringField5: TStringField;
+    StringField6: TStringField;
+    DateTimeField1: TDateTimeField;
+    StringField7: TStringField;
+    FloatField1: TFloatField;
+    StringField8: TStringField;
+    DateField2: TDateField;
+    StringField9: TStringField;
+    DateField3: TDateField;
+    StringField10: TStringField;
+    IntegerField1: TIntegerField;
+    poQstatusD: TStringField;
+    requisitionQmboUserid: TStringField;
+    procedure poQCalcFields(DataSet: TDataSet);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  dataproc: Tdataproc;
+
+implementation
+
+{$R *.dfm}
+
+procedure Tdataproc.poQCalcFields(DataSet: TDataSet);
+begin
+  tmpQ.Close;
+  tmpQ.SQL.Clear;
+  tmpQ.SQL.Add('set @logS=0;                                                                            ');
+  tmpQ.SQL.Add('set @cnt=0;                                                                             ');
+  tmpQ.SQL.Add('Select                                                                                  ');
+  tmpQ.SQL.Add('  @logs logfilter,                                                                      ');
+  tmpQ.SQL.Add('  @cnt countR                                                                           ');
+  tmpQ.SQL.Add('from                                                                                    ');
+  tmpQ.SQL.Add(' (select                                                                                ');
+  tmpQ.SQL.Add('     p.*,                                                                               ');
+  tmpQ.SQL.Add('     if(i.idpodetail =p.idpodetail,if(@logs=1,@logs:=1, @logs := 2),@logs:=1) logFilter,');
+  tmpQ.SQL.Add('     if(i.idpodetail =p.idpodetail,@cnt:=@cnt+1,0) cnt                                  ');
+  tmpQ.SQL.Add('   from podetail p                                                                      ');
+  tmpQ.SQL.Add('   left join iardetail i on i.idpodetail = p.idpodetail                                 ');
+  tmpQ.SQL.Add('   where p.idpo = :idpo ) a                                                                ');
+  tmpQ.SQL.Add('group by a.idpo                                                                         ');
+  tmpQ.ParamByName('idpo').Text := poQidPO.Text;
+  tmpQ.open;
+
+  if tmpQ.FieldByName('logfilter').AsInteger = 2 then
+  poQstatusD.Text := 'Complete Delivery';
+
+  if (tmpQ.FieldByName('logfilter').AsInteger = 1) and (tmpQ.FieldByName('countR').AsInteger>0) then
+  poQstatusD.Text := 'Partial Delivery';
+
+  if (tmpQ.FieldByName('logfilter').AsInteger = 1) and (tmpQ.FieldByName('countR').AsInteger=0) then
+  poQstatusD.Text := 'For Delivery';
+
+  tmpQ.Close;
+  tmpQ.SQL.Clear;
+  tmpQ.SQL.Add('Select * from journal where idpo = :idpo');
+  tmpQ.ParamByName('idpo').Text := poQidPO.Text;
+  tmpQ.Open;
+
+  if tmpQ.IsEmpty then
+  poQstatusD.Text := 'Not Allocated';
+
+end;
+
+end.

@@ -1,0 +1,139 @@
+unit logFrm;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, AdvGlassButton, Vcl.StdCtrls, NxEdit,
+  AdvSmoothPanel, NxCollection, Vcl.ExtCtrls, AdvToolBtn, Data.DB, MemDS,
+  DBAccess, MyAccess;
+
+type
+  TlogForm = class(TForm)
+    Panel1: TPanel;
+    userTF: TNxButtonEdit;
+    passwordTF: TNxButtonEdit;
+    NxLinkLabel1: TNxLinkLabel;
+    Label1: TLabel;
+    AdvRepeatButton4: TAdvRepeatButton;
+    userQ: TMyQuery;
+    userQentry: TIntegerField;
+    userQuserid: TStringField;
+    userQusername: TStringField;
+    userQposition: TStringField;
+    userQdepartment: TStringField;
+    userQrestriction: TStringField;
+    userQpassword: TStringField;
+    userQpicture: TBlobField;
+    procedure AdvGlassButton2Click(Sender: TObject);
+    procedure AdvRepeatButton4Click(Sender: TObject);
+    procedure NxLinkLabel1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  logForm: TlogForm;
+
+implementation
+
+{$R *.dfm}
+
+uses mainFrm, data;
+
+procedure TlogForm.AdvGlassButton2Click(Sender: TObject);
+begin
+
+  if not assigned(mainForm) then
+  mainForm := TmainForm.Create(Application);
+
+  hide;
+  mainForm.close;
+end;
+
+procedure TlogForm.AdvRepeatButton4Click(Sender: TObject);
+begin
+  userQ.Close;
+  userQ.FilterSQL := ' userid = '+quotedstr(userTF.Text) +
+                     ' and password = sha1('+ quotedstr(passwordTF.Text)+')';
+  userQ.Open;
+
+  if userQ.IsEmpty then
+  begin
+    messagedlg('Invalid user ID or password...',mtWarning,[mbOK],0);
+    exit;
+  end;
+
+  mainForm.userid_L.Caption := userQuserid.Text;
+  mainForm.userType_L.caption := userQrestriction.Text;
+  messagedlg('User ID login successfully...',mtInformation,[mbOK],0);
+
+  if userQrestriction.Text <> 'Administrator' then
+  begin
+   with mainForm do
+   begin
+     NxOptionButton1.Enabled                := false;
+     NxOptionButton2.Enabled                := false;
+     NxOptionButton3.Enabled                := false;
+     NxOptionButton4.Enabled                := false;
+     NxOptionButton5.Enabled                := false;
+     NxOptionButton6.Enabled                := false;
+     NxOptionButton8.Enabled                := false;
+     //NxOptionButton9.Enabled                := false;
+     NxOptionButton10.Enabled               := false;
+
+     UserAccounts1.Enabled                  := false;
+     PayeeList1.Enabled                     := false;
+     Employee1.Enabled                      := false;
+     Office1.Enabled                        := false;
+     ItemIndex1.Enabled                     := false;
+     Itemcategory1.Enabled                  := false;
+     Signatories1.Enabled                   := false;
+     AccountType1.Enabled                   := false;
+     Close3.Enabled                         := false;
+     BudgetChartofAccnts1.Enabled           := false;
+     Purchaser1.Enabled                     := false;
+     BidsandAwards1.Enabled                 := false;
+     Allocation1.Enabled                    := false;
+     POVouchers1.Enabled                    := false;
+     //ProcurementProcessingChart1.Enabled    := false;
+
+     {
+      Purchaser
+
+      BAC
+      IAR     }
+     if userQrestriction.Text = 'Requester' then
+     NxOptionButton3.Enabled := true;
+
+     if userQrestriction.Text = 'Budget' then
+     begin
+        NxOptionButton2.Enabled := true;
+        NxOptionButton3.Enabled := true;
+        NxOptionButton4.Enabled := true;
+        NxOptionButton5.Enabled := true;
+        NxOptionButton6.Enabled := true;
+
+        BudgetChartofAccnts1.Enabled           := true;
+        Purchaser1.Enabled                     := true;
+        BidsandAwards1.Enabled                 := true;
+        Allocation1.Enabled                    := true;
+        POVouchers1.Enabled                    := true;
+     end;
+
+
+   end;
+  end;
+
+  close;
+end;
+
+procedure TlogForm.NxLinkLabel1Click(Sender: TObject);
+begin
+  hide;
+  mainForm.Close;
+end;
+
+end.

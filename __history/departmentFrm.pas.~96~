@@ -1,0 +1,208 @@
+unit departmentFrm;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, Mask, DBCtrls, NxCollection, Grids, DBGrids, CRGrid,
+  CRDBGrid1, Buttons,DB;
+
+type
+  TdepartmentForm = class(TForm)
+    close_buton: TSpeedButton;
+    select_btn: TSpeedButton;
+    SpeedButton1: TSpeedButton;
+    Label2: TLabel;
+    CRDBGrid11: TCRDBGrid1;
+    add_label: TNxLinkLabel;
+    Edit_label: TNxLinkLabel;
+    delete_label: TNxLinkLabel;
+    NxHeaderPanel2: TNxHeaderPanel;
+    Label1: TLabel;
+    Label5: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label6: TLabel;
+    DBEdit4: TDBEdit;
+    NxLinkLabel1: TNxLinkLabel;
+    NxLinkLabel2: TNxLinkLabel;
+    DBEdit2: TDBEdit;
+    DBEdit3: TDBEdit;
+    DBEdit1: TDBEdit;
+    searchAccountName_TF: TEdit;
+    procedure add_labelClick(Sender: TObject);
+    procedure enableComponent();
+    procedure disableComponent();
+    procedure Edit_labelClick(Sender: TObject);
+    procedure delete_labelClick(Sender: TObject);
+    procedure select_btnClick(Sender: TObject);
+    procedure NxLinkLabel1Click(Sender: TObject);
+    procedure NxLinkLabel2Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure close_butonClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure SpeedButton1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+
+  end;
+
+var
+  departmentForm: TdepartmentForm;
+
+implementation
+
+uses data, BudgetChartOfAccntFrm,  MODTOOLS, purchaseRequestFrm, userFrm,
+  appFrm;
+
+{$R *.dfm}
+
+procedure TdepartmentForm.add_labelClick(Sender: TObject);
+begin
+  NxHeaderPanel2.Top  := 41;
+  NxHeaderPanel2.Left := 96;
+  NxHeaderPanel2.BringToFront;
+
+  NxHeaderPanel2.Visible := true;
+  Label1.Caption  := 'Add Office';
+  disableComponent;
+  dataProc.departmentQ.Append;
+
+end;
+procedure TdepartmentForm.enableComponent();
+begin
+   CRDBGrid11.enabled    := true;
+   delete_label.enabled  := true;
+   add_label.Enabled     := true;
+   edit_label.Enabled    := true;
+   close_buton.Enabled   := true;
+   select_btn.Enabled    := true;
+end;
+procedure TdepartmentForm.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  Action := caFree;
+  departmentForm := Nil;
+end;
+
+procedure TdepartmentForm.FormCreate(Sender: TObject);
+begin
+  dataproc.departmentQ.Close;
+  dataproc.departmentQ.Open;
+
+end;
+
+procedure TdepartmentForm.FormShow(Sender: TObject);
+begin
+  dataproc.departmentQ.Close;
+  dataproc.departmentQ.Open;
+
+end;
+
+procedure TdepartmentForm.NxLinkLabel1Click(Sender: TObject);
+begin
+  dataproc.departmentQ.post;
+  messagedlg('Office successfully saved..',mtInformation,[mbOK],0);
+  NxHeaderPanel2.Visible := false;
+
+  enableComponent;
+  dataproc.departmentQ.RefreshRecord;
+
+end;
+
+procedure TdepartmentForm.NxLinkLabel2Click(Sender: TObject);
+begin
+  NxHeaderPanel2.Visible := false;
+  dataproc.departmentQ.Cancel;
+  enableComponent;
+
+end;
+
+procedure TdepartmentForm.select_btnClick(Sender: TObject);
+begin
+    if (formStrFilter = 'employeeForm') then
+    begin
+      dataproc.employeeQcodeDepartment.Text          :=  dataproc.departmentQdepartmentCode.Text;
+      dataproc.employeeQdepartment.Text              :=  dataproc.departmentQdepartment.Text;
+
+    end
+    else if formStrFilter = 'chartofAccountForm' then
+    begin
+       BudgetChartOfAccntForm.office_dbTf.Text       := dataproc.departmentQdepartment.Text;
+       dataproc.chartofaccountQcodeDepartment.Text   := dataproc.departmentQdepartmentCode.Text;
+       dataproc.chartofaccountQiddepartment.Text     := dataproc.departmentQiddepartment.Text;
+    end
+    else if formStrFilter = 'prForm' then
+    begin
+       purchaseRequestForm.DBEdit2.Text              := dataproc.departmentQdepartmentCode.Text;
+    end
+    else if formStrFilter = 'users' then
+    begin
+      if not assigned(userForm) then
+      userForm := TuserForm.Create(Application);
+
+      userForm.DBEdit5.Text := dataproc.departmentQdepartment.Text;
+
+    end
+    else if formStrFilter = 'appForm' then
+    begin
+      appForm.appQdeptCode.Text   := dataproc.departmentQdepartmentCode.Text;
+      appForm.appQdepartment.Text := dataproc.departmentQdepartment.Text;
+    end;
+
+
+   Close;
+end;
+
+procedure TdepartmentForm.SpeedButton1Click(Sender: TObject);
+begin
+  with dataproc do
+  begin
+    departmentQ.Filtered  := false;
+    departmentQ.FilterSQL := 'department like '+quotedstr('%'+searchAccountName_TF.Text+'%');
+    departmentQ.Filtered  := true;
+  end;
+
+end;
+
+procedure TdepartmentForm.close_butonClick(Sender: TObject);
+begin
+  close;
+end;
+
+procedure TdepartmentForm.delete_labelClick(Sender: TObject);
+begin
+  if (MessageDlg(dataproc.chartofaccountQaccount.Text+' : '+
+      dataproc.chartofaccountQname.Text+#13+
+      'Continue to delete selected record?', mtConfirmation, [mbYes, mbNo], 0) = mrNo) then  exit;
+
+  dataproc.departmentQ.Delete;
+
+end;
+
+procedure TdepartmentForm.disableComponent();
+begin
+   CRDBGrid11.enabled    := false;
+   delete_label.enabled  := false;
+   add_label.Enabled     := false;
+   edit_label.Enabled    := false;
+   close_buton.Enabled   := false;
+   select_btn.Enabled    := false;
+end;
+procedure TdepartmentForm.Edit_labelClick(Sender: TObject);
+begin
+  NxHeaderPanel2.Top  := 41;
+  NxHeaderPanel2.Left := 96;
+  NxHeaderPanel2.BringToFront;
+
+  NxHeaderPanel2.Visible := true;
+  dataProc.departmentQ.Edit;
+  Label1.Caption := 'Edit Office';
+
+  disableComponent;
+
+end;
+
+end.

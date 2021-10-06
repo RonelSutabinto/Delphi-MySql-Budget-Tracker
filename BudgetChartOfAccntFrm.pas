@@ -1,0 +1,946 @@
+unit BudgetChartOfAccntFrm;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DBCtrls, StdCtrls, Mask, ExtCtrls, NxEdit, NxCollection, Buttons,
+  Grids, DBGrids, CRGrid, CRDBGrid1,  MemDS, DBAccess, MyAccess,
+  AdvSmoothLabel, QExport4, QExport4XLS, QExport4Dialog, ComCtrls, AdvProgr,
+  AdvProgressBar, AdvCombo, AdvSmoothEdit, AdvSmoothEditButton,
+  AdvSmoothDatePicker, Data.DB, QExport4Xlsx;
+
+type
+  TBudgetChartOfAccntForm = class(TForm)
+    Panel1: TPanel;
+    panelMaster: TPanel;
+    CRDBGrid11: TCRDBGrid1;
+    Panel2: TPanel;
+    SpeedButton1: TSpeedButton;
+    SpeedButton2: TSpeedButton;
+    SpeedButton3: TSpeedButton;
+    SpeedButton4: TSpeedButton;
+    Label4: TLabel;
+    Label5: TLabel;
+    searchAccountName_TF: TEdit;
+    NxLinkLabel1: TNxLinkLabel;
+    ComboBox2: TComboBox;
+    Panel3: TPanel;
+    NxLinkLabel2: TNxLinkLabel;
+    NxLinkLabel3: TNxLinkLabel;
+    NxLinkLabel4: TNxLinkLabel;
+    NxLinkLabel5: TNxLinkLabel;
+    NxLinkLabel6: TNxLinkLabel;
+    NxHeaderPanel1: TNxHeaderPanel;
+    Label6: TLabel;
+    SpeedButton6: TSpeedButton;
+    NxHeaderPanel2: TNxHeaderPanel;
+    Bevel1: TBevel;
+    Label9: TLabel;
+    Label10: TLabel;
+    SpeedButton7: TSpeedButton;
+    SpeedButton8: TSpeedButton;
+    Label11: TLabel;
+    Label12: TLabel;
+    Label13: TLabel;
+    Label14: TLabel;
+    Label15: TLabel;
+    Label29: TLabel;
+    Label30: TLabel;
+    SpeedButton17: TSpeedButton;
+    SpeedButton19: TSpeedButton;
+    Label31: TLabel;
+    SpeedButton9: TSpeedButton;
+    account_dbTf: TDBEdit;
+    name_dbTf: TDBEdit;
+    cutoff_dbTf: TDBEdit;
+    allocation_dbTf: TDBEdit;
+    NxDatePicker2: TNxDatePicker;
+    accountMaster_db_tf: TDBEdit;
+    nameMaster_dbTf: TDBEdit;
+    office_dbTf: TDBEdit;
+    DBCheckBox1: TDBCheckBox;
+    type_dbTf: TDBEdit;
+    NxHeaderPanel3: TNxHeaderPanel;
+    Label16: TLabel;
+    NxLinkLabel7: TNxLinkLabel;
+    NxLinkLabel8: TNxLinkLabel;
+    CRDBGrid1: TCRDBGrid;
+    Edit1: TEdit;
+    SpeedButton10: TSpeedButton;
+    Label17: TLabel;
+    tmpQ: TMyQuery;
+    AdvSmoothLabel1: TAdvSmoothLabel;
+    AdvSmoothLabel3: TAdvSmoothLabel;
+    CRDBGrid2: TCRDBGrid;
+    NxLinkLabel9: TNxLinkLabel;
+    cutMasterQ: TMyQuery;
+    cutmasterDS: TMyDataSource;
+    SpeedButton5: TSpeedButton;
+    NxLinkLabel10: TNxLinkLabel;
+    SpeedButton11: TSpeedButton;
+    cutMasterQidcutoffmaster: TIntegerField;
+    cutMasterQyyyy: TStringField;
+    cutMasterQdateStart: TDateField;
+    cutMasterQdateEnd: TDateField;
+    cutMasterQcutoff: TDateField;
+    NxHeaderPanel4: TNxHeaderPanel;
+    AdvSmoothLabel2: TAdvSmoothLabel;
+    Label1: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label18: TLabel;
+    Label19: TLabel;
+    Label22: TLabel;
+    DBEdit1: TDBEdit;
+    DBEdit2: TDBEdit;
+    DBEdit3: TDBEdit;
+    DBEdit5: TDBEdit;
+    DBEdit6: TDBEdit;
+    CRDBGrid3: TCRDBGrid;
+    SpeedButton12: TSpeedButton;
+    NxHeaderPanel5: TNxHeaderPanel;
+    AdvSmoothLabel4: TAdvSmoothLabel;
+    Label21: TLabel;
+    SpeedButton13: TSpeedButton;
+    Label32: TLabel;
+    CRDBGrid12: TCRDBGrid1;
+    CRDBGrid13: TCRDBGrid1;
+    Label23: TLabel;
+    Label24: TLabel;
+    journalQ: TMyQuery;
+    journalQamount: TFloatField;
+    journalQDate: TStringField;
+    journalQBalance: TFloatField;
+    journalQdocumentNo: TStringField;
+    journalDS: TMyDataSource;
+    journalsaQ: TMyQuery;
+    StringField1: TStringField;
+    FloatField1: TFloatField;
+    StringField2: TStringField;
+    FloatField2: TFloatField;
+    journalsaQdocumentNo: TStringField;
+    journalsaDS: TMyDataSource;
+    Label20: TLabel;
+    DBEdit4: TDBEdit;
+    journalQrequester: TStringField;
+    journalQpayee: TStringField;
+    chartAccntQ: TMyQuery;
+    chartAccntDS: TMyDataSource;
+    chartAccntQidChartOfAccount: TIntegerField;
+    chartAccntQaccount: TStringField;
+    chartAccntQname: TStringField;
+    chartAccntQaccountMaster: TStringField;
+    chartAccntQnameMaster: TStringField;
+    chartAccntQgeneralAccount: TBooleanField;
+    chartAccntQaccountType: TStringField;
+    chartAccntQcodeType: TStringField;
+    chartAccntQdepartment: TStringField;
+    chartAccntQcodeDepartment: TStringField;
+    chartAccntQiddepartment: TIntegerField;
+    chartAccntQallocateAmount: TFloatField;
+    chartAccntQcutoffDate: TDateField;
+    chartAccntQdate: TDateField;
+    chartAccntQuserID: TStringField;
+    chartAccntQnameAccount: TStringField;
+    chart_saQ: TMyQuery;
+    IntegerField1: TIntegerField;
+    StringField3: TStringField;
+    StringField4: TStringField;
+    StringField5: TStringField;
+    StringField6: TStringField;
+    BooleanField1: TBooleanField;
+    StringField7: TStringField;
+    StringField8: TStringField;
+    StringField9: TStringField;
+    StringField10: TStringField;
+    IntegerField2: TIntegerField;
+    FloatField3: TFloatField;
+    DateField1: TDateField;
+    DateField2: TDateField;
+    StringField11: TStringField;
+    StringField12: TStringField;
+    chart_saDS: TMyDataSource;
+    NxButton1: TNxButton;
+    SaveDialog1: TSaveDialog;
+    journalXls: TQExport4XLS;
+    journalQAccount: TStringField;
+    journalQAccountName: TStringField;
+    RadioGroup1: TRadioGroup;
+    masterBalanceQ: TMyQuery;
+    masterBalanceQaccount: TStringField;
+    masterBalanceQname: TStringField;
+    masterBalanceQallocateAmount: TFloatField;
+    masterBalanceQallocatesubAccount: TFloatField;
+    masterBalanceQBalance: TFloatField;
+    masterBalanceQcodeDepartment: TStringField;
+    masterBalanceQdepartment: TStringField;
+    masterBalanceQiddepartment: TStringField;
+    NxHeaderPanel6: TNxHeaderPanel;
+    Label2: TLabel;
+    Label3: TLabel;
+    NxLinkLabel11: TNxLinkLabel;
+    NxLinkLabel12: TNxLinkLabel;
+    Label25: TLabel;
+    chartSourceQ: TMyQuery;
+    chartSourceQidChartOfAccount: TIntegerField;
+    chartSourceQaccount: TStringField;
+    chartSourceQname: TStringField;
+    chartSourceQaccountMaster: TStringField;
+    chartSourceQnameMaster: TStringField;
+    chartSourceQgeneralAccount: TBooleanField;
+    chartSourceQaccountType: TStringField;
+    chartSourceQcodeType: TStringField;
+    chartSourceQdepartment: TStringField;
+    chartSourceQcodeDepartment: TStringField;
+    chartSourceQiddepartment: TIntegerField;
+    chartSourceQallocateAmount: TFloatField;
+    chartSourceQcutoffDate: TDateField;
+    chartSourceQdate: TDateField;
+    chartSourceQuserID: TStringField;
+    insertChartQ: TMyQuery;
+    AdvProgressBar1: TAdvProgressBar;
+    AdvComboBox1: TAdvComboBox;
+    AdvSmoothDatePicker1: TAdvSmoothDatePicker;
+    ComboBox1: TComboBox;
+    Label26: TLabel;
+    QExport4Xlsx1: TQExport4Xlsx;
+    procedure NxLinkLabel6Click(Sender: TObject);
+    procedure SpeedButton2Click(Sender: TObject);
+    procedure disableForm();
+    procedure enableForm();
+    procedure SpeedButton3Click(Sender: TObject);
+    procedure SpeedButton4Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure SpeedButton7Click(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure SpeedButton9Click(Sender: TObject);
+    procedure SpeedButton8Click(Sender: TObject);
+    procedure SpeedButton17Click(Sender: TObject);
+    procedure NxLinkLabel8Click(Sender: TObject);
+    procedure NxLinkLabel7Click(Sender: TObject);
+    procedure DBCheckBox1Click(Sender: TObject);
+    procedure ComboBox2Change(Sender: TObject);
+    procedure SpeedButton19Click(Sender: TObject);
+    procedure SpeedButton5Click(Sender: TObject);
+    procedure NxLinkLabel1Click(Sender: TObject);
+    procedure SpeedButton11Click(Sender: TObject);
+    procedure NxLinkLabel9Click(Sender: TObject);
+    procedure SpeedButton6Click(Sender: TObject);
+    procedure NxLinkLabel10Click(Sender: TObject);
+    procedure NxLinkLabel2Click(Sender: TObject);
+    procedure SpeedButton12Click(Sender: TObject);
+    procedure NxLinkLabel4Click(Sender: TObject);
+    procedure SpeedButton13Click(Sender: TObject);
+    procedure CRDBGrid12CellClick(Column: TColumn);
+    procedure NxButton1Click(Sender: TObject);
+    procedure SpeedButton1Click(Sender: TObject);
+    procedure NxLinkLabel11Click(Sender: TObject);
+    procedure NxLinkLabel5Click(Sender: TObject);
+    procedure NxLinkLabel12Click(Sender: TObject);
+    procedure ComboBox1Change(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  BudgetChartOfAccntForm: TBudgetChartOfAccntForm;
+
+implementation
+
+uses data, departmentFrm, accntTypeFrm, MODTOOLS, mainFrm;
+
+{$R *.dfm}
+
+procedure TBudgetChartOfAccntForm.NxButton1Click(Sender: TObject);
+var
+  filename: String;
+
+begin
+  //If SaveDialog1.Execute then
+  //begin
+    // Assign
+    //AssignFile(filename,SaveDialog1.FileName);
+   //  AssignFile(TextTo,SaveDialog1.FileName);
+   //  Rewrite(TextTo);
+
+   // journalXls.FileName := filename;
+   // journalXls.Execute;
+
+
+    //pilferageXls.Destroy;
+
+    //pilferageXls.FileName := ExtractFilePath(Application.ExeName) + 'pilferbilled.xls';
+    //pilferageXls.Execute;
+
+    //pilferageXls.Destroy;
+
+    {
+      if PageControl1.ActivePage = tshDataSet
+    then QExportDialog1.ExportSource := esDataSet
+    QExportDialog1.Execute;
+    }
+ // end;
+
+
+  try
+     journalXls.FileName := ExtractFilePath(Application.ExeName) + 'AccountLedger.xls';
+     journalXls.Execute;
+
+     journalXls.Destroy;
+     messagedlg('Consumer late bill successfully exported..',mtInformation,[mbOK],0);
+  except
+    on E: Exception do  messagedlg(e.Message,mtError,[mbOK],0);
+  end;
+
+end;
+
+procedure TBudgetChartOfAccntForm.NxLinkLabel10Click(Sender: TObject);
+begin
+  cutMasterQ.Cancel;
+end;
+
+procedure TBudgetChartOfAccntForm.NxLinkLabel11Click(Sender: TObject);
+begin
+
+  tmpQ.Close;
+  tmpQ.SQL.Clear;
+  tmpQ.SQL.Add('Select * from cutoffmaster where cutoff = :cutoff');
+  tmpQ.ParamByName('cutoff').AsDate := AdvSmoothDatePicker1.Date;
+  tmpQ.Open;
+
+  if not tmpQ.IsEmpty then
+  begin
+    chartSourceQ.Close;
+    chartSourceQ.ParamByName('cutoffdate').AsDate := StrToDate(AdvComboBox1.Text);
+    chartSourceQ.Open;
+
+    AdvProgressBar1.Max      := chartSourceQ.RecordCount;
+    AdvProgressBar1.Position := 1;
+    chartSourceQ.First;
+
+    while not chartSourceQ.Eof do
+    begin
+      insertChartQ.ParamByName('account').Text             := chartSourceQaccount.Text;
+      insertChartQ.ParamByName('name').Text                := chartSourceQname.Text;
+      insertChartQ.ParamByName('accountMaster').Text       := chartSourceQaccountMaster.Text;
+      insertChartQ.ParamByName('nameMaster').Text          := chartSourceQnameMaster.Text;
+      insertChartQ.ParamByName('generalAccount').AsBoolean := chartSourceQgeneralAccount.AsBoolean;
+      insertChartQ.ParamByName('accountType').Text         := chartSourceQaccountType.Text;
+      insertChartQ.ParamByName('codeType').Text            := chartSourceQcodeType.Text;
+      insertChartQ.ParamByName('department').Text          := chartSourceQdepartment.Text;
+      insertChartQ.ParamByName('codeDepartment').Text      := chartSourceQcodeDepartment.Text;
+      insertChartQ.ParamByName('iddepartment').Text        := chartSourceQiddepartment.Text;
+      insertChartQ.ParamByName('allocateAmount').AsFloat   := chartSourceQallocateAmount.AsFloat;
+      insertChartQ.ParamByName('cutoffDate').AsDate        := AdvSmoothDatePicker1.Date;
+      insertChartQ.ParamByName('date').AsDate              := now;
+
+      insertChartQ.Execute;
+      AdvProgressBar1.Position :=  AdvProgressBar1.Position + 1;
+      chartSourceQ.Next;
+      Sleep(600);
+    end;
+
+    MessageDlg('Copy account successfully executed..',mtInformation,[mbOK],0);
+    NxHeaderPanel6.Visible := false;
+    enableForm;
+
+    dataproc.chartofaccountQ.Refresh;
+  end
+  else
+  begin
+    MessageDlg('Target Cutoff date not found..',mtError,[mbOK],0);
+  end;
+
+end;
+
+procedure TBudgetChartOfAccntForm.NxLinkLabel12Click(Sender: TObject);
+begin
+  NxHeaderPanel6.Visible := false;
+  enableForm;
+
+end;
+
+procedure TBudgetChartOfAccntForm.NxLinkLabel1Click(Sender: TObject);
+begin
+  NxHeaderPanel1.Top     := 111;
+  NxHeaderPanel1.Left    := 232;
+  NxHeaderPanel1.BringToFront;
+  NxHeaderPanel1.Visible := true;
+
+  disableForm;
+  cutMasterQ.Open;
+end;
+
+procedure TBudgetChartOfAccntForm.NxLinkLabel2Click(Sender: TObject);
+begin
+  disableForm;
+
+  journalQ.Close;
+  journalQ.MacroByName('ga').Active := false;
+  journalQ.MacroByName('sa').Active := false;
+
+  if dataproc.chartofaccountQgeneralAccount.AsBoolean = true then
+  journalQ.MacroByName('ga').Active := true
+  else
+  journalQ.MacroByName('sa').Active := true;
+
+  journalQ.ParamByName('amountAccnt').AsFloat := dataproc.chartofaccountQallocateAmount.AsFloat;
+  journalQ.ParamByName('account').Text        := dataproc.chartofaccountQaccount.Text;
+  journalQ.ParamByName('cutoff').Text         :=FormatDateTime('YYYY-MM-DD', dataproc.cutoffQCutoff.AsDateTime);
+  journalQ.Open;
+  journalQ.Last;
+
+  NxHeaderPanel4.Top  := 169;
+  NxHeaderPanel4.Left := 296;
+  NxHeaderPanel4.BringToFront;
+  NxHeaderPanel4.Visible := true;
+
+end;
+
+procedure TBudgetChartOfAccntForm.NxLinkLabel4Click(Sender: TObject);
+begin
+  disableForm;
+
+  chartAccntQ.Close;
+  chartAccntQ.ParamByName('cutoff').Text := FormatDateTime('YYYY-MM-DD', dataproc.cutoffQCutoff.AsDateTime);
+  chartAccntQ.Open;
+
+  NxHeaderPanel5.Top  := 164;
+  NxHeaderPanel5.Left := 136;
+  NxHeaderPanel5.BringToFront;
+  NxHeaderPanel5.Visible := true;
+end;
+
+procedure TBudgetChartOfAccntForm.NxLinkLabel5Click(Sender: TObject);
+begin
+  NxHeaderPanel6.Top  := 195;
+  NxHeaderPanel6.Left := 229;
+  NxHeaderPanel6.BringToFront;
+  NxHeaderPanel6.Visible := true;
+
+  disableForm;
+
+  dataproc.cutoffmasterQ.Close;
+  dataproc.cutoffmasterQ.Open;
+  dataproc.cutoffmasterQ.First;
+
+  AdvComboBox1.Items.Clear;
+  while not dataproc.cutoffmasterQ.Eof do
+  begin
+    AdvComboBox1.Items.Add(FormatDateTime('m/d/yyyy', dataproc.cutoffmasterQ.FieldByName('cutoff').AsDateTime));
+    dataproc.cutoffmasterQ.Next;
+  end;
+end;
+
+procedure TBudgetChartOfAccntForm.NxLinkLabel6Click(Sender: TObject);
+begin
+  close;
+end;
+
+procedure TBudgetChartOfAccntForm.NxLinkLabel7Click(Sender: TObject);
+begin
+  accountMaster_db_tf.Text                       := dataproc.chartCutoffQaccount.Text;
+  nameMaster_dbTf.Text                           := dataproc.chartCutoffQname.Text;
+  office_dbTf.Text                               := dataproc.chartCutoffQdepartment.Text;
+  dataProc.chartofaccountQcodeDepartment.Text    := dataproc.chartCutoffQcodeDepartment.Text;
+  dataProc.chartofaccountQiddepartment.AsInteger := dataproc.chartCutoffQiddepartment.AsInteger;
+
+  NxHeaderPanel3.Visible       := false;
+  NxHeaderPanel2.Enabled       := true;
+end;
+
+procedure TBudgetChartOfAccntForm.NxLinkLabel8Click(Sender: TObject);
+begin
+  NxHeaderPanel3.Visible := false;
+  NxHeaderPanel2.Enabled := true;
+end;
+
+procedure TBudgetChartOfAccntForm.NxLinkLabel9Click(Sender: TObject);
+begin
+   cutMasterQ.Cancel;
+   cutMasterQ.Close;
+   NxHeaderPanel1.Visible := false;
+
+   enableForm;
+end;
+
+procedure TBudgetChartOfAccntForm.SpeedButton11Click(Sender: TObject);
+begin
+
+   dataproc.cutoffQ.Edit;
+   dataproc.cutoffQCutoff.AsDateTime := cutMasterQcutoff.AsDateTime;
+   dataproc.cutoffQ.Post;
+   dataproc.cutoffQ.Refresh;
+   cutMasterQ.Close;
+
+   Label4.Caption := FormatDateTime('yyyy-mm-dd',dataproc.cutoffQCutoff.AsDateTime);
+   messagedlg('Cutoff date set..',mtInformation,[mbOK],0);
+   NxHeaderPanel1.Visible := false;
+
+   enableForm;
+   FormShow(Sender);
+end;
+
+procedure TBudgetChartOfAccntForm.SpeedButton12Click(Sender: TObject);
+begin
+  NxHeaderPanel4.Visible := false;
+  enableForm;
+end;
+
+procedure TBudgetChartOfAccntForm.SpeedButton13Click(Sender: TObject);
+begin
+  NxHeaderPanel5.Visible := false;
+  enableForm;
+end;
+
+procedure TBudgetChartOfAccntForm.SpeedButton17Click(Sender: TObject);
+begin
+ with dataproc do
+  begin
+      chartCutoffQ.Close;
+      chartCutoffQ.ParamByName('cutoff').Text := FormatDateTime('YYYY-MM-DD',cutoffQCutoff.AsDateTime);
+      chartCutoffQ.Open;
+
+      Label16.Caption := 'Master Account (Cutoff:' +FormatDateTime('YYYY-MM-DD',cutoffQCutoff.AsDateTime)+')';
+  end;
+
+  NxHeaderPanel3.Top      := 171;
+  NxHeaderPanel3.Left     := 154;
+  NxHeaderPanel3.BringToFront;
+  NxHeaderPanel3.Visible  := true;
+  NxHeaderPanel2.Enabled  := false;
+end;
+
+procedure TBudgetChartOfAccntForm.SpeedButton19Click(Sender: TObject);
+begin
+  if not Assigned(departmentForm) then
+  departmentForm := TdepartmentForm.Create(Application);
+
+  with departmentForm do
+  begin
+    add_label.Visible    := false;
+    Edit_label.Visible   := false;
+    delete_label.Visible := false;
+    formStrFilter := 'chartofAccountForm';
+    ShowModal;
+  end;
+
+end;
+
+procedure TBudgetChartOfAccntForm.SpeedButton1Click(Sender: TObject);
+var
+ Accnttype : String;
+begin
+Accnttype := IntToStr(ComboBox1.ItemIndex);
+
+if ComboBox1.Text='ALL' then
+Accnttype :='';
+
+with dataproc do
+  begin
+    case RadioGroup1.ItemIndex of
+      0:begin
+          if ComboBox2.Text = 'ALL' then
+          begin
+             chartofaccountQ.Filtered  := false;
+             chartofaccountQ.FilterSQL := 'c.cutoffdate = '+ quotedstr(FormatDateTime('YYYY-MM-DD', cutoffQCutoff.AsDateTime)) + ' and '+
+                                          ' c.account like '+quotedstr('%'+searchAccountName_TF.Text+'%')+
+                                          ' and c.generalAccount like '+quotedstr('%'+Accnttype+'%');
+             chartofaccountQ.Filtered  := true;
+          end
+          else
+          begin
+            chartofaccountQ.Filtered  := false;
+            chartofaccountQ.FilterSQL := 'c.codeDepartment = '+quotedstr(ComboBox2.Text) +
+                                         ' and c.cutoffdate = '+ quotedstr(FormatDateTime('YYYY-MM-DD', cutoffQCutoff.AsDateTime))+' and '+
+                                         ' c.account like '+quotedstr('%'+searchAccountName_TF.Text+'%')+
+                                         ' and c.generalAccount like '+quotedstr('%'+Accnttype+'%');
+            chartofaccountQ.Filtered  := true;
+          end;
+       end;
+       1:begin
+          if ComboBox2.Text = 'ALL' then
+          begin
+             chartofaccountQ.Filtered  := false;
+             chartofaccountQ.FilterSQL := 'c.cutoffdate = '+ quotedstr(FormatDateTime('YYYY-MM-DD', cutoffQCutoff.AsDateTime)) + ' and '+
+                                          ' c.name like '+quotedstr('%'+searchAccountName_TF.Text+'%')+
+                                          ' and c.generalAccount like '+quotedstr('%'+Accnttype+'%');
+             chartofaccountQ.Filtered  := true;
+          end
+          else
+          begin
+            chartofaccountQ.Filtered  := false;
+            chartofaccountQ.FilterSQL := 'c.codeDepartment = '+quotedstr(ComboBox2.Text) +
+                                         ' and c.cutoffdate = '+ quotedstr(FormatDateTime('YYYY-MM-DD', cutoffQCutoff.AsDateTime))+' and '+
+                                         ' c.name like '+quotedstr('%'+searchAccountName_TF.Text+'%')+
+                                         ' and c.generalAccount like '+quotedstr('%'+Accnttype+'%');
+            chartofaccountQ.Filtered  := true;
+          end;
+       end;
+    end;
+
+  end;
+end;
+
+procedure TBudgetChartOfAccntForm.SpeedButton2Click(Sender: TObject);
+begin
+  NxHeaderPanel2.Top   := 125;
+  NxHeaderPanel2.Left  := 229;
+  NxHeaderPanel2.BringToFront;
+  NxHeaderPanel2.Visible := true;
+
+  disableForm;
+  dataProc.chartofaccountQ.Append;
+  dataProc.chartofaccountQcutoffDate.AsDateTime := dataProc.cutoffQCutoff.AsDateTime;
+  NxDatePicker2.ReadOnly := false;
+  account_dbTf.ReadOnly  := false;
+
+  accountMaster_db_tf.Visible := true;
+  nameMaster_dbTf.Visible     := true;
+  Label12.Visible             := true;
+  Label29.Visible             := true;
+  SpeedButton17.Visible       := true;
+  type_dbTf.Visible           := true;
+  SpeedButton9.Visible        := true;
+  Label31.Visible             := true;
+  SpeedButton19.Enabled       := false;
+
+  accountMaster_db_tf.Text    := '';
+  nameMaster_dbTf.Text        := '';
+  account_dbTf.SetFocus;
+
+end;
+procedure TBudgetChartOfAccntForm.SpeedButton3Click(Sender: TObject);
+begin
+
+  with  dataProc do
+    begin
+      NxHeaderPanel2.Top   := 125;
+      NxHeaderPanel2.Left  := 229;
+      NxHeaderPanel2.BringToFront;
+      NxHeaderPanel2.Visible := true;
+
+      disableForm;
+      chartofaccountQ.Edit;
+
+      NxDatePicker2.Date     := chartofaccountQdate.AsDateTime;
+      NxDatePicker2.ReadOnly := true;
+      account_dbTf.ReadOnly  := true;
+
+      if DBCheckBox1.Checked then
+      begin
+        accountMaster_db_tf.Visible := false;
+        nameMaster_dbTf.Visible     := false;
+        Label12.Visible             := false;
+        Label29.Visible             := false;
+        SpeedButton17.Visible       := false;
+        type_dbTf.Visible           := false;
+        Label31.Visible             := false;
+        SpeedButton19.Enabled       := true;
+      end
+      else
+      begin
+        accountMaster_db_tf.Visible := true;
+        nameMaster_dbTf.Visible     := true;
+        Label12.Visible             := true;
+        Label29.Visible             := true;
+        SpeedButton17.Visible       := true;
+        type_dbTf.Visible           := true;
+        Label31.Visible             := true;
+        SpeedButton19.Enabled       := false;
+      end;
+
+      account_dbTf.SetFocus;
+    end;
+
+end;
+
+procedure TBudgetChartOfAccntForm.SpeedButton4Click(Sender: TObject);
+begin
+  if (MessageDlg(dataproc.chartofaccountQaccount.Text+' : '+
+      dataproc.chartofaccountQname.Text+#13+
+      'Continue to delete selected record?', mtConfirmation, [mbYes, mbNo], 0) = mrNo) then  exit;
+
+  dataproc.chartofaccountQ.Delete;
+
+end;
+
+procedure TBudgetChartOfAccntForm.SpeedButton5Click(Sender: TObject);
+begin
+  cutMasterQ.Append;
+end;
+
+procedure TBudgetChartOfAccntForm.SpeedButton6Click(Sender: TObject);
+var
+  startStr,endStr : String;
+begin
+  try
+    cutMasterQyyyy.Text := FormatDateTime('yyyy',now);
+    cutMasterQ.Post;
+
+    messagedlg('Cutoff date successfully saved...',mtInformation,[mbOK],0);
+  except
+    messagedlg('Cutoff year already exist...',mtError,[mbOK],0);
+  end;
+
+end;
+
+procedure TBudgetChartOfAccntForm.SpeedButton7Click(Sender: TObject);
+begin
+  dataproc.chartofaccountQ.Cancel;
+  NxHeaderPanel2.Visible := false;
+  enableForm;
+
+end;
+
+procedure TBudgetChartOfAccntForm.SpeedButton8Click(Sender: TObject);
+begin
+   if (Length(account_dbTf.Text)<3) or
+      (Length(name_dbTf.Text)<3) or
+      (office_dbTf.Text='') or
+      (allocation_dbTf.Text='') then
+   begin
+     messagedlg('Invalid account entry. Please complete the details..',mtError,[mbOK],0);
+     exit;
+   end;
+
+   if (DBCheckBox1.Checked=false) and (Length(accountMaster_db_tf.Text)<3) then
+   begin
+     messagedlg('Invalid master account entry. Please complete the details..',mtError,[mbOK],0);
+     exit;
+   end;
+
+  with dataproc do
+  begin
+
+    if DBCheckBox1.Checked then
+    begin
+       chartofaccountQaccountMaster.Text := account_dbTf.Text;
+       chartofaccountQnameMaster.Text    := name_dbTf.Text;
+    end
+    else
+    begin
+      chartofaccountQdepartment.Text     := chartCutoffQdepartment.Text;
+      chartofaccountQcodeDepartment.Text := chartCutoffQcodeDepartment.Text;
+      chartofaccountQiddepartment.Text   := chartCutoffQiddepartment.Text;
+
+      masterBalanceQ.Close;
+      masterBalanceQ.ParamByName('cutoff').Text  := FormatDateTime('YYYY-MM-DD',cutoffQCutoff.AsDateTime);
+      masterBalanceQ.ParamByName('account').Text := accountMaster_db_tf.Text;
+      masterBalanceQ.Open;
+
+      if not masterBalanceQ.IsEmpty then
+      begin
+         if (masterBalanceQBalance.AsFloat-StrToFloat(allocation_dbTf.Text))<0 then
+         begin
+            messagedlg('Account: '+accountMaster_db_tf.Text+#13+
+                       'Allocated amount balance of general fund is only '+masterBalanceQBalance.Text,mtError,[mbOK],0 );
+            exit;
+         end;
+
+      end;
+    end;
+
+    chartofaccountQiddepartment.Text     := departmentQiddepartment.Text;
+    chartofaccountQdate.AsDateTime       := NxDatePicker2.Date;
+    chartofaccountQuserID.Text           := mainForm.userid_L.Caption;
+    chartofaccountQ.Post;
+    MessageDlg('Budget Chart of account successfully saved..',mtInformation,[mbOK],0);
+
+    NxHeaderPanel2.Visible := false;
+    enableForm;
+    chartofaccountQ.Refresh;
+  end;
+end;
+
+procedure TBudgetChartOfAccntForm.SpeedButton9Click(Sender: TObject);
+begin
+  if not assigned(accntTypeForm) then
+  accntTypeForm := TaccntTypeForm.Create(Application);
+
+  with accntTypeForm do
+  begin
+    add_Label.Visible    := false;
+    Edit_label.Visible   := false;
+    delete_label.Visible := false;
+    SpeedButton6.Visible := true;
+    ShowModal;
+  end;
+end;
+
+procedure TBudgetChartOfAccntForm.ComboBox1Change(Sender: TObject);
+var
+  Accnttype: String;
+begin
+  with dataproc do
+  begin
+
+    Accnttype := IntToStr(ComboBox1.ItemIndex);
+
+    if ComboBox1.Text='ALL' then
+    Accnttype :='';
+
+    if ComboBox2.Text='ALL' then
+    begin
+      chartofaccountQ.Filtered  := false;
+      chartofaccountQ.FilterSQL := 'c.generalAccount like '+quotedstr('%'+Accnttype+'%') +
+                                   ' and c.cutoffdate = '+ quotedstr(FormatDateTime('YYYY-MM-DD', cutoffQCutoff.AsDateTime));
+      chartofaccountQ.Filtered  := true;
+    end
+    else
+    begin
+      chartofaccountQ.Filtered  := false;
+      chartofaccountQ.FilterSQL := 'c.codeDepartment = '+quotedstr(ComboBox2.Text) +
+                                   ' and c.generalAccount like '+quotedstr('%'+Accnttype+'%') +
+                                   ' and c.cutoffdate = '+ quotedstr(FormatDateTime('YYYY-MM-DD', cutoffQCutoff.AsDateTime));
+      chartofaccountQ.Filtered  := true;
+    end;
+  end;
+end;
+
+procedure TBudgetChartOfAccntForm.ComboBox2Change(Sender: TObject);
+var
+ Accnttype : String;
+begin
+Accnttype := IntToStr(ComboBox1.ItemIndex);
+
+if ComboBox1.Text='ALL' then
+Accnttype :='';
+
+with dataproc do
+  begin
+    if ComboBox2.Text = 'ALL' then
+    begin
+       chartofaccountQ.Filtered  := false;
+       chartofaccountQ.FilterSQL := 'c.cutoffdate like '+ quotedstr(FormatDateTime('YYYY-MM-DD', cutoffQCutoff.AsDateTime))+
+                                    ' and c.generalAccount like '+quotedstr('%'+Accnttype+'%');
+       chartofaccountQ.Filtered  := true;
+    end
+    else
+    begin
+      chartofaccountQ.Filtered  := false;
+      chartofaccountQ.FilterSQL := 'c.codeDepartment like '+quotedstr(ComboBox2.Text) +
+                                   ' and c.generalAccount like '+quotedstr('%'+Accnttype+'%') +
+                                   ' and c.cutoffdate like '+ quotedstr(FormatDateTime('YYYY-MM-DD', cutoffQCutoff.AsDateTime));
+      chartofaccountQ.Filtered  := true;
+    end;
+  end;
+
+end;
+
+procedure TBudgetChartOfAccntForm.CRDBGrid12CellClick(Column: TColumn);
+begin
+  chart_saQ.Close;
+  chart_saQ.ParamByName('cutoff').Text := FormatDateTime('YYYY-MM-DD', dataproc.cutoffQCutoff.AsDateTime);
+  chart_saQ.ParamByName('accountmaster').Text := chartAccntQaccount.Text;
+  chart_saQ.Open;
+end;
+
+procedure TBudgetChartOfAccntForm.DBCheckBox1Click(Sender: TObject);
+begin
+  if DBCheckBox1.Checked then
+  begin
+    accountMaster_db_tf.Visible := false;
+    nameMaster_dbTf.Visible     := false;
+    Label12.Visible             := false;
+    Label29.Visible             := false;
+    Label31.Visible             := false;
+    SpeedButton17.Visible       := false;
+    type_dbTf.Visible           := false;
+    SpeedButton9.Visible        := false;
+    SpeedButton19.Enabled       := true;
+
+    accountMaster_db_tf.Text    := '';
+    nameMaster_dbTf.Text        := '';
+    type_dbTf.Text              := '';
+  end
+  else
+  begin
+    accountMaster_db_tf.Visible := true;
+    nameMaster_dbTf.Visible     := true;
+    Label12.Visible             := true;
+    Label29.Visible             := true;
+    SpeedButton17.Visible       := true;
+    type_dbTf.Visible           := true;
+    SpeedButton9.Visible        := true;
+    Label31.Visible             := true;
+    SpeedButton19.Enabled       := false;
+  end;
+end;
+
+procedure TBudgetChartOfAccntForm.disableForm;
+begin
+  CRDBGrid11.Enabled            := false;
+  searchAccountName_TF.Enabled := false;
+  //ComboBox1.Enabled            := false;
+  ComboBox2.Enabled            := false;
+  SpeedButton1.Enabled         := false;
+  SpeedButton2.Enabled         := false;
+  SpeedButton3.Enabled         := false;
+  SpeedButton4.Enabled         := false;
+  NxLinkLabel2.Enabled         := false;
+  NxLinkLabel3.Enabled         := false;
+  NxLinkLabel4.Enabled         := false;
+  NxLinkLabel5.Enabled         := false;
+  NxLinkLabel6.Enabled         := false;
+end;
+procedure TBudgetChartOfAccntForm.enableForm;
+begin
+  CRDBGrid11.Enabled            := true;
+  searchAccountName_TF.Enabled := true;
+  //ComboBox1.Enabled            := true;
+  ComboBox2.Enabled            := true;
+  SpeedButton1.Enabled         := true;
+  SpeedButton2.Enabled         := true;
+  SpeedButton3.Enabled         := true;
+  SpeedButton4.Enabled         := true;
+  NxLinkLabel2.Enabled         := true;
+  NxLinkLabel3.Enabled         := true;
+  NxLinkLabel4.Enabled         := true;
+  NxLinkLabel5.Enabled         := true;
+  NxLinkLabel6.Enabled         := true;
+end;
+
+procedure TBudgetChartOfAccntForm.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  Action := caFree;
+  BudgetChartOfAccntForm := Nil;
+end;
+
+procedure TBudgetChartOfAccntForm.FormShow(Sender: TObject);
+begin
+  dataproc.cutoffQ.close;
+  dataproc.cutoffQ.Open;
+  Label4.Caption := FormatDateTime('yyyy-mm-dd',dataproc.cutoffQCutoff.AsDateTime);
+
+  dataProc.chartofaccountQ.Close;
+  dataProc.chartofaccountQ.ParamByName('cutoff').Text := FormatDateTime('yyyy-mm-dd',dataproc.cutoffQCutoff.AsDateTime);
+  dataProc.chartofaccountQ.Open;
+
+  dataProc.masterJournalQ.close;
+  dataProc.masterJournalQ.Open;
+
+  Label4.Caption := FormatDateTime('YYYY-MM-DD',dataproc.cutoffQCutoff.AsDateTime);
+
+  tmpQ.Close;
+  tmpQ.SQL.Clear;
+  tmpQ.SQL.Add('Select * from department');
+  tmpQ.Open;
+
+  ComboBox2.Clear;
+  ComboBox2.Items.Add('ALL');
+  tmpQ.First;
+  while not tmpQ.Eof do
+  begin
+     ComboBox2.Items.Add(tmpQ.FieldByName('departmentCode').Text);
+     tmpQ.Next;
+  end;
+  ComboBox2.ItemIndex := 0;
+
+end;
+
+end.

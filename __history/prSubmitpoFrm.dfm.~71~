@@ -1,0 +1,952 @@
+object prSubmittedpoForm: TprSubmittedpoForm
+  Left = 0
+  Top = 0
+  BorderStyle = bsNone
+  Caption = 'prSubmittedpoForm'
+  ClientHeight = 397
+  ClientWidth = 739
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poDesktopCenter
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Shape1: TShape
+    Left = 0
+    Top = 31
+    Width = 1
+    Height = 364
+    Align = alLeft
+    ExplicitTop = -71
+    ExplicitHeight = 516
+  end
+  object Shape2: TShape
+    Left = 738
+    Top = 31
+    Width = 1
+    Height = 364
+    Align = alRight
+    ExplicitLeft = 840
+    ExplicitTop = -71
+    ExplicitHeight = 516
+  end
+  object Shape3: TShape
+    Left = 0
+    Top = 395
+    Width = 739
+    Height = 2
+    Align = alBottom
+    ExplicitLeft = -61
+    ExplicitTop = 443
+    ExplicitWidth = 902
+  end
+  object SpeedButton1: TSpeedButton
+    Left = 227
+    Top = 67
+    Width = 28
+    Height = 23
+    Glyph.Data = {
+      36030000424D3603000000000000360000002800000010000000100000000100
+      1800000000000003000074120000741200000000000000000000FFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD0DF
+      D90F5B3F126244AAC5BBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFCDDED717634629855F449C773D7F65FFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFCEDED8216D4F368F
+      6B52A58398C5B2256F52FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFF2B7859459A7963B0929EC9B8357E61C6DAD2FFFFFFFFFFFF
+      FFFFFFCECECE868686606060606060868686CECECE98989856A68874BAA0A3CD
+      BD3D8768CADED6FFFFFFFFFFFFEDEDED9C9C9C7F7F7FC9C9C9ECECECECECECC9
+      C9C97F7F7F6C6C6C7D7D7DAAD2C245906FD0E3DBFFFFFFFFFFFFFFFFFF9F9F9F
+      AEAEAEFAFAFAF8F8F8F4F4F4F4F4F4F8F8F8FAFAFAA9A9A96D6D6D989898FFFF
+      FFFFFFFFFFFFFFFFFFFFC8C8C8939393F8F8F8EEEEEEEDEDEDEDEDEDEDEDEDED
+      EDEDEFEFEFF6F6F6888888C8C8C8FFFFFFFFFFFFFFFFFFFFFFFF8E8E8ED6D6D6
+      EEEEEEE6E6E6E6E6E6E6E6E6E6E6E6E6E6E6E6E6E6F0F0F0D6D6D68E8E8EFFFF
+      FFFFFFFFFFFFFFFFFFFF767676F1F1F1E0E0E0DEDEDEDEDEDEDEDEDEDEDEDEDE
+      DEDEDEDEDEE1E1E1EFEFEF7A7A7AFFFFFFFFFFFFFFFFFFFFFFFF7E7E7EF1F1F1
+      DCDCDCD7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7DDDDDDEDEDED838383FFFF
+      FFFFFFFFFFFFFFFFFFFFA0A0A0DBDBDBE4E4E4D0D0D0CFCFCFCFCFCFCFCFCFCF
+      CFCFD1D1D1E8E8E8DCDCDCA0A0A0FFFFFFFFFFFFFFFFFFFFFFFFD6D6D6B1B1B1
+      F3F3F3D6D6D6CCCCCCCACACACACACACCCCCCD8D8D8F3F3F3A6A6A6D6D6D6FFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFBEBEBECCCCCCF4F4F4E6E6E6D9D9D9D9D9D9E6
+      E6E6F4F4F4C7C7C7BEBEBEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFEFEF
+      C2C2C2B8B8B8DFDFDFF1F1F1F1F1F1DFDFDFB8B8B8C2C2C2F4F4F4FFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFDFDFDFB8B8B8A4A4A4A4A4A4B8
+      B8B8DFDFDFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+  end
+  object Label2: TLabel
+    Left = 272
+    Top = 73
+    Width = 27
+    Height = 14
+    Caption = 'From'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label3: TLabel
+    Left = 394
+    Top = 71
+    Width = 14
+    Height = 14
+    Caption = 'To'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object SpeedButton2: TSpeedButton
+    Left = 575
+    Top = 354
+    Width = 69
+    Height = 26
+    Caption = 'Select'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    Glyph.Data = {
+      36030000424D3603000000000000360000002800000010000000100000000100
+      1800000000000003000073120000731200000000000000000000FFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFF5F9F35BBB5627AC24D6EBD3FFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFDFD62BA5C0DC32816
+      D12E39B233E6F2E4FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFDFD74C26F0CC33424E45826DF4614CA1D4AB542F2F8F1FFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFD72C26E08C53C21E76924E2592B
+      E14E23DD3415C51357B84EF8FBF8FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      74C37005C9471FEC7A20E7682FDB575ADE6B37E34B23D92412BE0972C26CFFFE
+      FFFFFFFFFFFFFFFFFFFFFFFFFF75C46F08CD561BF18C1DEB7A2ADF644EBA4F51
+      B54A61E16C2EDD3424D91D0FB8068CCC87FFFFFFFFFFFFFFFFFFFFFFFF62BC5C
+      17D15D20F6972FE5764EBB51EFF4EBECF5EB4AB74762E6652FDC2A24D91C0DB2
+      039AD096FFFFFFFFFFFFFFFFFFF7FAF665BD621DC6494FBF58E4EFDFFFFFFFFF
+      FFFFD4EAD34CBD4A63EB5F28D92022D71B14B10BA7D9A3FFFFFFFFFFFFFFFFFF
+      FCFDFA8ACA81D3EACFFFFFFFFFFFFFFFFFFFFFFFFFC1E1C04BC14769F26328DA
+      211ED6181DA813FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFB4DCB04FC34960EE5B0EB5067FCA79FFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF9DD39A3AB5
+      3495D091FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFD1EACFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+    ParentFont = False
+    OnClick = SpeedButton2Click
+  end
+  object SpeedButton3: TSpeedButton
+    Left = 650
+    Top = 354
+    Width = 69
+    Height = 26
+    Caption = 'Close'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    Glyph.Data = {
+      32010000424D3201000000000000360000002800000009000000090000000100
+      180000000000FC00000074120000741200000000000000000000FFFFFF000086
+      000086FFFFFFFFFFFFFFFFFF000086000086FFFFFF0000008D2727CE2727CE00
+      008DFFFFFF00008D2726CE2727CE00008D000000973130D63031D53130D50000
+      963030D53030D53030D500009700FFFFFF0000A23F3FE03F3FE03E3EE03F3FE1
+      3F3EE00000A2FFFFFF00FFFFFFFFFFFF0000AF4E4EED4E4FEC4E4EEC0000AFFF
+      FFFFFFFFFF00FFFFFF0000BB5C5DF85C5CF75C5DF85D5DF85D5DF70000BBFFFF
+      FF000000C56666FF6666FF6666FF0000C56666FF6666FF6666FF0000C4000000
+      CBE8E8E8E8E8E80000CBFFFFFF0000CBE8E8E8E8E8E80000CB00FFFFFF0000CB
+      0000CBFFFFFFFFFFFFFFFFFF0000CB0000CBFFFFFF00}
+    ParentFont = False
+    OnClick = SpeedButton3Click
+  end
+  object SpeedButton4: TSpeedButton
+    Left = 8
+    Top = 351
+    Width = 80
+    Height = 26
+    Caption = 'Details'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    Glyph.Data = {
+      36030000424D3603000000000000360000002800000010000000100000000100
+      1800000000000003000074120000741200000000000000000000FFFFFFFFFFFF
+      9898985050505050505050505050505050505050505050505050505050505050
+      50505050505050989898FFFFFFFFFFFF545454FFFFFFFDFDFDFDFDFDFDFDFDFD
+      FDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFFFFFF545454FFFFFFECDAD0
+      9F6F53BC7C57BA7751BA7751C38A6AC59071D0A891E0CABEF0F0EFF0F0F0F0F0
+      F0EFEFEFFDFDFD585858E8D2C6BB7953BA7751BA7751BA7751C79477DCC2B3E6
+      D9D1F1F1F1F0F0F0F0F0F0EFEFEFEFEFEFEEEEEEFDFDFD5E5E5EC48A6ABA7751
+      BA7751BA7751DCC2B3F1F1F1F1F1F1F0F0F0F0F0F0EFEFEFEFEFEFEEEEEEEEEE
+      EEEDEDEDFDFDFD636363BC7C57BA7751BA7751CC9B80F1F1F1F0F0F0F0F0F0EF
+      EFEFEFEFEFEEEEEEEEEEEEEDEDEDEDEDEDECECECFDFDFD6A6A6AC58D6EBA7751
+      BA7751D0A38AF0F0F0EFEFEFEFEFEFEEEEEEEEEEEEEDEDEDEDEDEDECECECEBEB
+      EBEBEBEBFDFDFD707070E0C2B1BA7751BA7751C28765EEEEEDEEEEEEEDEDEDED
+      EDEDECECECECECECEBEBEBEBEBEBEAEAEAEAEAEAFDFDFD777777FDFCFBC68F70
+      BA7751BA7751D8BCADEDEDEDECECECECECECEBEBEBEBEBEBEAEAEAEAEAEAE9E9
+      E9E9E9E9FDFDFD7D7D7DFFFFFFF6EDE8B47856BA7751BE7F5CE8E2DFEBEBEBEB
+      EBEBEAEAEAEAEAEAE9E9E9E8E8E8E8E8E8E7E7E7FDFDFD848484FFFFFFFFFFFF
+      908883C48B6BBA7751C49072E8E6E5EAEAEAE9E9E9E8E8E8FDFDFDFDFDFDFDFD
+      FDFDFDFDFDFDFD8A8A8AFFFFFFFFFFFF909090FAF7F5CBA087BA7751C7967AE6
+      E3E1E8E8E8E7E7E7FDFDFDE0E0E0E5E5E5EBEBEB909090BEBEBEFFFFFFFFFFFF
+      959595FDFDFDE9E9E9DBC8BDBF8361C48F71E3DCD9E6E6E6FDFDFDE5E5E5EBEB
+      EB959595C1C1C1FFFFFFFFFFFFFFFFFF9A9A9AFDFDFDE8E8E8E7E7E7E5E3E2D3
+      B6A5C18969D7C2B6FDFDFDEBEBEB9A9A9AC4C4C4FFFFFFFFFFFFFFFFFFFFFFFF
+      9E9E9EFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFBF8F7DFC1B0D7B19CA09B99C6C6
+      C6FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFC8C8C8A1A1A1A1A1A1A1A1A1A1A1A1A1
+      A1A1A1A1A1A1A1A1A29F9DC3ADA1F5ECE6FFFFFFFFFFFFFFFFFF}
+    ParentFont = False
+    OnClick = SpeedButton4Click
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 739
+    Height = 31
+    Align = alTop
+    BevelOuter = bvNone
+    BevelWidth = 2
+    BorderWidth = 2
+    Color = 8421440
+    Ctl3D = True
+    ParentBackground = False
+    ParentCtl3D = False
+    TabOrder = 0
+    object AdvSmoothLabel1: TAdvSmoothLabel
+      Left = 2
+      Top = 2
+      Width = 735
+      Height = 27
+      Fill.Color = clGreen
+      Fill.ColorTo = clTeal
+      Fill.ColorMirror = clNone
+      Fill.ColorMirrorTo = clNone
+      Fill.GradientType = gtHorizontal
+      Fill.GradientMirrorType = gtSolid
+      Fill.BorderColor = clNone
+      Fill.Rounding = 0
+      Fill.ShadowOffset = 0
+      Fill.Glow = gmNone
+      Caption.Location = plCenterLeft
+      Caption.Font.Charset = BALTIC_CHARSET
+      Caption.Font.Color = clWindowText
+      Caption.Font.Height = -19
+      Caption.Font.Name = 'Tahoma'
+      Caption.Font.Style = [fsBold]
+      Caption.ColorStart = clYellow
+      Caption.ColorEnd = 11796479
+      CaptionShadow.Location = plBottomRight
+      CaptionShadow.Font.Charset = DEFAULT_CHARSET
+      CaptionShadow.Font.Color = clWindowText
+      CaptionShadow.Font.Height = -27
+      CaptionShadow.Font.Name = 'Tahoma'
+      CaptionShadow.Font.Style = []
+      CaptionShadow.Left = 15
+      CaptionShadow.HatchStyle = HatchStyleCross
+      Version = '1.6.0.0'
+      Transparent = False
+      Align = alClient
+      ExplicitLeft = 152
+      ExplicitTop = 0
+      ExplicitWidth = 890
+      ExplicitHeight = 31
+    end
+    object Label1: TLabel
+      Left = 13
+      Top = 6
+      Width = 110
+      Height = 14
+      Caption = 'Winning Suppliers'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindow
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+  end
+  object CRDBGrid1: TCRDBGrid
+    Left = 8
+    Top = 100
+    Width = 707
+    Height = 245
+    DataSource = bidDS
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+    TabOrder = 1
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'dateSumitToPO'
+        Title.Caption = 'Bidding Date'
+        Width = 84
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'rvname'
+        Title.Caption = 'Supplier'
+        Width = 139
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'address'
+        Title.Caption = 'Address'
+        Width = 155
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'rvnumber'
+        Title.Caption = 'PR Number'
+        Width = 89
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'recmmdedDeprtmnt'
+        Title.Caption = 'Department'
+        Width = 92
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'amount'
+        Title.Caption = 'Amount'
+        Width = 94
+        Visible = True
+      end>
+  end
+  object searchnumber_TF: TEdit
+    Left = 13
+    Top = 68
+    Width = 208
+    Height = 22
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 2
+    TextHint = 'Search Supplier'
+  end
+  object NxDatePicker1: TNxDatePicker
+    Left = 302
+    Top = 69
+    Width = 89
+    Height = 21
+    TabOrder = 3
+    Text = '1/22/2017'
+    HideFocus = False
+    Date = 42757.000000000000000000
+    NoneCaption = 'None'
+    TodayCaption = 'Today'
+  end
+  object NxDatePicker2: TNxDatePicker
+    Left = 410
+    Top = 69
+    Width = 89
+    Height = 21
+    TabOrder = 4
+    Text = '1/22/2017'
+    HideFocus = False
+    Date = 42757.000000000000000000
+    NoneCaption = 'None'
+    TodayCaption = 'Today'
+  end
+  object NxLinkLabel1: TNxLinkLabel
+    Left = 326
+    Top = 48
+    Width = 116
+    Height = 15
+    Caption = 'View Period Covered'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clGreen
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    HoverColor = clRed
+    ParentFont = False
+    TextDistance = 2
+    VertSpacing = 2
+  end
+  object NxHeaderPanel2: TNxHeaderPanel
+    Left = 66
+    Top = 123
+    Width = 618
+    Height = 319
+    BorderWidth = 2
+    Color = 15263952
+    HeaderColor = 4227072
+    HeaderFont.Charset = DEFAULT_CHARSET
+    HeaderFont.Color = clWindow
+    HeaderFont.Height = -12
+    HeaderFont.Name = 'Tahoma'
+    HeaderFont.Style = []
+    HeaderStyle = psFlat
+    ParentHeaderFont = False
+    TabOrder = 6
+    Visible = False
+    FullWidth = 618
+    object AdvSmoothLabel2: TAdvSmoothLabel
+      Left = 0
+      Top = -2
+      Width = 758
+      Height = 29
+      Fill.Color = clGreen
+      Fill.ColorTo = clTeal
+      Fill.ColorMirror = clNone
+      Fill.ColorMirrorTo = clNone
+      Fill.GradientType = gtHorizontal
+      Fill.GradientMirrorType = gtSolid
+      Fill.BorderColor = clNone
+      Fill.Rounding = 0
+      Fill.ShadowOffset = 0
+      Fill.Glow = gmNone
+      Caption.Location = plCenterLeft
+      Caption.Font.Charset = BALTIC_CHARSET
+      Caption.Font.Color = clWindowText
+      Caption.Font.Height = -19
+      Caption.Font.Name = 'Tahoma'
+      Caption.Font.Style = [fsBold]
+      Caption.ColorStart = clYellow
+      Caption.ColorEnd = 11796479
+      CaptionShadow.Location = plBottomRight
+      CaptionShadow.Font.Charset = DEFAULT_CHARSET
+      CaptionShadow.Font.Color = clWindowText
+      CaptionShadow.Font.Height = -27
+      CaptionShadow.Font.Name = 'Tahoma'
+      CaptionShadow.Font.Style = []
+      CaptionShadow.Left = 15
+      CaptionShadow.HatchStyle = HatchStyleCross
+      Version = '1.6.0.0'
+      Transparent = False
+    end
+    object Label5: TLabel
+      Left = 13
+      Top = 6
+      Width = 62
+      Height = 14
+      Caption = 'PR Details'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindow
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label6: TLabel
+      Left = 13
+      Top = 48
+      Width = 60
+      Height = 13
+      Caption = 'Bidding Date'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label7: TLabel
+      Left = 15
+      Top = 73
+      Width = 53
+      Height = 13
+      Alignment = taRightJustify
+      Caption = 'PR Number'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label8: TLabel
+      Left = 19
+      Top = 100
+      Width = 50
+      Height = 13
+      Alignment = taRightJustify
+      Caption = 'Requester'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label9: TLabel
+      Left = 12
+      Top = 124
+      Width = 57
+      Height = 13
+      Alignment = taRightJustify
+      Caption = 'Department'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label10: TLabel
+      Left = 338
+      Top = 45
+      Width = 39
+      Height = 13
+      Alignment = taRightJustify
+      Caption = 'Purpose'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label11: TLabel
+      Left = 347
+      Top = 106
+      Width = 30
+      Height = 13
+      Alignment = taRightJustify
+      Caption = 'Payee'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label4: TLabel
+      Left = 340
+      Top = 130
+      Width = 37
+      Height = 13
+      Alignment = taRightJustify
+      Caption = 'Amount'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object CRDBGrid2: TCRDBGrid
+      Left = 5
+      Top = 152
+      Width = 584
+      Height = 129
+      OptionsEx = [dgeEnableSort, dgeLocalFilter, dgeLocalSorting]
+      DataSource = reqDetailDS
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+      TabOrder = 0
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -11
+      TitleFont.Name = 'Tahoma'
+      TitleFont.Style = []
+      Columns = <
+        item
+          Expanded = False
+          FieldName = 'description'
+          Title.Caption = 'Description'
+          Width = 234
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'unit'
+          Title.Caption = 'Unit'
+          Width = 64
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'qty'
+          Title.Caption = 'Quantity'
+          Width = 50
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'cost'
+          Title.Caption = 'Cost'
+          Width = 92
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'amount'
+          Title.Caption = 'Amount'
+          Width = 99
+          Visible = True
+        end>
+    end
+    object DBEdit1: TDBEdit
+      Left = 76
+      Top = 43
+      Width = 219
+      Height = 21
+      DataField = 'dateSumitToPO'
+      DataSource = bidDS
+      Enabled = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 1
+    end
+    object DBEdit2: TDBEdit
+      Left = 76
+      Top = 69
+      Width = 219
+      Height = 21
+      DataField = 'rvnumber'
+      DataSource = bidDS
+      Enabled = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 2
+    end
+    object DBEdit3: TDBEdit
+      Left = 77
+      Top = 95
+      Width = 219
+      Height = 21
+      DataField = 'requester'
+      DataSource = bidDS
+      Enabled = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 3
+    end
+    object DBMemo1: TDBMemo
+      Left = 383
+      Top = 42
+      Width = 209
+      Height = 53
+      DataField = 'purpose'
+      DataSource = bidDS
+      Enabled = False
+      TabOrder = 4
+    end
+    object DBEdit4: TDBEdit
+      Left = 383
+      Top = 100
+      Width = 188
+      Height = 21
+      DataField = 'pcode'
+      DataSource = bidDS
+      Enabled = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 5
+    end
+    object DBEdit5: TDBEdit
+      Left = 77
+      Top = 121
+      Width = 219
+      Height = 21
+      DataField = 'recmmdedDeprtmnt'
+      DataSource = bidDS
+      Enabled = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 6
+    end
+    object DBEdit6: TDBEdit
+      Left = 383
+      Top = 125
+      Width = 188
+      Height = 21
+      DataField = 'amount'
+      DataSource = bidDS
+      Enabled = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 7
+    end
+    object NxLinkLabel2: TNxLinkLabel
+      Left = 558
+      Top = 293
+      Width = 31
+      Height = 15
+      Caption = 'Close'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 8404992
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      HoverColor = clRed
+      ParentFont = False
+      TextDistance = 2
+      VertSpacing = 2
+      OnClick = NxLinkLabel2Click
+    end
+  end
+  object biddingQ: TMyQuery
+    Connection = dataproc.MyConnection1
+    SQL.Strings = (
+      'Select '
+      '  date_format(sup.dateSumitToPO,'#39'%m/%d/%Y'#39') dateSumitToPO,'
+      '  sup.rvnumber,'
+      '  sup.pcode,'
+      '  sup.payee,'
+      '  sup.requester,'
+      '  sup.recmmdedDeprtmnt,'
+      '  sup.purpose, '
+      '  sup.address,'
+      '  sup.idrequisition,'
+      '  sup.idbidding, '
+      '  sum(ifnull(bid.qty,0)*ifnull(bid.cost,0)) amount '
+      'from'
+      '(select '
+      '   a.dateSumitToPO,'
+      '   a.rvnumber,'
+      '   a.pcode,'
+      '   a.payee,'
+      '   a.requester,'
+      '   a.recmmdedDeprtmnt,'
+      '   a.purpose, '
+      '   py.address,'
+      '   a.idrequisition,'
+      '   a.idbidding '
+      '  '
+      ' from'
+      '  ( Select'
+      '     r.idrequisition pridReq,'
+      '     ifnull(p.idrequisition,0) poidReq,'
+      '     ifnull(p.idbidding,0) as poIDbidding,'
+      '     r.dateSumitToPO,'
+      '     r.requester,   '
+      '     r.recmmdedDeprtmnt,'
+      '     r.rvdescription purpose,    '
+      '     b.* '
+      '    from bidding b'
+      
+        '    left join requisition r on r.idrequisition = b.idrequisition' +
+        ' '
+      '                             '
+      
+        '    left join podetail p on p.idrequisition = r.idrequisition an' +
+        'd p.idbidding = b.idbidding'
+      ''
+      '    where b.isWinner =1 and b.isallocated = 0 and'
+      '          r.allowallocation = 0'
+      '    order by b.idbidding desc'
+      '   ) a'
+      ' left join payee py on py.pcode = a.pcode'
+      ' where a.poIDbidding <> a.idbidding and'
+      '       a.pridreq <> a.poidReq'
+      ' group by a.idrequisition'
+      ') sup'
+      'left join bidding bid on bid.iswinner = 1 and'
+      '                         bid.idrequisition = sup.idrequisition'
+      
+        ' where date_format(sup.datesumitToPO,'#39'%Y-%m-%d'#39')  between :dateF' +
+        'rom and :dateto and'
+      '       sup.payee like :supplier'
+      'group by sup.pcode'
+      ''
+      ''
+      '/*Select'
+      ' date_format(r.dateSumitToPO,'#39'%m/%d/%Y'#39') dateSumitToPO,'
+      ' r.rvnumber,'
+      ' b.pcode,'
+      ' r.rvname,'
+      ' r.requester,'
+      ' r.recmmdedDeprtmnt,'
+      ' r.rvdescription purpose, '
+      ' p.address,'
+      ' r.idrequisition,'
+      ' sum(ifnull(b.qty,0)*ifnull(b.cost,0)) amount    '
+      'from requisition  r'
+      
+        'left join bidding b on b.idrequisition = r.idrequisition        ' +
+        '             '
+      'left join payee p on p.pcode = b.pcode'
+      'where r.isSubmitToPO = 1 and'
+      '      b.iswinner = 1 and'
+      
+        '     date_format(r.datesumitToPO,'#39'%Y-%m-%d'#39')  between :dateFrom ' +
+        'and :dateto and'
+      '     r.rvname like :supplier'
+      'group by b.idrequisition'
+      'order by r.dateSumitToPO desc'
+      '*/')
+    Left = 528
+    Top = 48
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'dateFrom'
+      end
+      item
+        DataType = ftUnknown
+        Name = 'dateto'
+      end
+      item
+        DataType = ftUnknown
+        Name = 'supplier'
+      end>
+    object biddingQdateSumitToPO: TStringField
+      FieldName = 'dateSumitToPO'
+      Size = 10
+    end
+    object biddingQrvnumber: TStringField
+      FieldName = 'rvnumber'
+    end
+    object biddingQpcode: TStringField
+      FieldName = 'pcode'
+      Size = 30
+    end
+    object biddingQpayee: TStringField
+      FieldName = 'payee'
+      Size = 60
+    end
+    object biddingQrequester: TStringField
+      FieldName = 'requester'
+      Size = 45
+    end
+    object biddingQrecmmdedDeprtmnt: TStringField
+      FieldName = 'recmmdedDeprtmnt'
+      Size = 30
+    end
+    object biddingQpurpose: TStringField
+      FieldName = 'purpose'
+      Size = 250
+    end
+    object biddingQaddress: TStringField
+      FieldName = 'address'
+      Size = 70
+    end
+    object biddingQidrequisition: TIntegerField
+      FieldName = 'idrequisition'
+    end
+    object biddingQidbidding: TIntegerField
+      FieldName = 'idbidding'
+    end
+    object biddingQamount: TFloatField
+      FieldName = 'amount'
+    end
+  end
+  object bidDS: TMyDataSource
+    DataSet = biddingQ
+    Left = 576
+    Top = 48
+  end
+  object reqDetailQ: TMyQuery
+    Connection = dataproc.MyConnection1
+    SQL.Strings = (
+      'Select '
+      'b.*,'
+      'rd.description,'
+      'rd.unit'
+      'from bidding b '
+      
+        'left join requisitiondetail rd on rd.idrequisitiondetail = b.idr' +
+        'equisitiondetail'
+      'where b.idrequisition = :idrequisition and b.iswinner = 1')
+    Left = 624
+    Top = 40
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'idrequisition'
+      end>
+    object reqDetailQidbidding: TIntegerField
+      FieldName = 'idbidding'
+    end
+    object reqDetailQidrequisitiondetail: TIntegerField
+      FieldName = 'idrequisitiondetail'
+    end
+    object reqDetailQidrequisition: TIntegerField
+      FieldName = 'idrequisition'
+    end
+    object reqDetailQrvnumber: TStringField
+      FieldName = 'rvnumber'
+    end
+    object reqDetailQpcode: TStringField
+      FieldName = 'pcode'
+      Size = 30
+    end
+    object reqDetailQpayee: TStringField
+      FieldName = 'payee'
+      Size = 60
+    end
+    object reqDetailQqty: TIntegerField
+      FieldName = 'qty'
+    end
+    object reqDetailQcost: TFloatField
+      FieldName = 'cost'
+    end
+    object reqDetailQamount: TFloatField
+      FieldName = 'amount'
+    end
+    object reqDetailQdate: TDateTimeField
+      FieldName = 'date'
+    end
+    object reqDetailQuserID: TStringField
+      FieldName = 'userID'
+      Size = 25
+    end
+    object reqDetailQisWinner: TBooleanField
+      FieldName = 'isWinner'
+    end
+    object reqDetailQdescription: TStringField
+      FieldName = 'description'
+      Size = 200
+    end
+    object reqDetailQunit: TStringField
+      FieldName = 'unit'
+      Size = 45
+    end
+  end
+  object reqDetailDS: TMyDataSource
+    DataSet = reqDetailQ
+    Left = 672
+    Top = 40
+  end
+end

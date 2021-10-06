@@ -1,0 +1,477 @@
+object subdetailForm: TsubdetailForm
+  Left = 0
+  Top = 0
+  BorderStyle = bsDialog
+  Caption = 'Subdetails'
+  ClientHeight = 372
+  ClientWidth = 627
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poDesktopCenter
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object SpeedButton4: TSpeedButton
+    Left = 467
+    Top = 330
+    Width = 126
+    Height = 26
+    Caption = 'Close'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    Glyph.Data = {
+      32010000424D3201000000000000360000002800000009000000090000000100
+      180000000000FC00000074120000741200000000000000000000FFFFFF000086
+      000086FFFFFFFFFFFFFFFFFF000086000086FFFFFF0000008D2727CE2727CE00
+      008DFFFFFF00008D2726CE2727CE00008D000000973130D63031D53130D50000
+      963030D53030D53030D500009700FFFFFF0000A23F3FE03F3FE03E3EE03F3FE1
+      3F3EE00000A2FFFFFF00FFFFFFFFFFFF0000AF4E4EED4E4FEC4E4EEC0000AFFF
+      FFFFFFFFFF00FFFFFF0000BB5C5DF85C5CF75C5DF85D5DF85D5DF70000BBFFFF
+      FF000000C56666FF6666FF6666FF0000C56666FF6666FF6666FF0000C4000000
+      CBE8E8E8E8E8E80000CBFFFFFF0000CBE8E8E8E8E8E80000CB00FFFFFF0000CB
+      0000CBFFFFFFFFFFFFFFFFFF0000CB0000CBFFFFFF00}
+    ParentFont = False
+    OnClick = SpeedButton4Click
+  end
+  object Label19: TLabel
+    Left = 27
+    Top = 29
+    Width = 77
+    Height = 14
+    Alignment = taRightJustify
+    Caption = 'Description: '
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label1: TLabel
+    Left = 110
+    Top = 22
+    Width = 203
+    Height = 23
+    Caption = 'Casual Salary Mayors'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = 4194432
+    Font.Height = -19
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object CRDBGrid1: TCRDBGrid
+    Left = 27
+    Top = 98
+    Width = 566
+    Height = 221
+    OptionsEx = [dgeEnableSort, dgeLocalFilter, dgeLocalSorting, dgeSummary]
+    DataSource = subdetails
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+    TabOrder = 1
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'department'
+        Title.Caption = 'Department'
+        Width = 147
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'account'
+        Title.Caption = 'Account'
+        Width = 83
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'name'
+        Title.Caption = 'Account Name'
+        Width = 148
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'amount'
+        Title.Caption = 'Amount'
+        Width = 107
+        Visible = True
+        SummaryMode = smSum
+      end>
+  end
+  object add_label: TNxLinkLabel
+    Left = 34
+    Top = 70
+    Width = 29
+    Height = 18
+    Caption = 'ADD'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = 8404992
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    HoverColor = 8404992
+    ParentFont = False
+    TextDistance = 2
+    VertSpacing = 2
+    OnClick = add_labelClick
+  end
+  object Edit_label: TNxLinkLabel
+    Left = 86
+    Top = 70
+    Width = 29
+    Height = 18
+    Caption = 'EDIT'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = 8404992
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    HoverColor = 8404992
+    ParentFont = False
+    TextDistance = 2
+    VertSpacing = 2
+    OnClick = Edit_labelClick
+  end
+  object delete_label: TNxLinkLabel
+    Left = 139
+    Top = 70
+    Width = 45
+    Height = 18
+    Caption = 'DELETE'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = 8404992
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    HoverColor = 8404992
+    ParentFont = False
+    TextDistance = 2
+    VertSpacing = 2
+  end
+  object NxHeaderPanel1: TNxHeaderPanel
+    Left = 139
+    Top = 262
+    Width = 399
+    Height = 243
+    BorderWidth = 2
+    Caption = ''
+    Color = clWhite
+    HeaderColor = 6208256
+    HeaderFont.Charset = DEFAULT_CHARSET
+    HeaderFont.Color = clWindow
+    HeaderFont.Height = -12
+    HeaderFont.Name = 'Tahoma'
+    HeaderFont.Style = []
+    HeaderStyle = psFlat
+    ParentHeaderFont = False
+    TabOrder = 0
+    Visible = False
+    FullWidth = 399
+    object Label23: TLabel
+      Left = 20
+      Top = 4
+      Width = 145
+      Height = 14
+      Caption = 'Chart of Account Detail'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindow
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label24: TLabel
+      Left = 73
+      Top = 80
+      Width = 30
+      Height = 14
+      Alignment = taRightJustify
+      Caption = 'Name'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label25: TLabel
+      Left = 70
+      Top = 105
+      Width = 34
+      Height = 14
+      Alignment = taRightJustify
+      Caption = 'Master'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label26: TLabel
+      Left = 42
+      Top = 134
+      Width = 62
+      Height = 14
+      Alignment = taRightJustify
+      Caption = 'Department'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label27: TLabel
+      Left = 58
+      Top = 50
+      Width = 45
+      Height = 14
+      Alignment = taRightJustify
+      Caption = 'Account'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object SpeedButton5: TSpeedButton
+      Left = 350
+      Top = 45
+      Width = 28
+      Height = 23
+      Glyph.Data = {
+        36030000424D3603000000000000360000002800000010000000100000000100
+        1800000000000003000074120000741200000000000000000000FFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD0DF
+        D90F5B3F126244AAC5BBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFCDDED717634629855F449C773D7F65FFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFCEDED8216D4F368F
+        6B52A58398C5B2256F52FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFF2B7859459A7963B0929EC9B8357E61C6DAD2FFFFFFFFFFFF
+        FFFFFFCECECE868686606060606060868686CECECE98989856A68874BAA0A3CD
+        BD3D8768CADED6FFFFFFFFFFFFEDEDED9C9C9C7F7F7FC9C9C9ECECECECECECC9
+        C9C97F7F7F6C6C6C7D7D7DAAD2C245906FD0E3DBFFFFFFFFFFFFFFFFFF9F9F9F
+        AEAEAEFAFAFAF8F8F8F4F4F4F4F4F4F8F8F8FAFAFAA9A9A96D6D6D989898FFFF
+        FFFFFFFFFFFFFFFFFFFFC8C8C8939393F8F8F8EEEEEEEDEDEDEDEDEDEDEDEDED
+        EDEDEFEFEFF6F6F6888888C8C8C8FFFFFFFFFFFFFFFFFFFFFFFF8E8E8ED6D6D6
+        EEEEEEE6E6E6E6E6E6E6E6E6E6E6E6E6E6E6E6E6E6F0F0F0D6D6D68E8E8EFFFF
+        FFFFFFFFFFFFFFFFFFFF767676F1F1F1E0E0E0DEDEDEDEDEDEDEDEDEDEDEDEDE
+        DEDEDEDEDEE1E1E1EFEFEF7A7A7AFFFFFFFFFFFFFFFFFFFFFFFF7E7E7EF1F1F1
+        DCDCDCD7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7DDDDDDEDEDED838383FFFF
+        FFFFFFFFFFFFFFFFFFFFA0A0A0DBDBDBE4E4E4D0D0D0CFCFCFCFCFCFCFCFCFCF
+        CFCFD1D1D1E8E8E8DCDCDCA0A0A0FFFFFFFFFFFFFFFFFFFFFFFFD6D6D6B1B1B1
+        F3F3F3D6D6D6CCCCCCCACACACACACACCCCCCD8D8D8F3F3F3A6A6A6D6D6D6FFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFBEBEBECCCCCCF4F4F4E6E6E6D9D9D9D9D9D9E6
+        E6E6F4F4F4C7C7C7BEBEBEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFEFEF
+        C2C2C2B8B8B8DFDFDFF1F1F1F1F1F1DFDFDFB8B8B8C2C2C2F4F4F4FFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFDFDFDFB8B8B8A4A4A4A4A4A4B8
+        B8B8DFDFDFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+    end
+    object Label3: TLabel
+      Left = 61
+      Top = 163
+      Width = 43
+      Height = 14
+      Alignment = taRightJustify
+      Caption = 'Amount'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object DBEdit14: TDBEdit
+      Left = 110
+      Top = 74
+      Width = 239
+      Height = 22
+      Color = 13565951
+      DataField = 'name'
+      DataSource = subdetails
+      Enabled = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 0
+    end
+    object NxLinkLabel7: TNxLinkLabel
+      Left = 110
+      Top = 199
+      Width = 29
+      Height = 15
+      Caption = 'SAVE'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 8404992
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      HoverColor = clRed
+      ParentFont = False
+      TextDistance = 2
+      VertSpacing = 2
+    end
+    object NxLinkLabel8: TNxLinkLabel
+      Left = 164
+      Top = 199
+      Width = 42
+      Height = 15
+      Caption = 'CANCEL'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 8404992
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      HoverColor = clRed
+      ParentFont = False
+      TextDistance = 2
+      VertSpacing = 2
+      OnClick = NxLinkLabel8Click
+    end
+    object DBEdit15: TDBEdit
+      Left = 110
+      Top = 102
+      Width = 239
+      Height = 22
+      Color = 13565951
+      DataField = 'nameMaster'
+      DataSource = subdetails
+      Enabled = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 3
+    end
+    object DBEdit16: TDBEdit
+      Left = 110
+      Top = 129
+      Width = 239
+      Height = 22
+      Color = 13565951
+      DataField = 'department'
+      DataSource = subdetails
+      Enabled = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 4
+    end
+    object DBEdit17: TDBEdit
+      Left = 110
+      Top = 46
+      Width = 239
+      Height = 22
+      Color = 13565951
+      DataField = 'account'
+      DataSource = subdetails
+      Enabled = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 5
+    end
+    object DBEdit2: TDBEdit
+      Left = 110
+      Top = 157
+      Width = 239
+      Height = 22
+      DataField = 'amount'
+      DataSource = subdetails
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 6
+    end
+  end
+  object subdetails: TMyDataSource
+    DataSet = subdetailQ
+    Left = 472
+    Top = 51
+  end
+  object subdetailQ: TMyQuery
+    Connection = dataproc.MyConnection1
+    SQL.Strings = (
+      'Select * from subdetail')
+    Left = 408
+    Top = 35
+    object subdetailQidsubdetail: TIntegerField
+      FieldName = 'idsubdetail'
+    end
+    object subdetailQidchartofaccount: TIntegerField
+      FieldName = 'idchartofaccount'
+    end
+    object subdetailQaccount: TStringField
+      FieldName = 'account'
+      Size = 35
+    end
+    object subdetailQname: TStringField
+      FieldName = 'name'
+      Size = 125
+    end
+    object subdetailQaccountMaster: TStringField
+      FieldName = 'accountMaster'
+      Size = 45
+    end
+    object subdetailQnameMaster: TStringField
+      FieldName = 'nameMaster'
+      Size = 125
+    end
+    object subdetailQsubdetailcol: TStringField
+      FieldName = 'subdetailcol'
+      Size = 35
+    end
+    object subdetailQdepartment: TStringField
+      FieldName = 'department'
+      Size = 65
+    end
+    object subdetailQcodedepartment: TStringField
+      FieldName = 'codedepartment'
+      Size = 35
+    end
+    object subdetailQiddepartment: TIntegerField
+      FieldName = 'iddepartment'
+    end
+    object subdetailQcutoff: TDateField
+      FieldName = 'cutoff'
+    end
+    object subdetailQamount: TFloatField
+      FieldName = 'amount'
+      currency = True
+    end
+    object subdetailQiditemindex: TIntegerField
+      FieldName = 'iditemindex'
+    end
+  end
+end

@@ -1,0 +1,80 @@
+unit searchpoFrm;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, DBCtrls, Mask, NxCollection, NxEdit, Grids, DBGrids,
+  CRGrid, AdvSmoothLabel, ExtCtrls, Buttons, DB, MemDS, DBAccess, MyAccess,DateUtils;
+
+type
+  TsearchpoForm = class(TForm)
+    Shape1: TShape;
+    Shape2: TShape;
+    Shape3: TShape;
+    SpeedButton1: TSpeedButton;
+    Label2: TLabel;
+    Label3: TLabel;
+    SpeedButton2: TSpeedButton;
+    SpeedButton3: TSpeedButton;
+    SpeedButton4: TSpeedButton;
+    Panel1: TPanel;
+    AdvSmoothLabel1: TAdvSmoothLabel;
+    Label1: TLabel;
+    CRDBGrid1: TCRDBGrid;
+    searchnumber_TF: TEdit;
+    NxDatePicker1: TNxDatePicker;
+    NxDatePicker2: TNxDatePicker;
+    NxLinkLabel1: TNxLinkLabel;
+    NxHeaderPanel1: TNxHeaderPanel;
+    AdvSmoothLabel2: TAdvSmoothLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
+    Label10: TLabel;
+    Label11: TLabel;
+    Label4: TLabel;
+    CRDBGrid2: TCRDBGrid;
+    DBEdit1: TDBEdit;
+    DBEdit2: TDBEdit;
+    DBEdit3: TDBEdit;
+    DBMemo1: TDBMemo;
+    DBEdit4: TDBEdit;
+    DBEdit5: TDBEdit;
+    DBEdit6: TDBEdit;
+    NxLinkLabel2: TNxLinkLabel;
+    poq: TMyQuery;
+    poDS: TMyDataSource;
+    podetailQ: TMyQuery;
+    podetailDS: TMyDataSource;
+    procedure FormShow(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  searchpoForm: TsearchpoForm;
+
+implementation
+
+uses data;
+
+{$R *.dfm}
+
+procedure TsearchpoForm.FormShow(Sender: TObject);
+begin
+  NxDatePicker1.Date := StartOfTheYear(now);
+  NxDatePicker2.Date := EndOfTheYear(now);
+
+  poq.Close;
+  poq.ParamByName('datefrom').AsDateTime := NxDatePicker1.Date;
+  poq.ParamByName('dateto').AsDateTime   := NxDatePicker2.Date;
+  poq.ParamByName('supplier').Text       := '%'+searchnumber_TF.Text +'%';
+  poq.Open;
+end;
+
+end.

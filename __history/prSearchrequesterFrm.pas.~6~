@@ -1,0 +1,52 @@
+unit prSearchrequesterFrm;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Buttons, Vcl.StdCtrls, Data.DB,
+  MemDS, DBAccess, MyAccess, Vcl.Grids, Vcl.DBGrids, CRGrid;
+
+type
+  TprSearchrequesterForm = class(TForm)
+    CRDBGrid2: TCRDBGrid;
+    appQ: TMyQuery;
+    appQidapp: TIntegerField;
+    appQdepartment: TStringField;
+    appQdeptCode: TStringField;
+    appQrequester: TStringField;
+    appQposition: TStringField;
+    appQcutoff: TDateField;
+    appQuserID: TStringField;
+    appQamount: TFloatField;
+    appQallAmount: TFloatField;
+    appQdate: TDateField;
+    appQidDepartment: TIntegerField;
+    appS: TDataSource;
+    searchnumber_TF: TEdit;
+    SpeedButton1: TSpeedButton;
+    SpeedButton2: TSpeedButton;
+    SpeedButton3: TSpeedButton;
+    tmpQ: TMyQuery;
+    procedure SpeedButton3Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  prSearchrequesterForm: TprSearchrequesterForm;
+
+implementation
+
+{$R *.dfm}
+
+uses data;
+
+procedure TprSearchrequesterForm.SpeedButton3Click(Sender: TObject);
+begin
+  close;
+end;
+
+end.

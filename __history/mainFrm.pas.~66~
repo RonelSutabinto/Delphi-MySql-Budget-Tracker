@@ -1,0 +1,289 @@
+unit mainFrm;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, NxCollection, StdCtrls, ExtCtrls, Menus, AdvSmoothLabel;
+
+type
+  TmainForm = class(TForm)
+    Panel1: TPanel;
+    Label6: TLabel;
+    Panel6: TPanel;
+    timeLabel: TLabel;
+    NxOptionButton1: TNxOptionButton;
+    NxOptionButton2: TNxOptionButton;
+    NxOptionButton3: TNxOptionButton;
+    NxOptionButton4: TNxOptionButton;
+    NxOptionButton5: TNxOptionButton;
+    NxOptionButton6: TNxOptionButton;
+    NxOptionButton9: TNxOptionButton;
+    NxOptionButton10: TNxOptionButton;
+    MainMenu1: TMainMenu;
+    File1: TMenuItem;
+    UserAccounts1: TMenuItem;
+    PayeeList1: TMenuItem;
+    Close1: TMenuItem;
+    N1: TMenuItem;
+    AccountType1: TMenuItem;
+    Close2: TMenuItem;
+    N3: TMenuItem;
+    Close3: TMenuItem;
+    ransactions1: TMenuItem;
+    BudgetChartofAccnts1: TMenuItem;
+    Requisition1: TMenuItem;
+    BidsandAwards1: TMenuItem;
+    Allocation1: TMenuItem;
+    POVouchers1: TMenuItem;
+    N2: TMenuItem;
+    Reports1: TMenuItem;
+    Abount1: TMenuItem;
+    Timer1: TTimer;
+    Employee1: TMenuItem;
+    AdvSmoothLabel1: TAdvSmoothLabel;
+    ItemIndex1: TMenuItem;
+    Itemcategory1: TMenuItem;
+    NxOptionButton8: TNxOptionButton;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    ProcurementProcessingChart1: TMenuItem;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    procedure NxOptionButton2Click(Sender: TObject);
+    procedure Close1Click(Sender: TObject);
+    procedure NxOptionButton9Click(Sender: TObject);
+    procedure AccountType1Click(Sender: TObject);
+    procedure PayeeList1Click(Sender: TObject);
+    procedure NxOptionButton3Click(Sender: TObject);
+    procedure Employee1Click(Sender: TObject);
+    procedure NxOptionButton4Click(Sender: TObject);
+    procedure NxOptionButton6Click(Sender: TObject);
+    procedure NxOptionButton5Click(Sender: TObject);
+    procedure ItemIndex1Click(Sender: TObject);
+    procedure NxOptionButton10Click(Sender: TObject);
+    procedure NxOptionButton1Click(Sender: TObject);
+    procedure NxOptionButton8Click(Sender: TObject);
+    procedure Close3Click(Sender: TObject);
+    procedure UserAccounts1Click(Sender: TObject);
+    procedure BudgetChartofAccnts1Click(Sender: TObject);
+    procedure Requisition1Click(Sender: TObject);
+    procedure Allocation1Click(Sender: TObject);
+    procedure POVouchers1Click(Sender: TObject);
+    procedure ProcurementProcessingChart1Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure Timer1Timer(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  mainForm: TmainForm;
+
+implementation
+
+uses
+  BudgetChartOfAccntFrm,
+  departmentFrm,
+  accntTypeFrm,
+  payeeFrm,
+  purchaseRequestFrm, employeeFrm, prAllocationFrm, bidAndawardsFrm,
+  purchaserFrm, itemIndexFrm, inspAcceptanceFrm, userFrm, signatoriesFrm,
+  procurementProcessingChart, logFrm;
+
+{$R *.dfm}
+
+procedure TmainForm.AccountType1Click(Sender: TObject);
+begin
+  if not assigned(accntTypeForm) then
+  accntTypeForm :=TaccntTypeForm.Create(Application);
+
+  accntTypeForm.SpeedButton6.Visible := false;
+  accntTypeForm.add_label.Visible    := true;
+  accntTypeForm.edit_label.Visible   := true;
+  accntTypeForm.delete_label.Visible := true;
+  accntTypeForm.ShowModal;
+
+end;
+
+procedure TmainForm.Allocation1Click(Sender: TObject);
+begin
+  NxOptionButton4Click(Sender);
+end;
+
+procedure TmainForm.BudgetChartofAccnts1Click(Sender: TObject);
+begin
+  NxOptionButton2Click(sender);
+end;
+
+procedure TmainForm.Close1Click(Sender: TObject);
+begin
+  if not assigned(departmentForm) then
+  departmentForm := TdepartmentForm.Create(Application);
+  departmentForm.select_btn.Visible := false;
+  departmentForm.ShowModal;
+end;
+
+procedure TmainForm.Close3Click(Sender: TObject);
+begin
+  NxOptionButton9Click(Sender);
+end;
+
+procedure TmainForm.Employee1Click(Sender: TObject);
+begin
+  if not assigned(EmployeeForm) then
+  EmployeeForm := TEmployeeForm.Create(Application);
+
+  EmployeeForm.SpeedButton6.Visible := false;
+  EmployeeForm.add_label.Visible    := true;
+  EmployeeForm.Edit_label.Visible        := true;
+  EmployeeForm.delete_label.Visible := true;
+  EmployeeForm.ShowModal;
+
+
+end;
+
+procedure TmainForm.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  if not assigned(logForm) then
+  logForm := TlogForm.Create(Application);
+
+  logForm.Close;
+end;
+
+procedure TmainForm.FormShow(Sender: TObject);
+begin
+  if not assigned(logForm) then
+  logForm := TlogForm.Create(Application);
+
+  logForm.ShowModal;
+end;
+
+procedure TmainForm.ItemIndex1Click(Sender: TObject);
+begin
+  if not assigned(itemIndexForm) then
+  itemIndexForm := TitemIndexForm.Create(Application);
+
+  itemIndexForm.SpeedButton2.Visible := false;
+  itemIndexForm.NxLinkLabel1.Visible := true;
+  itemIndexForm.NxLinkLabel2.Visible := true;
+  itemIndexForm.ShowModal;
+end;
+
+procedure TmainForm.NxOptionButton10Click(Sender: TObject);
+begin
+  if not assigned(inspAcceptanceForm) then
+  inspAcceptanceForm := TinspAcceptanceForm.Create(Application);
+
+  inspAcceptanceForm.Show;
+end;
+
+procedure TmainForm.NxOptionButton1Click(Sender: TObject);
+begin
+  if not assigned(userForm) then
+  userForm := TuserForm.Create(Application);
+
+  userForm.Show;
+end;
+
+procedure TmainForm.NxOptionButton2Click(Sender: TObject);
+begin
+  if not assigned(BudgetChartOfAccntForm) then
+  BudgetChartOfAccntForm := TBudgetChartOfAccntForm.Create(Application);
+  BudgetChartOfAccntForm.Show;
+
+end;
+
+procedure TmainForm.NxOptionButton3Click(Sender: TObject);
+begin
+  if not assigned(purchaseRequestForm) then
+  purchaseRequestForm := TpurchaseRequestForm.Create(Application);
+  purchaseRequestForm.Show;
+end;
+
+procedure TmainForm.NxOptionButton4Click(Sender: TObject);
+begin
+  if not assigned(prAllocationForm) then
+  prAllocationForm := TprAllocationForm.Create(Application);
+
+  prAllocationForm.Show;
+
+end;
+
+procedure TmainForm.NxOptionButton5Click(Sender: TObject);
+begin
+  if not assigned(purchaserForm) then
+  purchaserForm := TpurchaserForm.Create(Application);
+
+  purchaserForm.Show;
+end;
+
+procedure TmainForm.NxOptionButton6Click(Sender: TObject);
+begin
+  if not assigned(bidAndawardsForm) then
+  bidAndawardsForm := TbidAndawardsForm.Create(Application);
+
+  bidAndawardsForm.Show;
+end;
+
+procedure TmainForm.NxOptionButton8Click(Sender: TObject);
+begin
+  if not Assigned(signatoriesForm) then
+  signatoriesForm := TsignatoriesForm.Create(Application);
+
+  signatoriesForm.Show;
+end;
+
+procedure TmainForm.NxOptionButton9Click(Sender: TObject);
+begin
+  close;
+end;
+
+procedure TmainForm.PayeeList1Click(Sender: TObject);
+begin
+  if not assigned(payeeForm) then
+  payeeForm := TpayeeForm.Create(Application);
+
+  payeeForm.SpeedButton6.Visible := false;
+  payeeForm.Edit_label.Visible   := true;
+  payeeForm.add_label.Visible    := true;
+  payeeForm.delete_label.Visible := true;
+  payeeForm.ShowModal;
+
+end;
+
+procedure TmainForm.POVouchers1Click(Sender: TObject);
+begin
+  NxOptionButton5Click(Sender);
+end;
+
+procedure TmainForm.ProcurementProcessingChart1Click(Sender: TObject);
+begin
+  if not assigned(procurementPChartForm) then
+  procurementPChartForm := TprocurementPChartForm.Create(Application);
+
+  procurementPChartForm.Show;
+end;
+
+procedure TmainForm.Requisition1Click(Sender: TObject);
+begin
+  NxOptionButton3Click(Sender);
+end;
+
+procedure TmainForm.Timer1Timer(Sender: TObject);
+begin
+  timeLabel.Caption := FormatDateTime('hh:mm:ss AM/PM',now);
+end;
+
+procedure TmainForm.UserAccounts1Click(Sender: TObject);
+begin
+  NxOptionButton1Click(Sender);
+end;
+
+end.

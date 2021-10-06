@@ -1,0 +1,65 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 231
+  ClientWidth = 505
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 505
+    Height = 40
+    Align = alTop
+    BevelOuter = bvNone
+    Color = 8421440
+    Ctl3D = True
+    ParentBackground = False
+    ParentCtl3D = False
+    TabOrder = 0
+    object AdvSmoothLabel1: TAdvSmoothLabel
+      Left = 128
+      Top = 0
+      Width = 1183
+      Height = 40
+      Fill.Color = clGreen
+      Fill.ColorTo = clTeal
+      Fill.ColorMirror = clNone
+      Fill.ColorMirrorTo = clNone
+      Fill.GradientType = gtHorizontal
+      Fill.GradientMirrorType = gtSolid
+      Fill.BorderColor = clNone
+      Fill.Rounding = 0
+      Fill.ShadowOffset = 0
+      Fill.Glow = gmNone
+      Caption.Text = '      Purchase Request'
+      Caption.Location = plCenterLeft
+      Caption.Font.Charset = BALTIC_CHARSET
+      Caption.Font.Color = clWindowText
+      Caption.Font.Height = -19
+      Caption.Font.Name = 'Tahoma'
+      Caption.Font.Style = [fsBold]
+      Caption.ColorStart = clYellow
+      Caption.ColorEnd = 11796479
+      CaptionShadow.Text = '      Purchase Request'
+      CaptionShadow.Location = plBottomRight
+      CaptionShadow.Font.Charset = DEFAULT_CHARSET
+      CaptionShadow.Font.Color = clWindowText
+      CaptionShadow.Font.Height = -27
+      CaptionShadow.Font.Name = 'Tahoma'
+      CaptionShadow.Font.Style = []
+      CaptionShadow.Left = 15
+      CaptionShadow.HatchStyle = HatchStyleCross
+      Version = '1.6.0.0'
+      Transparent = False
+    end
+  end
+end

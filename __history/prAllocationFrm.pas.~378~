@@ -1,0 +1,795 @@
+unit prAllocationFrm;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, AdvSmoothLabel, ExtCtrls, Grids, DBGrids, CRGrid, StdCtrls,
+  NxCollection, NxEdit, Buttons, NxPageControl, DBAdvSmoothLabel, DBCtrls, Mask,DateUtils,
+  DB, MemDS, DBAccess, MyAccess, frxClass, AdvPageControl, ComCtrls;
+
+type
+  TprAllocationForm = class(TForm)
+    Panel1: TPanel;
+    AdvSmoothLabel1: TAdvSmoothLabel;
+    Panel2: TPanel;
+    NxHeaderPanel1: TNxHeaderPanel;
+    AdvSmoothLabel2: TAdvSmoothLabel;
+    Bevel1: TBevel;
+    Label10: TLabel;
+    SpeedButton6: TSpeedButton;
+    SpeedButton7: TSpeedButton;
+    Label11: TLabel;
+    Label12: TLabel;
+    SpeedButton8: TSpeedButton;
+    Label15: TLabel;
+    Bevel2: TBevel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label16: TLabel;
+    DBMemo1: TDBMemo;
+    DBEdit4: TDBEdit;
+    DBEdit3: TDBEdit;
+    DBEdit5: TDBEdit;
+    DBEdit6: TDBEdit;
+    Label9: TLabel;
+    DBEdit8: TDBEdit;
+    Edit2: TEdit;
+    NxHeaderPanel3: TNxHeaderPanel;
+    AdvSmoothLabel3: TAdvSmoothLabel;
+    Label13: TLabel;
+    Label17: TLabel;
+    Label18: TLabel;
+    Label19: TLabel;
+    Label20: TLabel;
+    Label21: TLabel;
+    Label22: TLabel;
+    SpeedButton9: TSpeedButton;
+    Label14: TLabel;
+    CRDBGrid2: TCRDBGrid;
+    DBEdit1: TDBEdit;
+    DBEdit2: TDBEdit;
+    DBEdit7: TDBEdit;
+    DBMemo2: TDBMemo;
+    DBEdit9: TDBEdit;
+    DBEdit10: TDBEdit;
+    DBEdit11: TDBEdit;
+    Label23: TLabel;
+    DBEdit12: TDBEdit;
+    SpeedButton5: TSpeedButton;
+    DBEdit13: TDBEdit;
+    Label24: TLabel;
+    DBMemo3: TDBMemo;
+    Label25: TLabel;
+    tmpQ: TMyQuery;
+    reqQ: TMyQuery;
+    reqQidrequisition: TLongWordField;
+    reqQrvDate: TDateField;
+    reqQrvPCode: TStringField;
+    reqQrvName: TStringField;
+    reqQrvNumber: TStringField;
+    reqQamount: TFloatField;
+    reqQstatus: TStringField;
+    reqQrequester: TStringField;
+    reqQuserid: TStringField;
+    reqQrvdescription: TStringField;
+    reqQcanvasser: TStringField;
+    reqQaddress: TStringField;
+    reqQdenydescription: TStringField;
+    reqQallowAllocation: TBooleanField;
+    reqQdateapproved: TDateTimeField;
+    reqQPOdate: TDateTimeField;
+    reqQPos: TStringField;
+    reqQRecmmdedDeprtmnt: TStringField;
+    reqQReadyAlloct: TIntegerField;
+    reqQNotAllocated: TIntegerField;
+    reqQdateSumitToPO: TDateTimeField;
+    reqQisSubmitToPO: TBooleanField;
+    reqQdateSubmitToBudget: TDateTimeField;
+    reqQfundType: TStringField;
+    reqQisSubmitToBudget: TBooleanField;
+    reqQisSubmitToAward: TBooleanField;
+    reqQdateSubmitToAward: TDateTimeField;
+    reqQidchartOfaccount: TIntegerField;
+    reqQaccount: TStringField;
+    reqQaccountMaster: TStringField;
+    reqQremarks: TStringField;
+    reqQallocatePO: TBooleanField;
+    reqQdateAllocatePO: TDateTimeField;
+    reqdetailAmountQ: TMyQuery;
+    reqdetailAmountQamount: TFloatField;
+    journalInsQ: TMyQuery;
+    journalInsQidjournal: TIntegerField;
+    journalInsQidChartOfAccount: TIntegerField;
+    journalInsQaccount: TStringField;
+    journalInsQaccountName: TStringField;
+    journalInsQaccountMaster: TStringField;
+    journalInsQDateTime: TDateTimeField;
+    journalInsQdocumentPR: TStringField;
+    journalInsQdocumentPO: TStringField;
+    journalInsQamount: TFloatField;
+    journalInsQuserID: TStringField;
+    journalInsQcutoffDate: TDateField;
+    journalInsQidPO: TIntegerField;
+    journalInsQidPR: TIntegerField;
+    journalInsQpcode: TStringField;
+    journalInsQpayee: TStringField;
+    journalUpdateQ: TMyQuery;
+    IntegerField1: TIntegerField;
+    IntegerField2: TIntegerField;
+    StringField1: TStringField;
+    StringField2: TStringField;
+    StringField3: TStringField;
+    DateTimeField1: TDateTimeField;
+    StringField4: TStringField;
+    StringField5: TStringField;
+    FloatField1: TFloatField;
+    StringField6: TStringField;
+    DateField1: TDateField;
+    IntegerField3: TIntegerField;
+    IntegerField4: TIntegerField;
+    StringField7: TStringField;
+    StringField8: TStringField;
+    allocatedprQ: TMyQuery;
+    allocatedprDS: TMyDataSource;
+    requisitionDetailprQ: TMyQuery;
+    requisitionDetailprDS: TMyDataSource;
+    gaQ: TMyQuery;
+    gaQidChartOfAccount: TIntegerField;
+    gaQaccount: TStringField;
+    gaQname: TStringField;
+    gaQaccountMaster: TStringField;
+    gaQnameMaster: TStringField;
+    gaQgeneralAccount: TBooleanField;
+    gaQaccountType: TStringField;
+    gaQcodeType: TStringField;
+    gaQdepartment: TStringField;
+    gaQcodeDepartment: TStringField;
+    gaQiddepartment: TIntegerField;
+    gaQallocateAmount: TFloatField;
+    gaQcutoffDate: TDateField;
+    gaQdate: TDateField;
+    gaQuserID: TStringField;
+    journalgaQ: TMyQuery;
+    journalgaDS: TMyDataSource;
+    gaQnameM: TStringField;
+    journalgaQpcode: TStringField;
+    journalgaQamount: TFloatField;
+    journalgaQDate: TStringField;
+    journalgaQBalance: TFloatField;
+    saQ: TMyQuery;
+    saQidChartOfAccount: TIntegerField;
+    saQaccount: TStringField;
+    saQname: TStringField;
+    saQaccountMaster: TStringField;
+    saQnameMaster: TStringField;
+    saQgeneralAccount: TBooleanField;
+    saQaccountType: TStringField;
+    saQcodeType: TStringField;
+    saQdepartment: TStringField;
+    saQcodeDepartment: TStringField;
+    saQiddepartment: TIntegerField;
+    saQallocateAmount: TFloatField;
+    saQcutoffDate: TDateField;
+    saQdate: TDateField;
+    saQuserID: TStringField;
+    saQnameM: TStringField;
+    journalsaQ: TMyQuery;
+    StringField10: TStringField;
+    FloatField2: TFloatField;
+    StringField11: TStringField;
+    FloatField3: TFloatField;
+    journalsaDS: TMyDataSource;
+    allocatedprQidrequisition: TLongWordField;
+    allocatedprQDocNum: TStringField;
+    allocatedprQprNumber: TStringField;
+    allocatedprQDate: TStringField;
+    allocatedprQDepartment: TStringField;
+    allocatedprQRequester: TStringField;
+    allocatedprQPayee: TStringField;
+    allocatedprQAmount: TFloatField;
+    allocatedprQaccountMaster: TStringField;
+    allocatedprQidchartofaccount: TIntegerField;
+    allocatedprQaccount: TStringField;
+    allocatedprQdocDate: TDateTimeField;
+    requisitionDetailprQidDetail: TLongWordField;
+    requisitionDetailprQid: TFloatField;
+    requisitionDetailprQdescription: TStringField;
+    requisitionDetailprQunit: TStringField;
+    requisitionDetailprQqty: TFloatField;
+    requisitionDetailprQcost: TFloatField;
+    requisitionDetailprQamount: TFloatField;
+    journalgaQdocumentNo: TStringField;
+    journalsaQdocumentNo: TStringField;
+    AdvPageControl2: TAdvPageControl;
+    AdvTabSheet1: TAdvTabSheet;
+    Panel3: TPanel;
+    Label1: TLabel;
+    SpeedButton1: TSpeedButton;
+    Label2: TLabel;
+    status_btn: TSpeedButton;
+    returnPR_btn: TSpeedButton;
+    Label5: TLabel;
+    NxDatePicker1: TNxDatePicker;
+    NxDatePicker2: TNxDatePicker;
+    NxLinkLabel1: TNxLinkLabel;
+    searchAccountName_TF: TEdit;
+    ComboBox1: TComboBox;
+    CRDBGrid1: TCRDBGrid;
+    Panel4: TPanel;
+    NxLinkLabel3: TNxLinkLabel;
+    NxLinkLabel5: TNxLinkLabel;
+    NxLinkLabel4: TNxLinkLabel;
+    AdvTabSheet2: TAdvTabSheet;
+    Panel5: TPanel;
+    Label3: TLabel;
+    SpeedButton2: TSpeedButton;
+    Label4: TLabel;
+    NxDatePicker3: TNxDatePicker;
+    NxDatePicker4: TNxDatePicker;
+    NxLinkLabel2: TNxLinkLabel;
+    Edit1: TEdit;
+    AdvSmoothLabel4: TAdvSmoothLabel;
+    CRDBGrid3: TCRDBGrid;
+    Panel6: TPanel;
+    Label28: TLabel;
+    Label27: TLabel;
+    Label29: TLabel;
+    account_ga_tf: TEdit;
+    name_ga_tf: TEdit;
+    Allocated_ga_tf: TEdit;
+    CRDBGrid5: TCRDBGrid;
+    Panel7: TPanel;
+    Label26: TLabel;
+    Label30: TLabel;
+    Label31: TLabel;
+    account_sa_tf: TEdit;
+    name_sa_tf: TEdit;
+    Allocated_sa_tf: TEdit;
+    CRDBGrid6: TCRDBGrid;
+    AdvSmoothLabel5: TAdvSmoothLabel;
+    CRDBGrid4: TCRDBGrid;
+    NxLinkLabel6: TNxLinkLabel;
+    SpeedButton3: TSpeedButton;
+    Label32: TLabel;
+    pendingMBO_L: TLabel;
+    Timer1: TTimer;
+    countPendingQ: TMyQuery;
+    countPendingQcnt: TLargeintField;
+    tmpQ2: TMyQuery;
+    status_cb: TComboBox;
+    procedure NxLinkLabel5Click(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormShow(Sender: TObject);
+    procedure NxLinkLabel4Click(Sender: TObject);
+    procedure disableComponent();
+    procedure enableComponent();
+    procedure SpeedButton9Click(Sender: TObject);
+    procedure SpeedButton8Click(Sender: TObject);
+    procedure status_btnClick(Sender: TObject);
+    procedure SpeedButton6Click(Sender: TObject);
+    procedure SpeedButton7Click(Sender: TObject);
+    procedure SpeedButton5Click(Sender: TObject);
+    procedure ComboBox1Change(Sender: TObject);
+    procedure returnPR_btnClick(Sender: TObject);
+    procedure SpeedButton3Click(Sender: TObject);
+    procedure CRDBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure CRDBGrid3CellClick(Column: TColumn);
+    procedure SpeedButton2Click(Sender: TObject);
+    procedure NxLinkLabel2Click(Sender: TObject);
+    procedure SpeedButton1Click(Sender: TObject);
+    procedure searchAccountName_TFKeyPress(Sender: TObject; var Key: Char);
+    procedure Timer1Timer(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  prAllocationForm: TprAllocationForm;
+
+implementation
+
+uses data, accountSearchFrm, mainFrm;
+
+{$R *.dfm}
+
+procedure TprAllocationForm.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  Action := caFree;
+  prAllocationForm := Nil;
+end;
+
+procedure TprAllocationForm.FormShow(Sender: TObject);
+begin
+  NxDatePicker1.Date := StartOfTheMonth(now);
+  NxDatePicker2.Date := EndOfTheMonth(now);
+
+  NxDatePicker3.Date := StartOfTheMonth(now);
+  NxDatePicker4.Date := EndOfTheMonth(now);
+
+  with dataproc do
+  begin
+      cutoffQ.Close;
+      cutoffQ.Open;
+
+      approvedReqQ.Close;
+      approvedReqQ.FilterSQL := 'status like '+quotedstr(ComboBox1.Text)+
+                                ' and isSubmitToBudget = 1 '+
+                                ' and date_format(rvDate,''%Y-%m-%d'') between '+
+                                quotedstr(FormatDateTime('YYYY-MM-DD',NxDatePicker1.Date))+ ' and '+
+                                quotedstr(FormatDateTime('YYYY-MM-DD',NxDatePicker2.Date));
+      approvedReqQ.Open;
+
+      requisitionDetailQ.Close;
+      requisitionDetailQ.Open;
+
+      allocatedQ.Close;
+      allocatedQ.FilterSQL := ' date between '+quotedstr(FormatDateTime('YYYY-MM-DD',NxDatePicker3.Date))+
+                                ' and '+ quotedstr(FormatDateTime('YYYY-MM-DD',NxDatePicker4.Date));
+      allocatedQ.Open;
+  end;
+
+  allocatedprQ.Close;
+  allocatedprQ.Open;
+
+  allocatedprQ.Filtered  := false;
+  allocatedprQ.FilterSQL := 'doc.DocNum like '+quotedstr('%'+Edit1.Text+'%')+
+                            ' and date_format(doc.docDate,''%Y-%m-%d'') between '+
+                            quotedstr(FormatDateTime('YYYY-MM-DD',NxDatePicker3.Date))+ ' and '+
+                            quotedstr(FormatDateTime('YYYY-MM-DD',NxDatePicker4.Date));
+  allocatedprQ.Filtered  := true;
+
+  countPendingQ.Close;
+  countPendingQ.ParamByName('cutoff').AsDate :=  dataproc.cutoffQCutoff.AsDateTime;
+  countPendingQ.Open;
+  pendingMBO_L.Caption := countPendingQcnt.Text;
+
+end;
+
+procedure TprAllocationForm.NxLinkLabel2Click(Sender: TObject);
+begin
+  SpeedButton2Click(Sender);
+end;
+
+procedure TprAllocationForm.NxLinkLabel4Click(Sender: TObject);
+begin
+  if (dataproc.approvedReqQallowAllocation.Value = true) or (dataproc.approvedReqQisSubmitToAward.Value = true) then
+  SpeedButton3.Enabled := false
+  else
+  SpeedButton3.Enabled := true;
+
+  NxHeaderPanel3.Top  := 168;
+  NxHeaderPanel3.Left := 184;
+  NxHeaderPanel3.BringToFront;
+
+  NxHeaderPanel3.Visible := true;
+  disableComponent;
+
+  with dataproc do
+  begin
+     requisitionDetailQ.Filtered  := false;
+     requisitionDetailQ.FilterSQL := 'idrequisition like '+quotedstr(approvedReqQidrequisition.Text);
+     requisitionDetailQ.Filtered  := true;
+     disableComponent;
+
+
+  end;
+
+
+
+end;
+
+procedure TprAllocationForm.NxLinkLabel5Click(Sender: TObject);
+begin
+  close;
+end;
+procedure TprAllocationForm.returnPR_btnClick(Sender: TObject);
+begin
+  with dataproc do
+  begin
+     if approvedReqQisSubmitToAward.Value = true then
+     begin
+       messagedlg('PR was already submitted to BAC.'+#13+
+                  'Please ask permission to the Awarding Committee..',mtWarning,[mbOK],0);
+       exit;
+     end;
+
+     if(approvedReqQstatus.Text = 'APPROVED') then
+     begin
+       messagedlg('Unable to return the approved Purchase Request..',mtWarning,[mbOK],0);
+       exit;
+     end;
+     approvedReqQ.Edit;
+     approvedReqQisSubmitToBudget.Value := false;
+     approvedReqQ.Post;
+
+     messagedlg('Purchase Request successfully returned to Requester.',mtInformation,[mbOK],0);
+     approvedReqQ.Refresh;
+
+  end;
+
+
+
+end;
+
+procedure TprAllocationForm.searchAccountName_TFKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+  if key=#3 then
+  begin
+    ComboBox1Change(Sender);
+  end;
+end;
+
+procedure TprAllocationForm.SpeedButton1Click(Sender: TObject);
+begin
+  ComboBox1Change(Sender);
+end;
+
+procedure TprAllocationForm.SpeedButton2Click(Sender: TObject);
+begin
+  allocatedprQ.Filtered  := false;
+  allocatedprQ.FilterSQL := 'doc.DocNum like '+quotedstr('%'+Edit1.Text+'%')+
+                            ' and date_format(doc.docDate,''%Y-%m-%d'') between '+
+                            quotedstr(FormatDateTime('YYYY-MM-DD',NxDatePicker3.Date))+ ' and '+
+                            quotedstr(FormatDateTime('YYYY-MM-DD',NxDatePicker4.Date));
+  allocatedprQ.Filtered  := true;
+  
+end;
+
+procedure TprAllocationForm.SpeedButton3Click(Sender: TObject);
+begin
+  if dataproc.approvedReqQallowAllocation.Value = true then
+  begin
+    messagedlg('Unable to submit Cash Advance, Payment or Salary Request..',mtWarning,[mbOK],0);
+    exit;
+  end;
+
+  if (MessageDlg('Please complete the details entry.'+#13+
+     'Are you sure, you want to submit this PR to the BAC?', mtConfirmation, [mbYes, mbNo], 0) = mrNo) then  exit;
+
+  dataproc.approvedReqQ.Edit;
+  dataproc.approvedReqQisSubmitToAward.AsBoolean    := true;
+  dataproc.approvedReqQdateSubmitToAward.AsDateTime := now;
+  dataproc.approvedReqQ.Post;
+
+  messagedlg('Purchase Request successfully submitted.',mtInformation,[mbOK],0);
+  dataproc.approvedReqQ.Refresh;
+  NxHeaderPanel3.Visible := false;
+  enableComponent;
+
+end;
+
+procedure TprAllocationForm.SpeedButton5Click(Sender: TObject);
+begin
+  DBEdit4.Text  := '';
+  Edit2.Text    := '';
+  DBEdit12.Text := '';
+end;
+
+procedure TprAllocationForm.SpeedButton6Click(Sender: TObject);
+begin
+  dataproc.requisitionQ.Cancel;
+  NxHeaderPanel1.Visible := false;
+  enableComponent;
+end;
+
+procedure TprAllocationForm.SpeedButton7Click(Sender: TObject);
+var
+  prStatus : String;
+  allocate : Integer;
+  idchartOfaccount_v : Integer;
+  rvPCode_v:String;
+  rvName_v :String;
+  rvNumber_v:String;
+  idrequisition_v : Integer;
+begin
+
+
+  with dataproc do
+  begin
+     if approvedReqQisSubmitToAward.Value = true then
+     begin
+       messagedlg('PR was already submitted to Awarding Committee.'+#13+
+                  'Please ask permission to the BAC Chairman..',mtWarning,[mbOK],0);
+
+       dataproc.approvedReqQ.Cancel;
+       exit;
+     end;
+  end;
+
+    case status_cb.ItemIndex of
+      0:begin
+        prStatus := 'APPROVED';
+      end;
+      1:begin
+        prStatus := 'DISAPPROVED';
+      end;
+      2:begin
+        prStatus := 'CANCELLED';
+      end;
+      -1:begin
+        prStatus := 'PENDING';
+      end;
+    end;
+     {APPROVED
+      DISAPPROVED
+      CANCELLED}
+
+    allocate := 0;
+    if dataproc.approvedReqQallowAllocation.Value = true then
+    allocate := 1;
+
+    if (Length(DBEdit4.Text) <3)AND (prStatus='APPROVED') then
+    begin
+      messagedlg('Please select PR recomended account allocation..',mtWarning,[mbOK],0);
+      exit;
+    end;
+
+    //============================
+    reqQ.Close;
+    reqQ.ParamByName('idrequisition').AsInteger := dataproc.approvedReqQidrequisition.AsInteger;
+    reqQ.Open;
+    if not reqQ.IsEmpty then
+    begin
+       idchartOfaccount_v := reqQidchartOfaccount.AsInteger;
+       rvPCode_v          := reqQrvPCode.Text;
+       rvName_v           := reqQrvName.Text;
+       rvNumber_v         := reqQrvNumber.Text;
+       idrequisition_v    := reqQidrequisition.AsInteger;
+    end;
+
+
+    dataproc.approvedReqQdateapproved.AsDateTime := now;
+    dataproc.approvedReqQmboUserid.Text          := mainForm.userid_L.Caption;
+    dataproc.approvedReqQstatus.Text             := prStatus;
+    dataproc.approvedReqQ.Post;
+    dataproc.approvedReqQ.Refresh;
+    //============================
+
+    {Add journal record of the chart of account details=================}
+    {===================================================================}
+
+    // tmpQ2.Close;
+    //tmpQ2.SQL.Clear;
+    //tmpQ2.SQL.Add('Select * from requisition where idrequisition = :idrequisition and status = ''APPROVED'' and allowAllocation = 1');
+    //tmpQ2.ParamByName('idrequisition').AsInteger := reqQidChartOfAccount.AsInteger;
+    //tmpQ2.Open;
+    //if not tmpQ2.IsEmpty then
+
+    if (prStatus = 'APPROVED') and  (allocate=1) then
+
+    begin
+      with dataproc do
+      begin
+        cutoffQ.Close;
+        cutoffQ.Open;
+
+        tmpQ.Close;
+        tmpQ.SQL.Clear;
+        tmpQ.SQL.Add('select * from chartofaccount where idchartOfaccount = :id');
+        tmpQ.ParamByName('id').AsInteger := reqQidChartOfAccount.AsInteger;
+        tmpQ.Open;
+
+        reqdetailAmountQ.Close;
+        reqdetailAmountQ.ParamByName('idrequisition').AsInteger := reqQidrequisition.AsInteger;
+        reqdetailAmountQ.Open;
+
+        journalInsQ.ParamByName('idChartOfAccount').AsInteger     := reqQidchartOfaccount.AsInteger;
+        journalInsQ.ParamByName('account').Text                   := tmpQ.FieldByName('account').Text;
+        journalInsQ.ParamByName('accountMaster').Text             := tmpQ.FieldByName('accountMaster').Text;
+        journalInsQ.ParamByName('accountname').Text               := tmpQ.FieldByName('name').Text;
+        journalInsQ.ParamByName('DateTime').AsDateTime            := now;
+        journalInsQ.ParamByName('pcode').Text                     := reqQrvPCode.Text;
+        journalInsQ.ParamByName('payee').Text                     := reqQrvName.Text;
+        journalInsQ.ParamByName('amount').AsFloat                 := reqdetailAmountQamount.AsFloat;
+        journalInsQ.ParamByName('documentPR').Text                := reqQrvNumber.Text;
+        journalInsQ.ParamByName('cutoffDate').AsDateTime          := cutoffQCutoff.AsDateTime;
+        journalInsQ.ParamByName('documentNo').Text                := reqQrvNumber.Text;
+        journalInsQ.ParamByName('idPR').AsInteger                 := reqQidrequisition.AsInteger;
+
+        try
+         journalInsQ.Execute;
+        except
+          journalUpdateQ.ParamByName('idChartOfAccount').AsInteger := reqQidchartOfaccount.AsInteger;
+          journalUpdateQ.ParamByName('account').Text               := tmpQ.FieldByName('account').Text;
+          journalUpdateQ.ParamByName('accountMaster').Text         := tmpQ.FieldByName('accountMaster').Text;
+          journalUpdateQ.ParamByName('accountname').Text           := tmpQ.FieldByName('name').Text;
+          journalUpdateQ.ParamByName('DateTime').AsDateTime        := now;
+          journalUpdateQ.ParamByName('pcode').Text                 := reqQrvPCode.Text;
+          journalUpdateQ.ParamByName('payee').Text                 := reqQrvName.Text;
+          journalUpdateQ.ParamByName('amount').AsFloat             := reqdetailAmountQamount.AsFloat;
+          journalUpdateQ.ParamByName('documentPR').Text            := reqQrvNumber.Text;
+          journalUpdateQ.ParamByName('cutoffDate').AsDateTime      := cutoffQCutoff.AsDateTime;
+          journalUpdateQ.ParamByName('idPR').AsInteger             := reqQidrequisition.AsInteger;
+          journalUpdateQ.ParamByName('documentNo').Text            := reqQrvNumber.Text;
+
+          journalUpdateQ.Execute;
+        end;
+
+      end;
+    end;
+    {==================================================================}
+    {==================================================================}
+
+
+
+    messagedlg('PR status successfully updated..',mtInformation,[mbOK],0);
+    NxHeaderPanel1.Visible := false;
+    enableComponent;
+
+end;
+
+procedure TprAllocationForm.SpeedButton8Click(Sender: TObject);
+begin
+  if not assigned(accountSearchForm) then
+  accountSearchForm := TaccountSearchForm.Create(Application);
+
+  accountSearchForm.ShowModal;
+
+end;
+
+procedure TprAllocationForm.SpeedButton9Click(Sender: TObject);
+begin
+  NxHeaderPanel3.Visible := false;
+  enableComponent;
+end;
+
+procedure TprAllocationForm.status_btnClick(Sender: TObject);
+begin
+  NxHeaderPanel1.Top  := 174;
+  NxHeaderPanel1.Left := 142;
+  NxHeaderPanel1.BringToFront;
+  NxHeaderPanel1.Visible := true;
+  disableComponent;
+  dataproc.approvedReqQ.Edit;
+  dataproc.approvedReqQdateapproved.AsDateTime := now;
+
+  //STATUS of Request============================
+  if dataproc.approvedReqQstatus.Text ='PENDING' then
+  status_cb.ItemIndex := -1;
+
+  if dataproc.approvedReqQstatus.Text ='APPROVED' then
+  status_cb.ItemIndex := 0;
+
+  if dataproc.approvedReqQstatus.Text ='DISAPPROVED' then
+  status_cb.ItemIndex := 1;
+
+  if dataproc.approvedReqQstatus.Text ='CANCELLED' then
+  status_cb.ItemIndex := 2;
+  //==============================================
+  
+  if not assigned(accountSearchForm)  then
+  accountSearchForm := TaccountSearchForm.Create(Application);
+
+  with accountSearchForm.accountQ do
+  begin
+     close;
+     open;
+     Filtered  := false;
+     FilterSQL := 'ac.account like '+quotedstr(dataproc.approvedReqQaccount.Text);
+     Filtered  := true;
+  end;
+
+  Edit2.Text := accountSearchForm.accountQName.Text;
+end;
+
+procedure TprAllocationForm.Timer1Timer(Sender: TObject);
+begin
+  countPendingQ.Close;
+  countPendingQ.ParamByName('cutoff').AsDate :=  dataproc.cutoffQCutoff.AsDateTime;
+  countPendingQ.Open;
+  pendingMBO_L.Caption := countPendingQcnt.Text;
+end;
+
+procedure TprAllocationForm.ComboBox1Change(Sender: TObject);
+begin
+  dataproc.approvedReqQ.Close;
+  dataproc.approvedReqQ.FilterSQL := 'status = '+quotedstr(ComboBox1.Text)+
+                                ' and rvnumber like '+quotedstr('%'+searchAccountName_TF.Text+'%')+
+                                ' and isSubmitToBudget = 1 '+
+                                ' and date_format(rvDate,''%Y-%m-%d'') between '+
+                                quotedstr(FormatDateTime('YYYY-MM-DD',NxDatePicker1.Date))+ ' and '+
+                                quotedstr(FormatDateTime('YYYY-MM-DD',NxDatePicker2.Date));
+  dataproc.approvedReqQ.Open;
+end;
+
+procedure TprAllocationForm.CRDBGrid1DrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+begin
+  with dataproc do begin
+      if approvedReqQisSubmitToAward.Value <> true then
+      begin
+        CRDBGrid1.Canvas.Font.Color:=clBlack;
+        CRDBGrid1.Canvas.Brush.Color:=$003535FF;//$007A77F7;
+      end;
+      if approvedReqQallowAllocation.Value = true then
+      begin
+        CRDBGrid1.Canvas.Font.Color:=clBlack;
+        CRDBGrid1.Canvas.Brush.Color:=$0000FDFD;
+      end;
+
+      if DataCol = 10 then
+       CRDBGrid1.DefaultDrawColumnCell
+         (Rect, DataCol, Column, State);
+  end;
+
+end;
+
+procedure TprAllocationForm.CRDBGrid3CellClick(Column: TColumn);
+begin
+  requisitionDetailprQ.Close;
+  requisitionDetailprQ.ParamByName('idrequisition').Text := allocatedprQidrequisition.Text;
+  requisitionDetailprQ.ParamByName('docNum').Text        := allocatedprQDocNum.Text;
+  requisitionDetailprQ.Open;
+
+  gaQ.Close;
+  gaQ.ParamByName('account').Text :=  allocatedprQaccountMaster.Text;
+  gaQ.ParamByName('cutoff').Text  := FormatDateTime('YYYY-MM-DD',dataproc.cutoffQCutoff.AsDateTime);
+  gaQ.Open;
+
+  account_ga_tf.Text   := gaQaccount.Text;
+  name_ga_tf.Text      := gaQnameM.Text;
+  Allocated_ga_tf.Text := gaQallocateAmount.Text;
+
+  journalgaQ.Close;
+  journalgaQ.ParamByName('accountMaster').Text  := allocatedprQaccountMaster.Text;
+  journalgaQ.ParamByName('cutoff').Text         := FormatDateTime('YYYY-MM-DD',dataproc.cutoffQCutoff.AsDateTime);
+  journalgaQ.ParamByName('amountAccnt').AsFloat := gaQallocateAmount.AsFloat;
+  journalgaQ.ParamByName('dateDoc').AsDateTime  := allocatedprQdocDate.AsDateTime;
+
+  journalgaQ.Open;
+  journalgaQ.Last;
+
+  saQ.Close;
+  saQ.ParamByName('account').Text := allocatedprQaccount.Text;
+  saQ.ParamByName('cutoff').Text  := FormatDateTime('YYYY-MM-DD',dataproc.cutoffQCutoff.AsDateTime);
+  saQ.Open;
+
+  account_sa_tf.Text   := saQaccount.Text;
+  name_sa_tf.Text      := saQnameM.Text;
+  Allocated_sa_tf.Text := saQallocateAmount.Text;
+
+  journalsaQ.Close;
+  journalsaQ.ParamByName('account').Text        := allocatedprQaccount.Text;
+  journalsaQ.ParamByName('cutoff').Text         := FormatDateTime('YYYY-MM-DD',dataproc.cutoffQCutoff.AsDateTime);
+  journalsaQ.ParamByName('amountAccnt').AsFloat := saQallocateAmount.AsFloat;
+  journalsaQ.ParamByName('dateDoc').AsDateTime  := allocatedprQdocDate.AsDateTime;
+  journalsaQ.Open;
+  journalsaQ.Last;
+end;
+
+procedure TprAllocationForm.disableComponent();
+begin
+  CRDBGrid1.Enabled            := false;
+  status_btn.Enabled           := false;
+  returnPR_btn.Enabled         := false;
+  NxDatePicker1.Enabled        := false;
+  NxDatePicker2.Enabled        := false;
+  searchAccountName_TF.Enabled := false;
+  ComboBox1.Enabled            := false;
+  NxLinkLabel1.Enabled         := false;
+  NxLinkLabel4.Enabled         := false;
+  NxLinkLabel3.Enabled         := false;
+  NxLinkLabel5.Enabled         := false;
+end;
+procedure TprAllocationForm.enableComponent;
+begin
+  CRDBGrid1.Enabled            := true;
+  status_btn.Enabled           := true;
+  returnPR_btn.Enabled         := true;
+  NxDatePicker1.Enabled        := true;
+  NxDatePicker2.Enabled        := true;
+  searchAccountName_TF.Enabled := true;
+  ComboBox1.Enabled            := true;
+  NxLinkLabel1.Enabled         := true;
+  NxLinkLabel4.Enabled         := true;
+  NxLinkLabel3.Enabled         := true;
+  NxLinkLabel5.Enabled         := true;
+end;
+end.

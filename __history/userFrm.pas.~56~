@@ -1,0 +1,215 @@
+unit userFrm;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, AdvSmoothLabel, Buttons, StdCtrls, Grids, DBGrids, CRGrid,
+  NxCollection, Mask, DBCtrls, ExtDlgs, DB, MemDS, DBAccess, MyAccess;
+
+type
+  TuserForm = class(TForm)
+    AdvSmoothLabel1: TAdvSmoothLabel;
+    CRDBGrid1: TCRDBGrid;
+    searchnumber_TF: TEdit;
+    SpeedButton1: TSpeedButton;
+    add_btn: TSpeedButton;
+    edit_btn: TSpeedButton;
+    delete_btn: TSpeedButton;
+    NxHeaderPanel1: TNxHeaderPanel;
+    AdvSmoothLabel2: TAdvSmoothLabel;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    DBEdit1: TDBEdit;
+    DBEdit2: TDBEdit;
+    DBEdit3: TDBEdit;
+    DBEdit5: TDBEdit;
+    NxLinkLabel1: TNxLinkLabel;
+    Label4: TLabel;
+    DBComboBox1: TDBComboBox;
+    Label7: TLabel;
+    Label8: TLabel;
+    NxLinkLabel2: TNxLinkLabel;
+    DBImage1: TDBImage;
+    OpenPictureDialog1: TOpenPictureDialog;
+    usersQ: TMyQuery;
+    usersDS: TMyDataSource;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    NxLinkLabel3: TNxLinkLabel;
+    updateuserQ: TMyQuery;
+    usersQentry: TIntegerField;
+    usersQuserid: TStringField;
+    usersQusername: TStringField;
+    usersQposition: TStringField;
+    usersQdepartment: TStringField;
+    usersQrestriction: TStringField;
+    usersQpassword: TStringField;
+    usersQpicture: TBlobField;
+    SpeedButton2: TSpeedButton;
+    procedure DBImage1Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure NxLinkLabel3Click(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure add_btnClick(Sender: TObject);
+    procedure NxLinkLabel2Click(Sender: TObject);
+    procedure disableComponent();
+    procedure enableComponent();
+    procedure edit_btnClick(Sender: TObject);
+    procedure NxLinkLabel1Click(Sender: TObject);
+    procedure delete_btnClick(Sender: TObject);
+    procedure SpeedButton2Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  userForm: TuserForm;
+
+implementation
+
+uses data, departmentFrm, MODTOOLS;
+
+{$R *.dfm}
+
+procedure TuserForm.add_btnClick(Sender: TObject);
+begin
+  disableComponent;
+
+  usersQ.Append;
+  NxHeaderPanel1.Top  := 129;
+  NxHeaderPanel1.Left := 148;
+  NxHeaderPanel1.BringToFront;
+  NxHeaderPanel1.Visible := true;
+
+  label1.Caption := 'Add User';
+end;
+procedure TuserForm.delete_btnClick(Sender: TObject);
+begin
+ if (MessageDlg('User ID: '+usersQuserid.Text+#13+
+      'Continue to delete selected users entry?', mtConfirmation, [mbYes, mbNo], 0) = mrNo) then  exit;
+
+  usersQ.Delete;
+end;
+
+procedure TuserForm.disableComponent;
+begin
+   CRDBGrid1.Enabled    := false;
+   add_btn.Enabled      := false;
+   edit_btn.Enabled     := false;
+   delete_btn.Enabled   := false;
+   SpeedButton1.Enabled := false;
+   NxLinkLabel3.Enabled := false;
+end;
+
+procedure TuserForm.edit_btnClick(Sender: TObject);
+begin
+  disableComponent;
+
+  usersQ.Edit;
+
+  NxHeaderPanel1.Top  := 129;
+  NxHeaderPanel1.Left := 148;
+  NxHeaderPanel1.BringToFront;
+  NxHeaderPanel1.Visible := true;
+
+  Label1.Caption := 'Edit User';
+end;
+
+procedure TuserForm.enableComponent;
+begin
+   CRDBGrid1.Enabled    := true;
+   add_btn.Enabled      := true;
+   edit_btn.Enabled     := true;
+   delete_btn.Enabled   := true;
+   SpeedButton1.Enabled := true;
+   NxLinkLabel3.Enabled := true;
+end;
+procedure TuserForm.DBImage1Click(Sender: TObject);
+begin
+    If OpenPictureDialog1.Execute then
+     usersQpicture.LoadFromFile(OpenPictureDialog1.FileName);
+end;
+
+procedure TuserForm.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  Action    := caFree;
+  userForm  := Nil;
+end;
+
+procedure TuserForm.FormShow(Sender: TObject);
+begin
+  usersQ.Close;
+  usersQ.Open;
+end;
+
+procedure TuserForm.NxLinkLabel1Click(Sender: TObject);
+var
+  id : string;
+begin
+  if Length(Edit1.Text)<11 then
+  begin
+    messagedlg('User password must be 10 characters or greater ..',mtError,[mbOK],0);
+    exit;
+  end;
+
+  if Edit1.Text <> Edit2.Text then
+  begin
+     MessageDlg('Password does not match...', mtError, [mbOK], 0);
+     Edit1.SetFocus;
+     exit;
+  end;
+
+
+  id := DBEdit1.Text;
+
+  try
+    usersQ.Post;
+    usersQ.Refresh;
+
+    updateuserQ.ParamByName('password').Text := Edit1.Text;
+    updateuserQ.ParamByName('userid').Text   := id;
+    updateuserQ.Execute;
+
+    messagedlg('User account successfully saved..',mtInformation,[mbOK],0);
+  except
+    exit;
+  end;
+
+  NxHeaderPanel1.Visible := false;
+  enableComponent;
+
+
+end;
+
+procedure TuserForm.NxLinkLabel2Click(Sender: TObject);
+begin
+  usersQ.Cancel;
+  NxHeaderPanel1.Visible:= false;
+
+  enableComponent;
+end;
+
+procedure TuserForm.NxLinkLabel3Click(Sender: TObject);
+begin
+  Close;
+end;
+
+procedure TuserForm.SpeedButton2Click(Sender: TObject);
+begin
+  if not assigned(departmentForm) then
+  departmentForm := TdepartmentForm.Create(application);
+
+  with departmentForm do
+  begin
+    formStrFilter := 'users';
+    ShowModal;
+  end;
+end;
+
+end.

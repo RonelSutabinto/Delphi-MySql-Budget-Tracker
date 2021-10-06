@@ -1,0 +1,382 @@
+object signatoriesForm: TsignatoriesForm
+  Left = 0
+  Top = 0
+  Caption = 'Signatories'
+  ClientHeight = 495
+  ClientWidth = 843
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  FormStyle = fsMDIChild
+  OldCreateOrder = False
+  Visible = True
+  WindowState = wsMaximized
+  OnClose = FormClose
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Bevel1: TBevel
+    Left = 39
+    Top = 108
+    Width = 314
+    Height = 53
+    Shape = bsFrame
+    Style = bsRaised
+  end
+  object AdvSmoothLabel1: TAdvSmoothLabel
+    Left = 39
+    Top = 94
+    Width = 315
+    Height = 27
+    Fill.Color = 7331072
+    Fill.ColorTo = 7331072
+    Fill.ColorMirror = clNone
+    Fill.ColorMirrorTo = clNone
+    Fill.GradientType = gtVertical
+    Fill.GradientMirrorType = gtSolid
+    Fill.BorderColor = clNone
+    Fill.Rounding = 0
+    Fill.ShadowOffset = 0
+    Fill.Glow = gmNone
+    Caption.Text = '  Mayor'
+    Caption.Location = plCenterLeft
+    Caption.Font.Charset = DEFAULT_CHARSET
+    Caption.Font.Color = clWindowText
+    Caption.Font.Height = -11
+    Caption.Font.Name = 'Tahoma'
+    Caption.Font.Style = [fsBold]
+    Caption.ColorStart = clBlack
+    Caption.ColorEnd = clBlack
+    CaptionShadow.Text = '  Mayor'
+    CaptionShadow.Font.Charset = DEFAULT_CHARSET
+    CaptionShadow.Font.Color = clWindowText
+    CaptionShadow.Font.Height = -27
+    CaptionShadow.Font.Name = 'Tahoma'
+    CaptionShadow.Font.Style = []
+    Version = '1.6.0.0'
+    Transparent = False
+  end
+  object Label1: TLabel
+    Left = 63
+    Top = 131
+    Width = 67
+    Height = 13
+    Alignment = taRightJustify
+    Caption = 'Mayor'#39's Name'
+  end
+  object Bevel2: TBevel
+    Left = 39
+    Top = 188
+    Width = 314
+    Height = 84
+    Shape = bsFrame
+    Style = bsRaised
+  end
+  object AdvSmoothLabel2: TAdvSmoothLabel
+    Left = 39
+    Top = 174
+    Width = 315
+    Height = 27
+    Fill.Color = clYellow
+    Fill.ColorTo = clYellow
+    Fill.ColorMirror = clNone
+    Fill.ColorMirrorTo = clNone
+    Fill.GradientType = gtVertical
+    Fill.GradientMirrorType = gtSolid
+    Fill.BorderColor = clNone
+    Fill.Rounding = 0
+    Fill.ShadowOffset = 0
+    Fill.Glow = gmNone
+    Caption.Text = '  Purchase Request Signatories'
+    Caption.Location = plCenterLeft
+    Caption.Font.Charset = DEFAULT_CHARSET
+    Caption.Font.Color = clWindowText
+    Caption.Font.Height = -11
+    Caption.Font.Name = 'Tahoma'
+    Caption.Font.Style = [fsBold]
+    Caption.ColorStart = clBlack
+    Caption.ColorEnd = clBlack
+    CaptionShadow.Text = '  Purchase Request Signatories'
+    CaptionShadow.Font.Charset = DEFAULT_CHARSET
+    CaptionShadow.Font.Color = clWindowText
+    CaptionShadow.Font.Height = -27
+    CaptionShadow.Font.Name = 'Tahoma'
+    CaptionShadow.Font.Style = []
+    Version = '1.6.0.0'
+    Transparent = False
+  end
+  object Label9: TLabel
+    Left = 110
+    Top = 216
+    Width = 12
+    Height = 13
+    Alignment = taRightJustify
+    Caption = 'To'
+  end
+  object Label10: TLabel
+    Left = 70
+    Top = 243
+    Width = 52
+    Height = 13
+    Alignment = taRightJustify
+    Caption = 'To Position'
+  end
+  object AdvSmoothLabel3: TAdvSmoothLabel
+    Left = 0
+    Top = 0
+    Width = 843
+    Height = 40
+    Fill.Color = clGreen
+    Fill.ColorTo = clTeal
+    Fill.ColorMirror = clNone
+    Fill.ColorMirrorTo = clNone
+    Fill.GradientType = gtHorizontal
+    Fill.GradientMirrorType = gtSolid
+    Fill.BorderColor = clNone
+    Fill.Rounding = 0
+    Fill.ShadowOffset = 0
+    Fill.Glow = gmNone
+    Caption.Text = '      Signatories'
+    Caption.Location = plCenterLeft
+    Caption.Font.Charset = BALTIC_CHARSET
+    Caption.Font.Color = clWindowText
+    Caption.Font.Height = -19
+    Caption.Font.Name = 'Tahoma'
+    Caption.Font.Style = [fsBold]
+    Caption.ColorStart = clYellow
+    Caption.ColorEnd = 11796479
+    CaptionShadow.Text = '      Signatories'
+    CaptionShadow.Location = plBottomRight
+    CaptionShadow.Font.Charset = DEFAULT_CHARSET
+    CaptionShadow.Font.Color = clWindowText
+    CaptionShadow.Font.Height = -27
+    CaptionShadow.Font.Name = 'Tahoma'
+    CaptionShadow.Font.Style = []
+    CaptionShadow.Left = 15
+    CaptionShadow.HatchStyle = HatchStyleCross
+    Version = '1.6.0.0'
+    Transparent = False
+    Align = alTop
+    ExplicitLeft = -273
+    ExplicitWidth = 1134
+  end
+  object Bevel3: TBevel
+    Left = 431
+    Top = 108
+    Width = 315
+    Height = 197
+    Shape = bsFrame
+    Style = bsRaised
+  end
+  object AdvSmoothLabel4: TAdvSmoothLabel
+    Left = 431
+    Top = 94
+    Width = 316
+    Height = 27
+    Fill.Color = 52377
+    Fill.ColorTo = 52377
+    Fill.ColorMirror = clNone
+    Fill.ColorMirrorTo = clNone
+    Fill.GradientType = gtVertical
+    Fill.GradientMirrorType = gtSolid
+    Fill.BorderColor = clNone
+    Fill.Rounding = 0
+    Fill.ShadowOffset = 0
+    Fill.Glow = gmNone
+    Caption.Text = '  Abstract Signatories'
+    Caption.Location = plCenterLeft
+    Caption.Font.Charset = DEFAULT_CHARSET
+    Caption.Font.Color = clWindowText
+    Caption.Font.Height = -11
+    Caption.Font.Name = 'Tahoma'
+    Caption.Font.Style = [fsBold]
+    Caption.ColorStart = clBlack
+    Caption.ColorEnd = clBlack
+    CaptionShadow.Text = '  Abstract Signatories'
+    CaptionShadow.Font.Charset = DEFAULT_CHARSET
+    CaptionShadow.Font.Color = clWindowText
+    CaptionShadow.Font.Height = -27
+    CaptionShadow.Font.Name = 'Tahoma'
+    CaptionShadow.Font.Style = []
+    Version = '1.6.0.0'
+    Transparent = False
+  end
+  object Label2: TLabel
+    Left = 472
+    Top = 131
+    Width = 68
+    Height = 13
+    Alignment = taRightJustify
+    Caption = 'BAC Chairman'
+  end
+  object Label3: TLabel
+    Left = 479
+    Top = 161
+    Width = 61
+    Height = 13
+    Alignment = taRightJustify
+    Caption = 'BAC Member'
+  end
+  object Label4: TLabel
+    Left = 479
+    Top = 189
+    Width = 61
+    Height = 13
+    Alignment = taRightJustify
+    Caption = 'BAC Member'
+  end
+  object Label5: TLabel
+    Left = 479
+    Top = 216
+    Width = 61
+    Height = 13
+    Alignment = taRightJustify
+    Caption = 'BAC Member'
+  end
+  object Label11: TLabel
+    Left = 494
+    Top = 243
+    Width = 46
+    Height = 13
+    Alignment = taRightJustify
+    Caption = 'BAC TWG'
+  end
+  object Label6: TLabel
+    Left = 441
+    Top = 270
+    Width = 99
+    Height = 13
+    Alignment = taRightJustify
+    Caption = 'COA Representative'
+  end
+  object DBEdit1: TDBEdit
+    Left = 136
+    Top = 128
+    Width = 189
+    Height = 21
+    DataField = 'mayorName'
+    DataSource = signDS
+    TabOrder = 0
+  end
+  object DBEdit9: TDBEdit
+    Left = 128
+    Top = 209
+    Width = 189
+    Height = 21
+    DataField = 'pr_toName'
+    DataSource = signDS
+    TabOrder = 1
+  end
+  object DBEdit10: TDBEdit
+    Left = 128
+    Top = 236
+    Width = 189
+    Height = 21
+    DataField = 'pr_toPosition'
+    DataSource = signDS
+    TabOrder = 2
+  end
+  object NxLinkLabel1: TNxLinkLabel
+    Left = 42
+    Top = 67
+    Width = 33
+    Height = 16
+    Caption = 'SAVE'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = 8404992
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    HoverColor = 8404992
+    ParentFont = False
+    TextDistance = 2
+    VertSpacing = 2
+    OnClick = NxLinkLabel1Click
+  end
+  object NxLinkLabel2: TNxLinkLabel
+    Left = 90
+    Top = 67
+    Width = 40
+    Height = 16
+    Caption = 'CLOSE'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = 8404992
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    HoverColor = 8404992
+    ParentFont = False
+    TextDistance = 2
+    VertSpacing = 2
+    OnClick = NxLinkLabel2Click
+  end
+  object DBEdit2: TDBEdit
+    Left = 546
+    Top = 128
+    Width = 189
+    Height = 21
+    DataField = 'pr_fromName'
+    DataSource = signDS
+    TabOrder = 5
+  end
+  object DBEdit3: TDBEdit
+    Left = 546
+    Top = 155
+    Width = 189
+    Height = 21
+    DataField = 'pr_fromPosition'
+    DataSource = signDS
+    TabOrder = 6
+  end
+  object DBEdit4: TDBEdit
+    Left = 546
+    Top = 182
+    Width = 189
+    Height = 21
+    DataField = 'pr_fromDepartment'
+    DataSource = signDS
+    TabOrder = 7
+  end
+  object DBEdit5: TDBEdit
+    Left = 546
+    Top = 209
+    Width = 189
+    Height = 21
+    DataField = 'pr_toName'
+    DataSource = signDS
+    TabOrder = 8
+  end
+  object DBEdit11: TDBEdit
+    Left = 546
+    Top = 236
+    Width = 189
+    Height = 21
+    DataField = 'pr_toPosition'
+    DataSource = signDS
+    TabOrder = 9
+  end
+  object DBEdit6: TDBEdit
+    Left = 546
+    Top = 263
+    Width = 189
+    Height = 21
+    DataField = 'pr_toPosition'
+    DataSource = signDS
+    TabOrder = 10
+  end
+  object signQ: TMyQuery
+    Connection = dataproc.MyConnection1
+    SQL.Strings = (
+      'Select * from signatories')
+    Left = 232
+    Top = 48
+  end
+  object signDS: TMyDataSource
+    DataSet = signQ
+    Left = 288
+    Top = 48
+  end
+end
